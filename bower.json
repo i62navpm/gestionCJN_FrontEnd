@@ -1,0 +1,23 @@
+{
+  "name": "gestion_cjn",
+  "version": "0.0.1",
+  "homepage": "https://github.com/i62navpm/gestionCJN_FrontEnd",
+  "authors": [
+    "Manuel Navarro <manuelnavarro1987@gmail.com>"
+  ],
+  "description": "FrontEnd para software de gestion",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-material": "~0.11.0",
+    "angular-ui-router": "~0.2.15"
+  }
+}

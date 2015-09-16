@@ -1,0 +1,13 @@
+{
+  "globals": {
+  },
+  "globalstrict": true,
+  "esnext": true,
+  "browser": true,
+  "bitwise": true,
+  "nonew": true,
+  "expr": true,
+  "loopfunc": true,
+  "undef": true,
+  "unused": true
+}
