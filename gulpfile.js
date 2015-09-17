@@ -3,9 +3,10 @@ var plugins = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 
 var paths = {
-              jsFiles     : ['./src/main/**/*.js'],
-              scssFiles   : ['./src/main/styles/*.scss'],
-              imagesFiles : ['./src/main/assets/*.png']
+              jsFiles     : ['./src/app/**/*.js'],
+              scssFiles   : ['./src/content/styles/*.scss'],
+              imagesFiles : ['./src/content/assets/*.png'],
+              htmlFiles   : ['./src/app/**/*.html']
             };
 
 gulp.task('prepareJS', function () {
@@ -14,7 +15,10 @@ gulp.task('prepareJS', function () {
     .pipe(plugins.sourcemaps.init())
       .pipe(plugins.jshint())
       .pipe(plugins.jshint.reporter('default'))
-      .pipe(plugins.concat('games.js'))
+      .pipe(plugins.concat('all.min.js'))
+      .pipe(plugins.ngAnnotate({
+          add: true
+        }))
       .pipe(plugins.uglify())
     .pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest('./build/js/'));
@@ -38,9 +42,15 @@ gulp.task('prepareImages', function(){
 });
 
 gulp.task('prepareLibs', function () {
-  gulp.src('./src/main/index.html')
+  gulp.src('./src/app/index.html')
     .pipe(wiredep())
     .pipe(gulp.dest('./build'));
+});
+
+gulp.task('prepareTemplates', function () {
+  return gulp.src(paths.htmlFiles)
+    .pipe(plugins.angularTemplatecache({module: 'app'}))
+    .pipe(gulp.dest('./build/templates'));
 });
 
 gulp.task('webserver', function() {
@@ -56,8 +66,9 @@ gulp.task('webserver', function() {
 gulp.task('watch', function(){
   gulp.watch(paths.jsFiles, ['prepareJS']);
   gulp.watch(paths.scssFiles, ['prepareCSS']);
+  gulp.watch(paths.htmlFiles, ['prepareLibs', 'prepareTemplates']);
 });
 
-gulp.task('default', ['prepareJS', 'prepareCSS', 'prepareImages', 'prepareLibs', 'webserver', 'watch'], function() {
+gulp.task('default', ['prepareJS', 'prepareCSS', 'prepareImages', 'prepareLibs', 'prepareTemplates', 'webserver', 'watch'], function() {
   // place code for your default task here
 });

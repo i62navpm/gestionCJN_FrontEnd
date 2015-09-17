@@ -1,5 +1,7 @@
 {
   "globals": {
+    "angular": false,
+    "$": false
   },
   "globalstrict": true,
   "esnext": true,
@@ -9,5 +11,6 @@
   "expr": true,
   "loopfunc": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "validthis": true
 }
