@@ -58,8 +58,14 @@ gulp.task('webserver', function() {
     .pipe(plugins.webserver({
       directoryListing: true,
       host: '0.0.0.0',
-      port: 8000,
-      open: 'http://127.0.0.1:8000/build/index.html'
+      port: 5050,
+      open: 'http://127.0.0.1:5050/build/index.html',
+      proxies: [
+      {
+        'source': '/api',
+        'target': 'http://localhost:8000/api'
+      }
+    ]
     }));
 });
 
