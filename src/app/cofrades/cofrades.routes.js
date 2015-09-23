@@ -6,7 +6,6 @@
     .config(config);
 
   function config($stateProvider) {
-
     $stateProvider
       .state('cofrades', {
         url: "/cofrades",
@@ -14,8 +13,15 @@
           return $templateCache.get('cofrades/cofrades.html'); 
         },
         controller: 'Cofrades',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+            cofradesPrepService: cofradesPrepService
+        }
       });
+  }
+
+  function cofradesPrepService(cofradesService) {
+    return cofradesService.getCofrades();
   }
 
 })();
