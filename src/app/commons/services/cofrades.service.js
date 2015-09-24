@@ -7,11 +7,11 @@
 
   function cofradesService($resource, $filter) {
     return {
-      getCofrades: getCofrades,
-      getCofradesBajas: getCofradesBajas
+      cofradesRest: cofradesRest,
+      cofradesBajasRest: cofradesBajasRest
     };
 
-    function getCofrades() {
+    function cofradesRest() {
       return $resource('http://127.0.0.1:5050/api/cofrades/:id.json:json', null, {
         'query':  {method:'GET', isArray:false},
         'save':   {method:'POST', transformRequest: function(data, headersGetter) {
@@ -21,7 +21,7 @@
       });
     }
 
-    function getCofradesBajas() {
+    function cofradesBajasRest() {
       return $resource('http://127.0.0.1:5050/api/cofradesBajas/:id.json:json', null, {'query':  {method:'GET', isArray:false}});
     }
     

@@ -28,6 +28,7 @@ gulp.task('prepareCSS', function () {
   gulp.src(paths.scssFiles)
     .pipe(plugins.plumber())
     .pipe(plugins.sass().on('error', plugins.sass.logError))
+    .pipe(plugins.concat('all.min.css'))
     .pipe(plugins.autoprefixer({
         browsers: ['last 2 versions'],
         cascade: true

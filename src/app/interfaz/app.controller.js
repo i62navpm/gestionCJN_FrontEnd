@@ -6,12 +6,17 @@
     .controller('AppCtrl', AppCtrl);
 
 
-  function AppCtrl($mdSidenav) {
+  function AppCtrl($mdSidenav, $state) {
     var vm = this;
     vm.toggleSidenav = toggleSidenav;
+    vm.navigateTo    = navigateTo;
     
     function toggleSidenav(menuId) {
       $mdSidenav(menuId).toggle();
+    }
+
+    function navigateTo(to){
+      $state.go(to);
     }
   }
 

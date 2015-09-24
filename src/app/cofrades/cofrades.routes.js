@@ -21,7 +21,7 @@
   }
 
   function cofradesPrepService(cofradesService) {
-    return cofradesService.getCofrades();
+    return cofradesService.cofradesRest().query();
   }
 
 })();

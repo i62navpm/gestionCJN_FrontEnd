@@ -1,0 +1,22 @@
+.cofrades{
+  md-radio-button {
+    margin: 0;
+  }
+  md-input-container {
+    padding-bottom: 16px;
+  }
+  md-content.lista-cofrades{
+    .numeroOrden{
+      text-align: right;
+    }
+    
+    .md-list-item-text{
+      padding: 0;
+    }
+
+  }
+  p.direccion{
+    color: rgba(0, 0, 0, 0.541176);
+  }
+
+}
