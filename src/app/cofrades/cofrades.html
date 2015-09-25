@@ -1,35 +1,7 @@
 <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-whiteframe-z2 cofrades">
   
   <md-tab label="Altas">
-    <md-content class="md-padding">
-      
-      <md-input-container class="md-icon-float">
-        <label>Buscar</label>
-        <md-icon md-font-library="material-icons">search</md-icon>
-        <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.busqueda()" type="text">
-      </md-input-container>
-      
-      <md-radio-group ng-model="vm.filtro" ng-change="vm.radioChange()" layout="row" layout-align="space-around start">
-        <md-radio-button value="nombre">Nombre</md-radio-button>
-        <md-radio-button value="numeroOrden">Número de orden</md-radio-button>
-      </md-radio-group>
-
-    </md-content>
-
-    <md-divider></md-divider>
-    
-    <md-content class="lista-cofrades" flex>
-      <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="goToCofrade(person.name, $event)">
-        <h3 flex="10" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
-        <div class="md-list-item-text" offset="5">
-          <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
-          <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
-        </div>
-        <md-icon md-font-library="material-icons" ng-click="" aria-label="Modifica Cofrade" class="md-secondary md-hue-3" ng-class="md-primary">search</md-icon>
-      </md-list-item>
-    </md-content>
-    
-
+    <lista-cofrades cofrades="vm.cofrades" page="vm.nextPage"></lista-cofrades>
   </md-tab>
   
   <md-tab label="Bajas">

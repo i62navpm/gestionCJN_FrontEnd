@@ -3,10 +3,11 @@ var plugins = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 
 var paths = {
-              jsFiles     : ['./src/app/**/*.js'],
-              scssFiles   : ['./src/content/styles/*.scss'],
-              imagesFiles : ['./src/content/assets/*.png'],
-              htmlFiles   : ['./src/app/**/*.html']
+              jsFiles        : ['./src/app/**/*.js'],
+              scssFiles      : ['./src/content/styles/*.scss'],
+              imagesFiles    : ['./src/content/assets/*.png'],
+              htmlFiles      : ['./src/app/**/*.html', '!./src/app/commons/directives/**/*.html'],
+              htmlDirectives : ['./src/app/commons/directives/**/*.html']
             };
 
 gulp.task('prepareJS', function () {
@@ -54,6 +55,11 @@ gulp.task('prepareTemplates', function () {
     .pipe(gulp.dest('./build/templates'));
 });
 
+gulp.task('prepareDirectivesTempl', function () {
+  gulp.src(paths.htmlDirectives)
+  .pipe(gulp.dest('./build/templates/directives/'));
+});
+
 gulp.task('webserver', function() {
   gulp.src('./')
     .pipe(plugins.webserver({
@@ -74,8 +80,9 @@ gulp.task('watch', function(){
   gulp.watch(paths.jsFiles, ['prepareJS']);
   gulp.watch(paths.scssFiles, ['prepareCSS']);
   gulp.watch(paths.htmlFiles, ['prepareLibs', 'prepareTemplates']);
+  gulp.watch(paths.htmlDirectives, ['prepareDirectivesTempl']);
 });
 
-gulp.task('default', ['prepareJS', 'prepareCSS', 'prepareImages', 'prepareLibs', 'prepareTemplates', 'webserver', 'watch'], function() {
+gulp.task('default', ['prepareJS', 'prepareCSS', 'prepareImages', 'prepareLibs', 'prepareTemplates', 'prepareDirectivesTempl','webserver', 'watch'], function() {
   // place code for your default task here
 });
