@@ -6,10 +6,10 @@
       <md-input-container class="md-icon-float">
         <label>Buscar</label>
         <md-icon md-font-library="material-icons">search</md-icon>
-        <input ng-model="vm.buscar" ng-change="vm.busqueda()" type="text">
+        <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.busqueda()" type="text">
       </md-input-container>
       
-      <md-radio-group ng-model="vm.filtro"  layout="row" layout-align="space-around start">
+      <md-radio-group ng-model="vm.filtro" ng-change="vm.radioChange()" layout="row" layout-align="space-around start">
         <md-radio-button value="nombre">Nombre</md-radio-button>
         <md-radio-button value="numeroOrden">Número de orden</md-radio-button>
       </md-radio-group>
