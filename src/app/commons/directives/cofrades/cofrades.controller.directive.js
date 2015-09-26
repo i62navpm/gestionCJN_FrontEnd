@@ -5,15 +5,16 @@
     .module('app')
     .controller('ListaCofrades', ListaCofrades);
 
-  function ListaCofrades($rootScope, cofradesService) {
+  function ListaCofrades($rootScope, $state, cofradesService) {
     var vm = this;
     
     vm.filtro    = 'nombre';
     vm.typeInput = 'text';
     vm.buscar    = null;
 
-    vm.busqueda    = busqueda;
-    vm.radioChange = radioChange;
+    vm.busqueda     = busqueda;
+    vm.radioChange  = radioChange;
+    vm.goToCofrade = goToCofrade;
 
     $rootScope.$on('scrollDown', getNextPage);
 
@@ -43,6 +44,10 @@
     function radioChange() {
       vm.buscar = null;
       vm.typeInput = (vm.filtro === 'nombre') ? 'text': 'number';
+    }
+
+    function goToCofrade(id, event){
+      $state.go('cofradesDetalle', {cofradeId: id});
     }
 
   }
