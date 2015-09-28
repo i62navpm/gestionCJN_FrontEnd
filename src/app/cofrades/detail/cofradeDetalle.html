@@ -20,124 +20,228 @@
       </div>
     </md-toolbar>
 
-    <md-content class="md-padding" >
-      <md-list layout="row" layout-align="space-between center">
-        <md-list-item class="md-2-line cofrade-detalle" layout="row" layout-wrap>
-          <div class="md-item-text md-whiteframe-z1" flex>
+
+    <md-content class="md-padding">
+      
+      <div layout layout-padding class="md-padding" layout-align="space-around center">
+        <div class="md-2-line cofrade-detalle" flex="40">
+          <div class="md-item-text md-whiteframe-z1">
             <h3>Número de orden</h3>
             <p>{{vm.cofrade.numeroOrden}}</p>
           </div>
-        </md-list-item>
-        <md-list-item class="md-2-line cofrade-detalle" layout="row" layout-wrap>
-          <div class="md-item-text md-whiteframe-z1" flex>
+        </div>
+        <div class="md-2-line cofrade-detalle" flex="40">
+          <div class="md-item-text md-whiteframe-z1">
             <h3>Número de cofrade</h3>
             <p>{{vm.cofrade.numeroCofrade}}</p>
           </div>
-        </md-list-item>
-      </md-list>
- 
-      <h1>Datos personales</h1>
-      <div layout layout-sm="column">
-        <md-input-container class="md-icon-float" flex="75">
-          <label>Nombre</label>
-          <md-icon md-font-library="material-icons">face</md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.nombre" type="text" readonly>
-        </md-input-container>
-      </div>
-      
-      <div layout layout-sm="column">
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Primer apellido</label>
-          <md-icon md-font-library="material-icons"></md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.apellido1" type="text" readonly>
-        </md-input-container>
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Segundo apellido</label>
-          <md-icon md-font-library="material-icons"></md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.apellido2" type="text" readonly>
-        </md-input-container>
-      </div>
-
-      <div layout layout-sm="column">
-        <md-input-container class="md-icon-float" flex="50">
-          <label>DNI</label>
-          <md-icon md-font-library="material-icons">credit_card</md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.dni" type="text" readonly>
-        </md-input-container>
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Sexo</label>
-          <md-icon md-font-library="material-icons"></md-icon>
-           <input ng-model="vm.cofrade.datosPersonales.sexo" type="text" readonly>
-        </md-input-container>
-      </div>
-
-       <div layout layout-sm="column">
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Fecha de nacimiento:</label>
-          <md-icon md-font-library="material-icons">event_note</md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.fechaNacimiento" type="text" readonly>
-        </md-input-container>
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Fecha de inscripción:</label>
-          <md-icon md-font-library="material-icons">event_note</md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.fechaInscripcion" type="text" readonly>
-        </md-input-container>
-      </div>
-
-      <div layout layout-sm="column">
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Teléfono</label>
-          <md-icon md-font-library="material-icons">local_phone</md-icon>
-          <input ng-model="vm.cofrade.datosPersonales.telefono" type="text" readonly>
-        </md-input-container>
-        <md-input-container class="md-icon-float" flex="50">
-          <label>Email</label>
-          <md-icon md-font-library="material-icons">email</md-icon>
-           <input ng-model="vm.cofrade.datosPersonales.email" type="text" readonly>
-        </md-input-container>
-      </div>
-
-      <h4>Dirección</h4>
-      <div layout layout-sm="column">
-        <div offset="5" flex="30">
-          <p>{{vm.cofrade.datosPersonales.direccion.calle}}
-          <span ng-if="vm.cofrade.datosPersonales.direccion.numero">, {{vm.cofrade.datosPersonales.direccion.numero}}</span>
-          <span ng-if="vm.cofrade.datosPersonales.direccion.planta">, {{vm.cofrade.datosPersonales.direccion.planta}}</span>
-          <span ng-if="vm.cofrade.datosPersonales.direccion.piso">, {{vm.cofrade.datosPersonales.direccion.piso}}</span></p>
-          <p>{{vm.cofrade.datosPersonales.direccion.municipio}}, {{vm.cofrade.datosPersonales.direccion.cp}}</p>
-          <p>{{vm.cofrade.datosPersonales.direccion.provincia}}</p>
-        </div>
-        <div offset="5" flex="60">
-          <ui-gmap-google-map center='vm.maps.coord' zoom='vm.maps.zoom'>
-            <ui-gmap-marker coords="vm.maps.coord" idKey="1"></ui-gmap-marker>
-          </ui-gmap-google-map>
         </div>
       </div>
-
-      <md-divider></md-divider>
-      <p>loremLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <h1>Datos de loteria</h1>
-      <md-divider></md-divider>
-      <p>loremLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <h1>Información de baja</h1>
-      <md-divider></md-divider>
-      <p>loremLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       
+      
+
+      <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+      <md-tab>
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">person</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          <h1>Datos personales</h1>
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="75">
+              <label>Nombre</label>
+              <md-icon md-font-library="material-icons">face</md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.nombre" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Primer apellido</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.apellido1" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Segundo apellido</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.apellido2" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>DNI</label>
+              <md-icon md-font-library="material-icons">credit_card</md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.dni" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Sexo</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cofrade.datosPersonales.sexo" type="text" readonly>
+            </md-input-container>
+          </div>
+
+           <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Fecha de nacimiento:</label>
+              <md-icon md-font-library="material-icons">event_note</md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.fechaNacimiento" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Fecha de inscripción:</label>
+              <md-icon md-font-library="material-icons">event_note</md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.fechaInscripcion" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Teléfono</label>
+              <md-icon md-font-library="material-icons">local_phone</md-icon>
+              <input ng-model="vm.cofrade.datosPersonales.telefono" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Email</label>
+              <md-icon md-font-library="material-icons">email</md-icon>
+               <input ng-model="vm.cofrade.datosPersonales.email" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
+          <div layout layout-sm="column">
+            <div offset="5" flex="40">
+              <p>{{vm.cofrade.datosPersonales.direccion.calle}}
+              <span ng-if="vm.cofrade.datosPersonales.direccion.numero">, {{vm.cofrade.datosPersonales.direccion.numero}}</span>
+              <span ng-if="vm.cofrade.datosPersonales.direccion.planta">, {{vm.cofrade.datosPersonales.direccion.planta}}</span>
+              <span ng-if="vm.cofrade.datosPersonales.direccion.piso">, {{vm.cofrade.datosPersonales.direccion.piso}}</span></p>
+              <p>{{vm.cofrade.datosPersonales.direccion.municipio}}, {{vm.cofrade.datosPersonales.direccion.cp}}</p>
+              <p>{{vm.cofrade.datosPersonales.direccion.provincia}}</p>
+            </div>
+            <div offset="5" flex="50">
+              <ui-gmap-google-map center='vm.maps.coord' zoom='vm.maps.zoom'>
+                <ui-gmap-marker coords="vm.maps.coord" idKey="1"></ui-gmap-marker>
+              </ui-gmap-google-map>
+            </div>
+          </div>
+
+          <div ng-if="vm.cofrade.datosPersonales.nota" layout="column">
+            <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
+            <div flex offset="5">
+              <p>{{vm.cofrade.datosPersonales.nota}}</p>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab ng-disabled="!vm.cofrade.datosFinancieros">
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">account_balance</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          <h1>Datos bancarios</h1>
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>IBAN</label>
+              <md-icon md-font-library="material-icons">attach_money</md-icon>
+              <input ng-model="vm.cofrade.datosFinancieros.cuenta.iban" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>CC</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cofrade.datosFinancieros.cuenta.cc" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Banco</label>
+              <md-icon md-font-library="material-icons">account_balance</md-icon>
+              <input ng-model="vm.cofrade.datosFinancieros.banco" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Driección del banco</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cofrade.datosFinancieros.direccionBanco" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Deudas</label>
+              <md-icon md-font-library="material-icons">mood_bad</md-icon>
+              <input ng-model="vm.cofrade.datosFinancieros.deuda" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.cofrade.datosFinancieros.domiciliarPagos" class="md-primary" ng-disabled="true">
+              Pagos domicilados
+            </md-checkbox>
+            <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.cofrade.datosFinancieros.domiciliarLoteria" class="md-primary" ng-disabled="true">
+              Lotería domiciliada
+            </md-checkbox>
+          </div>
+
+        </md-content>
+      </md-tab>
+      <md-tab ng-disabled="!vm.cofrade.datosLoteria">
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">local_play</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          <h1>Datos Loteria</h1>
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número de Navidad 1</label>
+              <md-icon md-font-library="material-icons">local_play</md-icon>
+              <input ng-model="vm.cofrade.datosLoteria.numeroNavidad1" type="number" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número de Navidad 2</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cofrade.datosLoteria.numeroNavidad2" type="number" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número del Niño 1</label>
+              <md-icon md-font-library="material-icons">local_play</md-icon>
+              <input ng-model="vm.cofrade.datosLoteria.numeroNinio1" type="number" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número del Niño 2</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cofrade.datosLoteria.numeroNinio2" type="number" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.cofrade.datosLoteria.participacionNavidad" class="md-primary" ng-disabled="true">
+              Participaciones de Navidad
+            </md-checkbox>
+            <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.cofrade.datosLoteria.participacionNinio" class="md-primary" ng-disabled="true">
+              Participaciones del niño
+            </md-checkbox>
+          </div>
+          
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+    <!-- 
+      
+
+      <div ng-if="vm.cofrade.datosFinancieros" layout="column">
+
+        
+      </div>
+      
+      <div ng-if="vm.cofrade.datosLoteria" layout="column">
+        <md-divider></md-divider>
+        
+
+      </div> -->
+        
     </md-content>
 
   </div>

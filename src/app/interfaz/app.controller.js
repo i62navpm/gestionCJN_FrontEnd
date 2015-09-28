@@ -15,7 +15,8 @@
       $mdSidenav(menuId).toggle();
     }
 
-    function navigateTo(to){
+    function navigateTo(to, menuId){
+      toggleSidenav(menuId)
       $state.go(to);
     }
   }

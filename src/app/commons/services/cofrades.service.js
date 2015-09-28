@@ -13,7 +13,7 @@
 
     function cofradesRest() {
       return $resource('http://127.0.0.1:5050/api/cofrades/:id.json:json', null, {
-        'query':  {method:'GET', isArray:false},
+        'query':  {method:'GET', isArray: false, cache: true},
         'save':   {method:'POST', transformRequest: function(data, headersGetter) {
                                                       return angular.toJson($filter('removeNulls')(data));
                                                     }

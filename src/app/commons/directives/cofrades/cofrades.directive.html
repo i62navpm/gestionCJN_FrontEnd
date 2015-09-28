@@ -15,13 +15,13 @@
 
 <md-content class="lista-cofrades" flex>
   <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="vm.goToCofrade(cofrade.id, $event)">
-    <h3 flex="10" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
-    <div layout="row" class="md-list-item-text" offset="5">
-      <div flex="75">
+    <h3 flex="10" flex-sm="5" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
+    <div layout="row" class="md-list-item-text">
+      <div flex="70" offset="5">
         <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
         <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
       </div>
-      <div offset="5" flex="20" layout="row" layout-align="space-around center">
+      <div flex="20" offset="5" layout="row" layout-align="space-around center">
         <md-icon md-font-library="material-icons">mode_edit</md-icon>
         <md-icon md-font-library="material-icons">clear</md-icon>
       </div>
