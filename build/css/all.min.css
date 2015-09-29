@@ -29,6 +29,9 @@
 .listaCofrades .angular-google-map-container {
   height: 250px; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 body md-content.page-container {
   background-color: #f1f1f1; }
 

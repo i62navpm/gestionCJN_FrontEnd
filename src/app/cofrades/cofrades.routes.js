@@ -26,7 +26,8 @@
         controller: 'CofradeDetalle',
         controllerAs: 'vm',
         resolve: {
-            getCofradePrepService: getCofradePrepService
+            getCofradePrepService: getCofradePrepService,
+            getMapsPrepService: getMapsPrepService
         }
       });
   }
@@ -37,6 +38,31 @@
 
   function getCofradePrepService(cofradesService, $stateParams) {
     return cofradesService.cofradesRest().get({id: $stateParams.cofradeId});
+  }
+  
+  function getMapsPrepService(uiGmapGoogleMapApi, getCofradePrepService, mapasService) {
+    return getCofradePrepService.$promise.then(function(data){
+      
+      var address = data.datosPersonales.direccion.calle     + ' ' +
+                    data.datosPersonales.direccion.numero    + ' ' +
+                    data.datosPersonales.direccion.municipio + ' ' +
+                    data.datosPersonales.direccion.provincia + ' ' +
+                    data.datosPersonales.direccion.cp;
+
+      return mapasService.geoCodingAPI(address).
+        then(function(response){
+          if (response.data.results.length){
+            var coordinates = response.data.results[0].geometry.location;
+            return uiGmapGoogleMapApi.then(function(maps) {
+              return  {coord:  { latitude: coordinates.lat, 
+                                longitude: coordinates.lng },
+                       marker: { latitude: coordinates.lat, 
+                                longitude: coordinates.lng },
+                      zoom: 17 };
+            });
+          }
+        });
+    });
   }
 
 })();
