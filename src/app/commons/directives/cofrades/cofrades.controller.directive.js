@@ -12,9 +12,10 @@
     vm.typeInput = 'text';
     vm.buscar    = null;
 
-    vm.busqueda     = busqueda;
-    vm.radioChange  = radioChange;
-    vm.goToCofrade = goToCofrade;
+    vm.busqueda      = busqueda;
+    vm.radioChange   = radioChange;
+    vm.goToCofrade   = goToCofrade;
+    vm.modifyCofrade = modifyCofrade;
 
     $rootScope.$on('scrollDown', getNextPage);
 
@@ -48,6 +49,10 @@
 
     function goToCofrade(id, event){
       $state.go('cofradesDetalle', {cofradeId: id});
+    }
+
+    function modifyCofrade(id, event){
+      $state.go('cofradesModificar', {cofradeId: id});
     }
 
   }

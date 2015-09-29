@@ -29,6 +29,17 @@
             getCofradePrepService: getCofradePrepService,
             getMapsPrepService: getMapsPrepService
         }
+      }).
+      state('cofradesModificar', {
+        url: "/cofrades/cambios/:cofradeId",
+        templateProvider: function($templateCache){  
+          return $templateCache.get('cofrades/modify/cofradeModificar.html'); 
+        },
+        controller: 'CofradeModificar',
+        controllerAs: 'vm',
+        resolve: {
+            getCofradePrepService: getCofradePrepService
+        }
       });
   }
 
