@@ -1,6 +1,6 @@
-<div layout="row" layout-align="center center">
+<div layout="row" layout-align="center center" class="cofrades">
   <div flex flex-gt-md="80">
-    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary md-whiteframe-z2 cofrades">
+    <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary md-whiteframe-z2">
       
       <md-tab label="Altas">
         <lista-cofrades cofrades="vm.cofrades" page="vm.nextPage"></lista-cofrades>
@@ -16,5 +16,12 @@
       </md-tab>
 
     </md-tabs>
+
   </div>
+  <div  class="md-margin">
+  <md-button class="fab-cofrade md-margin md-fab" aria-label="Añadir Cofrade" ui-sref="cofradesNuevo">
+    <md-icon md-font-library="material-icons">add</md-icon>
+  </md-button>
+</div>
+
 </div>

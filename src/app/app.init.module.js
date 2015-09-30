@@ -5,7 +5,8 @@
     'ui.router',
     'ngResource',
     'ngMaterial',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'ngMessages'
   ]);
 
 })();

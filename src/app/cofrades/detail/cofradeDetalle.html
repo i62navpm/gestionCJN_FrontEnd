@@ -138,16 +138,16 @@
         </md-tab-label>
         <md-content class="md-padding">
           <h1>Datos bancarios</h1>
-          <div layout layout-sm="column">
+          <div layout="column">
             <md-input-container class="md-icon-float" flex="50">
               <label>IBAN</label>
               <md-icon md-font-library="material-icons">attach_money</md-icon>
-              <input ng-model="vm.cofrade.datosFinancieros.cuenta.iban" type="text" readonly>
+              <input ng-model="vm.iban" type="text" readonly>
             </md-input-container>
             <md-input-container class="md-icon-float" flex="50">
               <label>CC</label>
               <md-icon md-font-library="material-icons"></md-icon>
-               <input ng-model="vm.cofrade.datosFinancieros.cuenta.cc" type="text" readonly>
+               <input ng-model="vm.cc" type="text" readonly>
             </md-input-container>
           </div>
           

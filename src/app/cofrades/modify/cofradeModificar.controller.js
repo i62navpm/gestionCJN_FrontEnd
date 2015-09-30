@@ -11,6 +11,7 @@
     vm.cofrade = {datosFinancieros: {deuda: []}};
 
     vm.backState = backState;
+    
     activate();
 
     function activate() {

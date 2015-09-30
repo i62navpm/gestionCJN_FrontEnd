@@ -5,10 +5,11 @@
     .module('app')
     .factory('cofradesService', cofradesService);
 
-  function cofradesService($resource, $filter) {
+  function cofradesService($resource, $http, $filter) {
     return {
       cofradesRest: cofradesRest,
-      cofradesBajasRest: cofradesBajasRest
+      cofradesBajasRest: cofradesBajasRest,
+      getCalles: getCalles
     };
 
     function cofradesRest() {
@@ -27,6 +28,13 @@
 
     function cofradesBajasRest() {
       return $resource('http://127.0.0.1:5050/api/cofradesBajas/:id.json:json', null, {'query':  {method:'GET', isArray:false}});
+    }
+
+    function getCalles() {
+      return $http.get('http://127.0.0.1:5050/api/calles/').
+              then(function(response){
+                return angular.fromJson(response);
+              });
     }
     
   }
