@@ -17,14 +17,17 @@
     function activate() {
       return getCofradePrepService.$promise.then(function(data){
         vm.cofrade = $filter('dateToString')(data);
-        vm.iban = $filter('parseIban')(vm.cofrade.datosFinancieros.cuenta.iban);
-        vm.cc = $filter('parseCC')(vm.cofrade.datosFinancieros.cuenta.cc);
+        if(vm.cofrade.datosFinancieros)
+          if(vm.cofrade.datosFinancieros.cuenta){
+            vm.iban = $filter('parseIban')(vm.cofrade.datosFinancieros.cuenta.iban);
+            vm.cc = $filter('parseCC')(vm.cofrade.datosFinancieros.cuenta.cc);
+          }
         vm.maps = getMapsPrepService;
       });
     }
 
     function modifyCofrade(id, event){
-      $state.go('cofradesModificar', {cofradeId: id});
+      $state.go('cofradesCambios', {cofradeId: id});
     }
   }
 

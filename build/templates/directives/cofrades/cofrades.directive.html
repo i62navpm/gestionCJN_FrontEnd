@@ -2,7 +2,7 @@
   <md-input-container class="md-icon-float">
     <label>Buscar</label>
     <md-icon md-font-library="material-icons">search</md-icon>
-    <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.busqueda()" type="text">
+    <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.busqueda()" type="text" ng-model-options="{ debounce: 200 }">
   </md-input-container>
   
   <md-radio-group ng-model="vm.filtro" ng-change="vm.radioChange()" layout="row" layout-align="space-around start">

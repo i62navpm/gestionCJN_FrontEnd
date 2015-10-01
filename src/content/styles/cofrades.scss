@@ -46,7 +46,6 @@
   }
   .angular-google-map-container { height: 250px; }
   
-}
   .autocomplete-custom-template li {
     border-bottom: 1px solid #ccc;
     height: auto;
@@ -63,3 +62,11 @@
     width: 18px; 
     margin-right: 8px;
   }
+  .validation-messages{
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    padding-top: 5px;
+    color: rgb(244,67,54);
+  }
+}

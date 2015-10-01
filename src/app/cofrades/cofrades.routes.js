@@ -30,26 +30,17 @@
             getMapsPrepService: getMapsPrepService
         }
       }).
-      state('cofradesModificar', {
-        url: "/cofrades/cambios/:cofradeId",
-        templateProvider: function($templateCache){  
-          return $templateCache.get('cofrades/modify/cofradeModificar.html'); 
-        },
-        controller: 'CofradeModificar',
-        controllerAs: 'vm',
-        resolve: {
-            getCofradePrepService: getCofradePrepService
-        }
-      }).
-      state('cofradesNuevo', {
-        url: "/cofrades/nuevo/",
+      state('cofradesCambios', {
+        url: "/cofrades/nuevos/:cofradeId",
         templateProvider: function($templateCache){  
           return $templateCache.get('cofrades/add/cofradeNuevo.html'); 
         },
         controller: 'CofradeNuevo',
         controllerAs: 'vm',
         resolve: {
-            getCallesPrepService: getCallesPrepService
+            getCofradePrepService: getCofradePrepService,
+            getCallesPrepService: getCallesPrepService,
+            getRegistrosPrepService: getRegistrosPrepService
         }
       });
   }
@@ -59,11 +50,14 @@
   }
 
   function getCofradePrepService(cofradesService, $stateParams) {
-    return cofradesService.cofradesRest().get({id: $stateParams.cofradeId});
+    return ($stateParams.cofradeId) ? cofradesService.cofradesRest().get({id: $stateParams.cofradeId}) : false;
   }
 
   function getCallesPrepService(cofradesService) {
     return cofradesService.getCalles().then(function(response){return response.data;});
+  }
+  function getRegistrosPrepService(cofradesService) {
+    return cofradesService.getRegistros().then(function(response){return response.data;});
   }
   
   function getMapsPrepService(uiGmapGoogleMapApi, getCofradePrepService, mapasService) {

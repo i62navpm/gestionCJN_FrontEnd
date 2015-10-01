@@ -9,7 +9,8 @@
     return {
       cofradesRest: cofradesRest,
       cofradesBajasRest: cofradesBajasRest,
-      getCalles: getCalles
+      getCalles: getCalles,
+      getRegistros: getRegistros
     };
 
     function cofradesRest() {
@@ -32,6 +33,13 @@
 
     function getCalles() {
       return $http.get('http://127.0.0.1:5050/api/calles/').
+              then(function(response){
+                return angular.fromJson(response);
+              });
+    }
+
+    function getRegistros() {
+      return $http.get('http://127.0.0.1:5050/api/registros/').
               then(function(response){
                 return angular.fromJson(response);
               });

@@ -35,24 +35,31 @@
 .listaCofrades .angular-google-map-container {
   height: 250px; }
 
-.autocomplete-custom-template li {
+.listaCofrades .autocomplete-custom-template li {
   border-bottom: 1px solid #ccc;
   height: auto;
   padding-top: 8px;
   padding-bottom: 8px;
   white-space: normal; }
 
-.autocomplete-custom-template li:last-child {
+.listaCofrades .autocomplete-custom-template li:last-child {
   border-bottom-width: 0; }
 
-.autocomplete-custom-template .item-title, .autocomplete-custom-template .item-metadata {
+.listaCofrades .autocomplete-custom-template .item-title, .listaCofrades .autocomplete-custom-template .item-metadata {
   display: block;
   line-height: 2; }
 
-.autocomplete-custom-template .item-title md-icon {
+.listaCofrades .autocomplete-custom-template .item-title md-icon {
   height: 18px;
   width: 18px;
   margin-right: 8px; }
+
+.listaCofrades .validation-messages {
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  padding-top: 5px;
+  color: #f44336; }
 
 body md-content.page-container {
   background-color: #f1f1f1; }

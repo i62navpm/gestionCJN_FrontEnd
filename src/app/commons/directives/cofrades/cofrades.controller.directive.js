@@ -52,7 +52,7 @@
     }
 
     function modifyCofrade(id, event){
-      $state.go('cofradesModificar', {cofradeId: id});
+      $state.go('cofradesCambios', {cofradeId: id});
     }
 
   }

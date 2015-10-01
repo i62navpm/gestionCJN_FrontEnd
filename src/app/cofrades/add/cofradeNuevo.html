@@ -1,5 +1,6 @@
 <div layout="row" layout-align="center center">
   <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaCofrades">
+    <form name="cofradeForm" novalidate>
     <md-toolbar>
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" aria-label="Detalles Cofrade" ng-click="vm.backState()">
@@ -11,29 +12,32 @@
           </span>
         </h4>
         <span flex></span>
+        <md-button class="md-icon-button" aria-label="Detalles Cofrade" ng-click="vm.guardar(cofradeForm.$valid)"  type="submit">
+          <md-icon md-font-library="material-icons">save</md-icon>
+        </md-button>
       </div>
     </md-toolbar>
 
 
     <md-content class="md-padding">
-      
+      <div layout="row" id="toastBounds"></div>
       <div layout layout-padding class="md-padding" layout-align="space-around center">
         <div class="md-2-line cofrade-detalle" flex="40">
           <div class="md-item-text md-whiteframe-z1">
-            <h3>Número de orden</h3>
+            <h3>Número de<br>orden</h3>
             <p>{{vm.cofrade.numeroOrden}}</p>
           </div>
         </div>
         <div class="md-2-line cofrade-detalle" flex="40">
           <div class="md-item-text md-whiteframe-z1">
-            <h3>Número de cofrade</h3>
+            <h3>Número de<br>cofrade</h3>
             <p>{{vm.cofrade.numeroCofrade}}</p>
           </div>
         </div>
       </div>
       
       
-      <form name="cofradeForm">
+      
       <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
       
         <!-- DATOS PERSONALES -->
@@ -49,7 +53,7 @@
                 <label>Nombre</label>
                 <md-icon md-font-library="material-icons">face</md-icon>
                 <input name="nombre" ng-model="vm.cofrade.datosPersonales.nombre" required>
-                <div ng-messages="cofradeForm.nombre.$error" ng-if="cofradeForm.nombre.$dirty || cofradeForm.nombre.$touched">
+                <div ng-messages="cofradeForm.nombre.$error" ng-if="cofradeForm.nombre.$dirty || cofradeForm.nombre.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El nombre es obligatorio</div>
                 </div>
               </md-input-container>
@@ -60,7 +64,7 @@
                 <label>Primer apellido</label>
                 <md-icon md-font-library="material-icons"></md-icon>
                 <input name="apellido1" ng-model="vm.cofrade.datosPersonales.apellido1" required>
-                <div ng-messages="cofradeForm.apellido1.$error" ng-if="cofradeForm.apellido1.$dirty || cofradeForm.apellido1.$touched">
+                <div ng-messages="cofradeForm.apellido1.$error" ng-if="cofradeForm.apellido1.$dirty || cofradeForm.apellido1.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El apellido es obligatorio</div>
                 </div>
               </md-input-container>
@@ -68,7 +72,7 @@
                 <label>Segundo apellido</label>
                 <md-icon md-font-library="material-icons"></md-icon>
                 <input name="apellido2" ng-model="vm.cofrade.datosPersonales.apellido2" required>
-                <div ng-messages="cofradeForm.apellido2.$error" ng-if="cofradeForm.apellido2.$dirty || cofradeForm.apellido2.$touched">
+                <div ng-messages="cofradeForm.apellido2.$error" ng-if="cofradeForm.apellido2.$dirty || cofradeForm.apellido2.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El apellido es obligatorio</div>
                 </div>
               </md-input-container>
@@ -79,7 +83,7 @@
                 <label>DNI</label>
                 <md-icon md-font-library="material-icons">credit_card</md-icon>
                 <input name="dni" ng-model="vm.cofrade.datosPersonales.dni" maxlength="9" pattern="(\d{8})([a-zA-Z]{1})">
-                <div ng-messages="cofradeForm.dni.$error" ng-if="cofradeForm.dni.$dirty || cofradeForm.dni.$touched">
+                <div ng-messages="cofradeForm.dni.$error" ng-if="cofradeForm.dni.$dirty || cofradeForm.dni.$touched || cofradeForm.$submitted">
                   <div ng-message="pattern">Introduce un DNI válido 00000000X</div>
                 </div>
               </md-input-container>
@@ -97,7 +101,7 @@
                 <label>Teléfono</label>
                 <md-icon md-font-library="material-icons">local_phone</md-icon>
                 <input name="telefono" ng-model="vm.cofrade.datosPersonales.telefono" maxlength="9" pattern="(\d{9})">
-                <div ng-messages="cofradeForm.telefono.$error" ng-if="cofradeForm.telefono.$dirty || cofradeForm.telefono.$touched">
+                <div ng-messages="cofradeForm.telefono.$error" ng-if="cofradeForm.telefono.$dirty || cofradeForm.telefono.$touched || cofradeForm.$submitted">
                   <div ng-message="pattern">Introduce un teléfono válido</div>
                 </div>
               </md-input-container>
@@ -105,7 +109,7 @@
                 <label>Email</label>
                 <md-icon md-font-library="material-icons">email</md-icon>
                  <input name="email" ng-model="vm.cofrade.datosPersonales.email" type="email">
-                 <div ng-messages="cofradeForm.email.$error" ng-if="cofradeForm.email.$dirty || cofradeForm.email.$touched">
+                 <div ng-messages="cofradeForm.email.$error" ng-if="cofradeForm.email.$dirty || cofradeForm.email.$touched || cofradeForm.$submitted">
                   <div ng-message="email">Introduce un email válido</div>
                 </div>
               </md-input-container>
@@ -114,11 +118,17 @@
              <div layout layout-sm="column">
               <div flex="50" layout="column" layout-align="center center">
                 <label>Fecha de nacimiento</label>
-                <md-datepicker ng-model="vm.cofrade.datosPersonales.fechaNacimiento" md-placeholder="Fecha de nacimiento"></md-datepicker>
+                <md-datepicker name="fechaNacimiento" ng-model="vm.cofrade.datosPersonales.fechaNacimiento" md-placeholder="Fecha de nacimiento" required></md-datepicker>
+                <div class="validation-messages" ng-messages="cofradeForm.fechaNacimiento.$error" ng-if="cofradeForm.fechaNacimiento.$dirty || cofradeForm.fechaNacimiento.$touched || cofradeForm.$submitted">
+                  <div ng-message="required">Introduce una fecha</div>
+                </div>
               </div>
               <div flex="50" layout="column" layout-align="center center">
                 <label>Fecha de inscripción</label>
-                <md-datepicker ng-model="vm.cofrade.datosPersonales.fechaInscripcion" md-placeholder="Fecha de inscripcion"></md-datepicker>
+                <md-datepicker name="fechaInscripcion" ng-model="vm.cofrade.datosPersonales.fechaInscripcion" md-placeholder="Fecha de inscripcion" required></md-datepicker>
+                <div class="validation-messages" ng-messages="cofradeForm.fechaInscripcion.$error" ng-if="cofradeForm.fechaInscripcion.$dirty || cofradeForm.fechaInscripcion.$touched || cofradeForm.$submitted">
+                  <div ng-message="required">Introduce una fecha</div>
+                </div>
               </div>
             </div>
 
@@ -129,6 +139,7 @@
                 <md-autocomplete required
                   md-input-name="calle"
                   md-search-text="vm.searchText"
+                  md-selected-item="vm.calleSelected"
                   md-selected-item-change="vm.selectedItemChange(item)"
                   md-items="item in vm.querySearch(vm.searchText)"
                   md-item-text="item.calle"
@@ -150,7 +161,7 @@
                     No hay coincidencias para: "{{vm.searchText}}".
                   </md-not-found>
 
-                  <div ng-messages="cofradeForm.calle.$error" ng-if="cofradeForm.calle.$dirty || cofradeForm.calle.$touched">
+                  <div ng-messages="cofradeForm.calle.$error" ng-if="cofradeForm.calle.$dirty || cofradeForm.calle.$touched || cofradeForm.$submitted">
                     <div ng-message="required">La calle es obligatoria</div>
                   </div>
                 </md-autocomplete>
@@ -158,8 +169,8 @@
               </div>
               <md-input-container flex="25">
                 <label>Sector</label>
-                <input name="sector" ng-model="vm.sector" type="number" required>
-                <div ng-messages="cofradeForm.sector.$error" ng-if="cofradeForm.sector.$dirty || cofradeForm.sector.$touched">
+                <input name="sector" ng-model="vm.sector" type="number" readonly>
+                <div ng-messages="cofradeForm.sector.$error" ng-if="cofradeForm.sector.$dirty || cofradeForm.sector.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El sector es obligatorio</div>
                 </div>
               </md-input-container>
@@ -168,7 +179,7 @@
               <md-input-container  flex="25">
                 <label>Número</label>
                 <input name="numero" ng-model="vm.cofrade.datosPersonales.direccion.numero" required>
-                <div ng-messages="cofradeForm.numero.$error" ng-if="cofradeForm.numero.$dirty || cofradeForm.numero.$touched">
+                <div ng-messages="cofradeForm.numero.$error" ng-if="cofradeForm.numero.$dirty || cofradeForm.numero.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El número es obligatorio</div>
                 </div>
               </md-input-container>
@@ -185,14 +196,14 @@
               <md-input-container  flex="70">
                 <label>Municipio</label>
                 <input name="municipio" ng-model="vm.cofrade.datosPersonales.direccion.municipio" required>
-                <div ng-messages="cofradeForm.municipio.$error" ng-if="cofradeForm.municipio.$dirty || cofradeForm.municipio.$touched">
+                <div ng-messages="cofradeForm.municipio.$error" ng-if="cofradeForm.municipio.$dirty || cofradeForm.municipio.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El municipio es obligatorio</div>
                 </div>
               </md-input-container>
               <md-input-container  flex="25" required>
                 <label>Código postal</label>
                 <input name="cp" ng-model="vm.cofrade.datosPersonales.direccion.cp" type="number" required>
-                <div ng-messages="cofradeForm.cp.$error" ng-if="cofradeForm.cp.$dirty || cofradeForm.cp.$touched">
+                <div ng-messages="cofradeForm.cp.$error" ng-if="cofradeForm.cp.$dirty || cofradeForm.cp.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El código postal es obligatorio</div>
                 </div>
               </md-input-container>
@@ -201,7 +212,7 @@
               <md-input-container>
                 <label>Provincia</label>
                 <input name="provincia" ng-model="vm.cofrade.datosPersonales.direccion.provincia" required>
-                <div ng-messages="cofradeForm.provincia.$error" ng-if="cofradeForm.provincia.$dirty || cofradeForm.provincia.$touched">
+                <div ng-messages="cofradeForm.provincia.$error" ng-if="cofradeForm.provincia.$dirty || cofradeForm.provincia.$touched || cofradeForm.$submitted">
                   <div ng-message="required">La provinica es obligatoria</div>
                 </div>
               </md-input-container>
@@ -229,12 +240,18 @@
               <md-input-container class="md-icon-float" flex="50">
                 <label>IBAN</label>
                 <md-icon md-font-library="material-icons">attach_money</md-icon>
-                <input name="" ng-model="vm.cofrade.datosFinancieros.cuenta.iban" type="text">
+                <input name="iban" ng-model="vm.cofrade.datosFinancieros.cuenta.iban" type="text" pattern="([a-zA-Z]{2})(\d{22})" maxlength="24" ng-blur="vm.calcularCC()">
+                <div ng-messages="cofradeForm.iban.$error" ng-if="cofradeForm.iban.$dirty || cofradeForm.iban.$touched || cofradeForm.$submitted">
+                  <div ng-message="pattern">Introduce un IBAN válido ES0000000000000000000000</div>
+                </div>
               </md-input-container>
               <md-input-container class="md-icon-float" flex="50">
                 <label>CC</label>
                 <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="" ng-model="vm.cofrade.datosFinancieros.cuenta.cc" type="text">
+                 <input name="cc" ng-model="vm.cofrade.datosFinancieros.cuenta.cc" pattern="(\d{20})" maxlength="20" ng-blur="vm.calcularIban()">
+                 <div ng-messages="cofradeForm.cc.$error" ng-if="cofradeForm.cc.$dirty || cofradeForm.cc.$touched || cofradeForm.$submitted">
+                  <div ng-message="pattern">Introduce una CC válida 00000000000000000000</div>
+                </div>
               </md-input-container>
             </div>
             
@@ -253,7 +270,8 @@
             
             <div layout="column">
               <label><md-icon md-font-library="material-icons">mood_bad</md-icon> Deudas</label>
-              <md-chips ng-model="vm.cofrade.datosFinancieros.deuda" placeholder="Introduzca un año" secondary-placeholder="Introduzca un año" flex>
+              <md-chips ng-model="vm.cofrade.datosFinancieros.deuda" flex>
+                <input placeholder="Introduzca un año XXXX" maxlength="4">
                 <md-chip-template>
                   <strong>{{$chip}}</strong>
                 </md-chip-template>
@@ -283,12 +301,18 @@
               <md-input-container class="md-icon-float" flex="50">
                 <label>Número de Navidad 1</label>
                 <md-icon md-font-library="material-icons">local_play</md-icon>
-                <input name="" ng-model="vm.cofrade.datosLoteria.numeroNavidad1" type="number">
+                <input name="navidad1" ng-model="vm.cofrade.datosLoteria.numeroNavidad1" type="number" min="0">
+                <div ng-messages="cofradeForm.navidad1.$error" ng-if="cofradeForm.navidad1.$dirty || cofradeForm.navidad1.$touched || cofradeForm.$submitted">
+                  <div ng-message="min">El número debe de ser mayor que 0</div>
+                </div>
               </md-input-container>
               <md-input-container class="md-icon-float" flex="50">
                 <label>Número de Navidad 2</label>
                 <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="" ng-model="vm.cofrade.datosLoteria.numeroNavidad2" type="number">
+                 <input name="navidad2" ng-model="vm.cofrade.datosLoteria.numeroNavidad2" type="number" min="0">
+                 <div ng-messages="cofradeForm.navidad2.$error" ng-if="cofradeForm.navidad2.$dirty || cofradeForm.navidad2.$touched || cofradeForm.$submitted">
+                  <div ng-message="min">El número debe de ser mayor que 0</div>
+                </div>
               </md-input-container>
             </div>
 
@@ -296,12 +320,18 @@
               <md-input-container class="md-icon-float" flex="50">
                 <label>Número del Niño 1</label>
                 <md-icon md-font-library="material-icons">local_play</md-icon>
-                <input name="" ng-model="vm.cofrade.datosLoteria.numeroNinio1" type="number">
+                <input name="ninio1" ng-model="vm.cofrade.datosLoteria.numeroNinio1" type="number" min="0">
+                <div ng-messages="cofradeForm.ninio1.$error" ng-if="cofradeForm.ninio1.$dirty || cofradeForm.ninio1.$touched || cofradeForm.$submitted">
+                  <div ng-message="min">El número debe de ser mayor que 0</div>
+                </div>
               </md-input-container>
               <md-input-container class="md-icon-float" flex="50">
                 <label>Número del Niño 2</label>
                 <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="" ng-model="vm.cofrade.datosLoteria.numeroNinio2" type="number">
+                 <input name="ninio2" ng-model="vm.cofrade.datosLoteria.numeroNinio2" type="number" min="0">
+                 <div ng-messages="cofradeForm.ninio2.$error" ng-if="cofradeForm.ninio2.$dirty || cofradeForm.ninio2.$touched || cofradeForm.$submitted">
+                  <div ng-message="min">El número debe de ser mayor que 0</div>
+                </div>
               </md-input-container>
             </div>
 
@@ -317,23 +347,9 @@
           </md-content>
         </md-tab>
       </md-tabs>
-    </form>
-
-    <!-- 
-      
-
-      <div ng-if="vm.cofrade.datosFinancieros" layout="column">
-
-        
-      </div>
-      
-      <div ng-if="vm.cofrade.datosLoteria" layout="column">
-        <md-divider></md-divider>
-        
-
-      </div> -->
+    
         
     </md-content>
-
+    </form>
   </div>
 </div>
