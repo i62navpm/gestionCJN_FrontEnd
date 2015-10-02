@@ -15,7 +15,7 @@
 
     function cofradesRest() {
       return $resource('http://127.0.0.1:5050/api/cofrades/:id.json:json', null, {
-        'query':  {method:'GET', isArray: false, cache: true},
+        'query':  {method:'GET', isArray: false},
         'get':    {method:'GET', transformResponse: function(data, headersGetter) {
                                                       return $filter('stringToDate')(angular.fromJson(data));
                                                     }

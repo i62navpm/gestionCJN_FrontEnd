@@ -4,9 +4,10 @@
     .module('app')
     .controller('CofradeNuevo', CofradeNuevo);
 
-  function CofradeNuevo($filter, $document, $mdToast, $state, getCofradePrepService, getCallesPrepService, getRegistrosPrepService, cofradesService) {
+  function CofradeNuevo($filter, $document, $mdToast, $state, getCofradePrepService, getCallesPrepService, cofradesService, sectoresService) {
     var vm = this;
     
+    vm.nuevaCalle = true;
     vm.cofrade = {datosFinancieros: {cuenta: {}, 
                                      deuda: []},
                   datosPersonales:  {direccion: {},
@@ -15,12 +16,12 @@
                                      fechaNacimiento: new Date()}
                  };
 
-    vm.backState = backState;
-    vm.querySearch = querySearch;
+    vm.backState          = backState;
+    vm.querySearch        = querySearch;
     vm.selectedItemChange = selectedItemChange;
-    vm.calcularCC = calcularCC;
-    vm.calcularIban = calcularIban;
-    vm.guardar = guardar;
+    vm.calcularCC         = calcularCC;
+    vm.calcularIban       = calcularIban;
+    vm.guardar            = guardar;
 
     activate();
 
@@ -28,22 +29,22 @@
       if (getCofradePrepService){
         getCofradePrepService.$promise.then(function(data){
                                               vm.cofrade = data;
-                                              vm.calleSelected = vm.cofrade.datosPersonales.direccion.calle;
-                                              if (!vm.cofrade.datosFinancieros)
-                                                vm.cofrade.datosFinancieros = {cuenta: {}, deuda: []};
-                                              else{
-                                                if(!vm.cofrade.datosFinancieros.cuenta)
-                                                  vm.cofrade.datosFinancieros.cuenta = {};
-                                                if(!vm.cofrade.datosFinancieros.deuda)
-                                                  vm.cofrade.datosFinancieros.deuda = [];
-                                              }
+                                              vm.calleSelected = {calle: vm.cofrade.datosPersonales.direccion.calle, 
+                                                                  cp: vm.cofrade.datosPersonales.direccion.cp, 
+                                                                  provincia: vm.cofrade.datosPersonales.direccion.provincia, 
+                                                                  municipio: vm.cofrade.datosPersonales.direccion.municipio};
+                                              searchSector(vm.cofrade.datosPersonales.direccion.calle)
+                                              vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
+                                              vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
+                                              vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
                                               return true;
                                             });
-
       }
       else{
-        vm.cofrade.numeroOrden = getRegistrosPrepService.numeroOrden;
-        vm.cofrade.numeroCofrade = getRegistrosPrepService.numeroCofrade;
+        cofradesService.getRegistros().then(function(response){
+                                              vm.cofrade.numeroOrden = response.data.numeroOrden;
+                                              vm.cofrade.numeroCofrade = response.data.numeroCofrade;
+                                            });
 
       }
       vm.calles = getCallesPrepService;
@@ -72,14 +73,24 @@
         vm.cofrade.datosPersonales.direccion.municipio = item.municipio;
         vm.cofrade.datosPersonales.direccion.cp = item.cp;
         vm.cofrade.datosPersonales.direccion.provincia = item.provincia;
+        searchSector(item.calle);
       }else{
         vm.cofrade.datosPersonales.direccion.calle = null;
         vm.cofrade.datosPersonales.direccion.municipio = null;
         vm.cofrade.datosPersonales.direccion.cp = null;
         vm.cofrade.datosPersonales.direccion.provincia = null;
+        vm.sector = null;
+        vm.nuevaCalle = true;
       }
     }
     
+    function searchSector(calle) {
+      sectoresService.sectoresRest().query({calle: calle}, function(data){
+        vm.sector = data[0].numeroSector;
+        vm.nuevaCalle = false;
+      });
+    }
+
     function calcularCC() {
       if (vm.cofrade.datosFinancieros.cuenta.iban)
         vm.cofrade.datosFinancieros.cuenta.cc = $filter('calcularCC')(vm.cofrade.datosFinancieros.cuenta.iban);
@@ -93,16 +104,43 @@
     function guardar(isValid) {
       if(isValid){
         var datosFinancieros = {cuenta: {}, deuda: []};
-        
+        vm.cofrade.datosPersonales.direccion.calle = vm.searchText;
+
         if (JSON.stringify(vm.cofrade.datosFinancieros) === JSON.stringify(datosFinancieros))
           delete vm.cofrade.datosFinancieros;
         
         var CofradeResource = cofradesService.cofradesRest();
-        CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+        if(vm.nuevaCalle)
+          guardarCalle();
+        else{
+          CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+        }
       }
       else
         showActionToast();
+      
+      function guardarCalle() {
+        sectoresService.sectoresRest().get({sector: vm.sector}, function(data){
+          var sectorResource =  data[0];
+          
+          if(sectorResource){
+            sectorResource.calles.push(vm.searchText);
+            sectorResource.$save();
+            CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+          }
+          else{
+            $mdToast.show(
+              $mdToast.simple()
+                .content('El sector ' +vm.sector+ ' no existe!!')
+                .position('top right')
+                .parent($document[0].querySelector('#toastBounds'))
+                .hideDelay(3000)
+            );
+          }
+        });
+      }
     }
+
 
     function guardarSuccess(response) {
       $mdToast.show(

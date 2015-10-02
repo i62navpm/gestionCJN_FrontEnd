@@ -40,7 +40,6 @@
         resolve: {
             getCofradePrepService: getCofradePrepService,
             getCallesPrepService: getCallesPrepService,
-            getRegistrosPrepService: getRegistrosPrepService
         }
       });
   }
@@ -55,9 +54,6 @@
 
   function getCallesPrepService(cofradesService) {
     return cofradesService.getCalles().then(function(response){return response.data;});
-  }
-  function getRegistrosPrepService(cofradesService) {
-    return cofradesService.getRegistros().then(function(response){return response.data;});
   }
   
   function getMapsPrepService(uiGmapGoogleMapApi, getCofradePrepService, mapasService) {

@@ -165,11 +165,10 @@
                     <div ng-message="required">La calle es obligatoria</div>
                   </div>
                 </md-autocomplete>
-
               </div>
               <md-input-container flex="25">
                 <label>Sector</label>
-                <input name="sector" ng-model="vm.sector" type="number" readonly>
+                <input name="sector" ng-model="vm.sector" type="number" ng-readonly="!vm.nuevaCalle">
                 <div ng-messages="cofradeForm.sector.$error" ng-if="cofradeForm.sector.$dirty || cofradeForm.sector.$touched || cofradeForm.$submitted">
                   <div ng-message="required">El sector es obligatorio</div>
                 </div>
