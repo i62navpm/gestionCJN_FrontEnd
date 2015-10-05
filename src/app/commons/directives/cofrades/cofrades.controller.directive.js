@@ -57,6 +57,7 @@
     }
 
     function modifyCofrade(id, event){
+      event.stopPropagation();
       $state.go('cofradesCambios', {cofradeId: id});
     }
 
