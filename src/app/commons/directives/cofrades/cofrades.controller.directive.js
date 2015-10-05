@@ -5,7 +5,7 @@
     .module('app')
     .controller('ListaCofrades', ListaCofrades);
 
-  function ListaCofrades($rootScope, $state, cofradesService) {
+  function ListaCofrades($rootScope, $scope, $state, cofradesService) {
     var vm = this;
     
     vm.filtro    = 'nombre';
@@ -17,7 +17,12 @@
     vm.goToCofrade   = goToCofrade;
     vm.modifyCofrade = modifyCofrade;
 
-    $rootScope.$on('scrollDown', getNextPage);
+    var handler = $rootScope.$on('scrollDown', getNextPage);
+
+    $scope.$on('$destroy', function() {
+      handler();
+      handler = null;
+    });
 
     function getNextPage() {
       if (vm.nextPage){

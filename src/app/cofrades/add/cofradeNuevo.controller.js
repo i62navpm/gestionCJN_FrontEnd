@@ -33,7 +33,7 @@
                                                                   cp: vm.cofrade.datosPersonales.direccion.cp, 
                                                                   provincia: vm.cofrade.datosPersonales.direccion.provincia, 
                                                                   municipio: vm.cofrade.datosPersonales.direccion.municipio};
-                                              searchSector(vm.cofrade.datosPersonales.direccion.calle)
+                                              searchSector(vm.cofrade.datosPersonales.direccion.calle);
                                               vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
                                               vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
                                               vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
@@ -140,7 +140,6 @@
         });
       }
     }
-
 
     function guardarSuccess(response) {
       $mdToast.show(
