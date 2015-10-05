@@ -15,7 +15,8 @@
         controller: 'Cofrades',
         controllerAs: 'vm',
         resolve: {
-            cofradesPrepService: cofradesPrepService
+            cofradesPrepService: cofradesPrepService,
+            cofradesBajasPrepService: cofradesBajasPrepService
         }
       })
       .state('cofradesDetalle', {
@@ -46,6 +47,10 @@
 
   function cofradesPrepService(cofradesService) {
     return cofradesService.cofradesRest().query();
+  }
+
+  function cofradesBajasPrepService(cofradesService) {
+    return cofradesService.cofradesBajasRest().query();
   }
 
   function getCofradePrepService(cofradesService, $stateParams) {

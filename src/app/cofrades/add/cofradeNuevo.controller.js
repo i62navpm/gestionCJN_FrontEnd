@@ -27,18 +27,7 @@
 
     function activate() {
       if (getCofradePrepService){
-        getCofradePrepService.$promise.then(function(data){
-                                              vm.cofrade = data;
-                                              vm.calleSelected = {calle: vm.cofrade.datosPersonales.direccion.calle, 
-                                                                  cp: vm.cofrade.datosPersonales.direccion.cp, 
-                                                                  provincia: vm.cofrade.datosPersonales.direccion.provincia, 
-                                                                  municipio: vm.cofrade.datosPersonales.direccion.municipio};
-                                              searchSector(vm.cofrade.datosPersonales.direccion.calle);
-                                              vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
-                                              vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
-                                              vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
-                                              return true;
-                                            });
+        getCofradePrepService.$promise.then(initCofrade);
       }
       else{
         cofradesService.getRegistros().then(function(response){
@@ -49,6 +38,20 @@
       }
       vm.calles = getCallesPrepService;
 
+    }
+
+    function initCofrade(data) {
+      vm.cofrade = data;
+      vm.calleSelected = {calle: vm.cofrade.datosPersonales.direccion.calle,
+                          cp: vm.cofrade.datosPersonales.direccion.cp,
+                          provincia: vm.cofrade.datosPersonales.direccion.provincia,
+                          municipio: vm.cofrade.datosPersonales.direccion.municipio};
+      searchSector(vm.cofrade.datosPersonales.direccion.calle);
+
+      vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
+      vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
+      vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
+      return true;
     }
 
     function backState() {
@@ -172,6 +175,5 @@
       );
     }
   }
-
 
 })();

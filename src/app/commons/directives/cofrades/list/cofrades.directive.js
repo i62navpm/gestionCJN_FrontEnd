@@ -9,10 +9,13 @@
   function listaCofrades() {
     return {
       restrict: 'E',
-      templateUrl: './templates/directives/cofrades/cofrades.directive.html',
+      templateUrl: './templates/directives/cofrades/list/cofrades.directive.html',
       scope: {
         cofrades: '=cofrades',
-        nextPage: '=page'
+        nextPage: '=page',
+        cofradesBajas: '=cofradesBajas',
+        nextPageBajas: '=pageBajas'
+        
       },
       controller: 'ListaCofrades',
       controllerAs: 'vm',
