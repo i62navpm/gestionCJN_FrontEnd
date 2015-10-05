@@ -39,8 +39,7 @@
         controller: 'CofradeNuevo',
         controllerAs: 'vm',
         resolve: {
-            getCofradePrepService: getCofradePrepService,
-            getCallesPrepService: getCallesPrepService,
+            getCofradePrepService: getCofradePrepService
         }
       });
   }
@@ -55,10 +54,6 @@
 
   function getCofradePrepService(cofradesService, $stateParams) {
     return ($stateParams.cofradeId) ? cofradesService.cofradesRest().get({id: $stateParams.cofradeId}) : false;
-  }
-
-  function getCallesPrepService(cofradesService) {
-    return cofradesService.getCalles().then(function(response){return response.data;});
   }
   
   function getMapsPrepService(uiGmapGoogleMapApi, getCofradePrepService, mapasService) {

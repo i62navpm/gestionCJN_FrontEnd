@@ -4,7 +4,7 @@
     .module('app')
     .controller('CofradeNuevo', CofradeNuevo);
 
-  function CofradeNuevo($filter, $document, $mdToast, $state, getCofradePrepService, getCallesPrepService, cofradesService, sectoresService) {
+  function CofradeNuevo($filter, $document, $mdToast, $state, getCofradePrepService, cofradesService, sectoresService) {
     var vm = this;
     
     vm.nuevaCalle = true;
@@ -36,8 +36,6 @@
                                             });
 
       }
-      vm.calles = getCallesPrepService;
-
     }
 
     function initCofrade(data) {
@@ -59,15 +57,7 @@
     }
 
     function querySearch(query) {
-      var results = query ? vm.calles.filter( createFilterFor(query) ) : vm.calles;
-      return results;
-    }
-
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-      return function filterFn(item) {
-        return (angular.lowercase(item.calle).indexOf(lowercaseQuery) === 0);
-      };
+      return cofradesService.getCalles(query).then(function(response){return response.data;});
     }
 
     function selectedItemChange(item) {

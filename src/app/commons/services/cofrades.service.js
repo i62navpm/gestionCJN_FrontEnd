@@ -31,8 +31,8 @@
       return $resource('http://127.0.0.1:5050/api/cofradesBajas/:id.json:json', null, {'query':  {method:'GET', isArray:false}});
     }
 
-    function getCalles() {
-      return $http.get('http://127.0.0.1:5050/api/calles/').
+    function getCalles(calle) {
+      return $http.get('http://127.0.0.1:5050/api/calles/', {params: {calle: calle}}).
               then(function(response){
                 return angular.fromJson(response);
               });
