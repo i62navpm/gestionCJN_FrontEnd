@@ -18,7 +18,8 @@
           .ariaLabel('Restaurar cofrade')
           .targetEvent(event)
           .ok('Aceptar')
-          .cancel('Cancelar');
+          .cancel('Cancelar')
+          .clickOutsideToClose(true);
       $mdDialog.show(restaurarDialog).then(function() {
         restoreEndCofrade(id);
       });

@@ -1,0 +1,31 @@
+<md-dialog aria-label="Elimnar Cofrade" ng-cloak>
+  <form>
+  <md-dialog-content>
+    <div>
+      <h2 class="md-title">Dar de baja al cofrade</h2> 
+      <div class="md-dialog-content-body"><p>Por favor indique la razón de la baja:</p></div>
+
+      <md-input-container>
+        <label>Motivo de baja</label>
+        <md-select ng-model="vm.motivoBaja">
+          <md-option value="Voluntaria">Voluntaria</md-option>
+          <md-option value="Fallecimiento">Fallecimiento</md-option>
+          <md-option value="Duplicidad">Duplicidad</md-option>
+          <md-option value="Falta pago de 2 cuotas anuales">Falta pago de 2 cuotas anuales</md-option>
+          <md-option value="Otro">Otro</md-option>
+        </md-select>
+      </md-input-container>
+
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button class="md-primary" ng-click="vm.closeDialog()" aria-label="Aceptar Elimnar Cofrade">
+     Cancelar
+    </md-button>
+    <md-button class="md-primary" ng-click="vm.removeEndCofrade(vm.id)" ng-disabled="!vm.motivoBaja" aria-label="Cancelar Elimnar Cofrade">
+      Aceptar
+    </md-button>
+  </div>
+  </form>
+</md-dialog>

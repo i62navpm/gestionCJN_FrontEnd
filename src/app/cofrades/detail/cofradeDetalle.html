@@ -14,10 +14,8 @@
         <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(vm.cofrade.id, $event)">
           <md-icon md-font-library="material-icons">mode_edit</md-icon>
         </md-button>
-        <md-button class="md-icon-button" aria-label="Eliminar Cofrade" ng-if="(vm.cofrade.numeroOrden && vm.cofrade.numeroCofrade)">
-          <md-icon md-font-library="material-icons">clear</md-icon>
-        </md-button>
-        <restore-Cofrade cofrade="vm.cofrade.id" ss="md-icon-button" aria-label="Eliminar Cofrade" ng-if="(vm.cofrade.numeroOrden && !vm.cofrade.numeroCofrade)"></restore-Cofrade>
+        <remove-Cofrade cofrade="vm.cofrade.id" ss="md-icon-button" aria-label="Eliminar Cofrade" ng-if="(vm.cofrade.numeroOrden && vm.cofrade.numeroCofrade)"></remove-Cofrade>
+        <restore-Cofrade cofrade="vm.cofrade.id" ss="md-icon-button" aria-label="Restaurar Cofrade" ng-if="(vm.cofrade.numeroOrden && !vm.cofrade.numeroCofrade)"></restore-Cofrade>
       </div>
     </md-toolbar>
 
@@ -47,6 +45,18 @@
           <md-icon md-font-library="material-icons">person</md-icon>
         </md-tab-label>
         <md-content class="md-padding">
+          
+          <div layout layout-sm="column" layout-align="space-around center" ng-if="vm.cofrade.baja" class="baja">
+            <md-input-container flex="33">
+              <label>Fecha de baja</label>
+              <input ng-model="vm.cofrade.baja.fechaBaja" type="text" readonly>
+            </md-input-container>
+            <md-input-container flex="50">
+              <label>Motivo de baja</label>
+              <input ng-model="vm.cofrade.baja.motivo" type="text" readonly>
+            </md-input-container>
+          </div>
+
           <h1>Datos personales</h1>
           <div layout layout-sm="column">
             <md-input-container class="md-icon-float" flex="75">

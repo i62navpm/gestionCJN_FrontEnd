@@ -28,9 +28,7 @@
             <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
               <md-icon md-font-library="material-icons">mode_edit</md-icon>
             </md-button>
-            <md-button class="md-icon-button" aria-label="Eliminar Cofrade" ng-click="vm.removeCofrade(cofrade.id, $event)">
-              <md-icon md-font-library="material-icons">clear</md-icon>
-            </md-button>
+            <remove-Cofrade cofrade="cofrade.id"></remove-Cofrade>
           </div>
         </div>
       </md-list-item>

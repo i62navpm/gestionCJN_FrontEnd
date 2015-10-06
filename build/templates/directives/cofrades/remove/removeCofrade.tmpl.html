@@ -1,0 +1,19 @@
+<md-dialog aria-label="Elimnar Cofrade" ng-cloak>
+  <form>
+  <md-dialog-content>
+    <div>
+      {{vm.cofradeId}}
+
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="answer('not useful')" >
+     Cancelar
+    </md-button>
+    <md-button ng-click="answer('useful')">
+      Aceptar
+    </md-button>
+  </div>
+  </form>
+</md-dialog>
