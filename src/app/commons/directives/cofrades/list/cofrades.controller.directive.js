@@ -17,7 +17,6 @@
     vm.goToCofrade    = goToCofrade;
     vm.modifyCofrade  = modifyCofrade;
     vm.removeCofrade  = removeCofrade;
-    vm.restoreCofrade = restoreCofrade;
 
     var handler = $rootScope.$on('scrollDown', getNextPage);
 
@@ -104,11 +103,6 @@
     function removeCofrade(id, event){
       event.stopPropagation();
       console.log('eliminar cofrade');
-    }
-
-    function restoreCofrade(id, event){
-      event.stopPropagation();
-      console.log('restaurar cofrade');
     }
 
   }

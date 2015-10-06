@@ -63,9 +63,10 @@
           </div>
           
           <div flex="25" flex-sm="30" layout="row" layout-align="space-around center">
-            <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.restoreCofrade(cofrade.id, $event)">
-              <md-icon md-font-library="material-icons">replay</md-icon>
+            <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
+              <md-icon md-font-library="material-icons">mode_edit</md-icon>
             </md-button>
+            <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
           </div>
         </div>
       </md-list-item>
