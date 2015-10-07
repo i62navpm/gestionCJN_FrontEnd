@@ -68,6 +68,20 @@
 .listaCofrades .baja md-input-container:not(.md-input-invalid).md-input-has-value label {
   color: #f44336; }
 
+div.m-app-loading {
+  z-index: 9999999;
+  display: none; }
+  div.m-app-loading div.animated-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    position: fixed; }
+  div.m-app-loading div.messaging {
+    color: #FFFFFF;
+    text-align: center; }
+
 body md-content.page-container {
   background-color: #f1f1f1; }
 
