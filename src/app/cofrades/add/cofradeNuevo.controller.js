@@ -44,7 +44,6 @@
                           cp: vm.cofrade.datosPersonales.direccion.cp,
                           provincia: vm.cofrade.datosPersonales.direccion.provincia,
                           municipio: vm.cofrade.datosPersonales.direccion.municipio};
-      searchSector(vm.cofrade.datosPersonales.direccion.calle);
 
       vm.fechaNacimiento = vm.cofrade.datosPersonales.fechaNacimiento;
       vm.fechaInscripcion = vm.cofrade.datosPersonales.fechaInscripcion;

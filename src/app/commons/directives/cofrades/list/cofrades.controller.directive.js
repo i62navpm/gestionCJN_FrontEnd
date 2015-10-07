@@ -16,7 +16,6 @@
     vm.radioChange    = radioChange;
     vm.goToCofrade    = goToCofrade;
     vm.modifyCofrade  = modifyCofrade;
-    vm.removeCofrade  = removeCofrade;
 
     var handler = $rootScope.$on('scrollDown', getNextPage);
 
@@ -98,11 +97,6 @@
     function modifyCofrade(id, event){
       event.stopPropagation();
       $state.go('cofradesCambios', {cofradeId: id});
-    }
-
-    function removeCofrade(id, event){
-      event.stopPropagation();
-      console.log('eliminar cofrade');
     }
 
   }
