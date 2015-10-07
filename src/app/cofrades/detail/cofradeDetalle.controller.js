@@ -16,7 +16,7 @@
 
     function activate() {
       return getCofradePrepService.$promise.then(function(data){
-        vm.cofrade = $filter('dateToString')(data);
+        vm.cofrade = data;
         if(vm.cofrade.datosFinancieros)
           if(vm.cofrade.datosFinancieros.cuenta){
             vm.iban = $filter('parseIban')(vm.cofrade.datosFinancieros.cuenta.iban);

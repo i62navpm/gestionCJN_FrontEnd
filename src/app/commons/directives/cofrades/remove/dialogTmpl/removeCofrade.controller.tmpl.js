@@ -18,7 +18,8 @@
       var cofrade = cofradesService.cofradesRest().get({id: id}, function(){
         cofrade.baja = {motivo : vm.motivoBaja,
                         fechaBaja: new Date().toLocaleDateString()};
-
+        cofrade.numeroCofrade = null;
+        
         cofrade.$save({updateNumeroCofrade: true}).then(function(){
           vm.closeDialog();
           if($state.current.name === 'cofrades'){

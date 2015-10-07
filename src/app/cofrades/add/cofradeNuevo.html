@@ -116,19 +116,27 @@
             </div>
 
              <div layout layout-sm="column">
-              <div flex="50" layout="column" layout-align="center center">
-                <label>Fecha de nacimiento</label>
-                <md-datepicker name="fechaNacimiento" ng-model="vm.cofrade.datosPersonales.fechaNacimiento" md-placeholder="Fecha de nacimiento" required></md-datepicker>
-                <div class="validation-messages" ng-messages="cofradeForm.fechaNacimiento.$error" ng-if="cofradeForm.fechaNacimiento.$dirty || cofradeForm.fechaNacimiento.$touched || cofradeForm.$submitted">
-                  <div ng-message="required">Introduce una fecha</div>
-                </div>
+              <div flex="50" layout="row" layout-align="start start">
+                <md-input-container class="md-icon-float" flex>
+                  <label>Fecha de nacimiento</label>
+                  <md-icon md-font-library="material-icons">today</md-icon>
+                  <input name="fechaNacimiento" ng-model="vm.cofrade.datosPersonales.fechaNacimiento" pattern="(\d{1,2}/\d{1,2}/\d{2,4})" required>
+                  <div class="validation-messages" ng-messages="cofradeForm.fechaNacimiento.$error" ng-if="cofradeForm.fechaNacimiento.$dirty || cofradeForm.fechaNacimiento.$touched || cofradeForm.$submitted">
+                    <div ng-message="required">Introduce una fecha</div>
+                    <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
+                  </div>
+                </md-input-container>
               </div>
-              <div flex="50" layout="column" layout-align="center center">
-                <label>Fecha de inscripción</label>
-                <md-datepicker name="fechaInscripcion" ng-model="vm.cofrade.datosPersonales.fechaInscripcion" md-placeholder="Fecha de inscripcion" required></md-datepicker>
-                <div class="validation-messages" ng-messages="cofradeForm.fechaInscripcion.$error" ng-if="cofradeForm.fechaInscripcion.$dirty || cofradeForm.fechaInscripcion.$touched || cofradeForm.$submitted">
-                  <div ng-message="required">Introduce una fecha</div>
-                </div>
+              <div flex="50" layout="row" layout-align="start start">
+                <md-input-container class="md-icon-float" flex>
+                  <label>Fecha de Inscripcion</label>
+                  <md-icon md-font-library="material-icons">today</md-icon>
+                  <input name="fechaInscripcion" ng-model="vm.cofrade.datosPersonales.fechaInscripcion" pattern="(\d{1,2}/\d{1,2}/\d{2,4})" required>
+                  <div class="validation-messages" ng-messages="cofradeForm.fechaInscripcion.$error" ng-if="cofradeForm.fechaInscripcion.$dirty || cofradeForm.fechaInscripcion.$touched || cofradeForm.$submitted">
+                    <div ng-message="required">Introduce una fecha</div>
+                    <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
+                  </div>
+                </md-input-container>
               </div>
             </div>
 

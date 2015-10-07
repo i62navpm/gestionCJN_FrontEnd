@@ -46,6 +46,8 @@
                           municipio: vm.cofrade.datosPersonales.direccion.municipio};
       searchSector(vm.cofrade.datosPersonales.direccion.calle);
 
+      vm.fechaNacimiento = vm.cofrade.datosPersonales.fechaNacimiento;
+      vm.fechaInscripcion = vm.cofrade.datosPersonales.fechaInscripcion;
       vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
       vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
       vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
@@ -97,6 +99,7 @@
     function guardar(isValid) {
       if(isValid){
         var datosFinancieros = {cuenta: {}, deuda: []};
+
         vm.cofrade.datosPersonales.direccion.calle = vm.searchText;
 
         if (JSON.stringify(vm.cofrade.datosFinancieros) === JSON.stringify(datosFinancieros))

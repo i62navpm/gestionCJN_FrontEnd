@@ -61,6 +61,10 @@
   padding-top: 5px;
   color: #f44336; }
 
+.listaCofrades .md-datepicker-input-container {
+  visibility: hidden;
+  width: 0; }
+
 .listaCofrades .baja md-input-container:not(.md-input-invalid).md-input-has-value label {
   color: #f44336; }
 

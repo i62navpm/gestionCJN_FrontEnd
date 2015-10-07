@@ -70,6 +70,11 @@
     color: rgb(244,67,54);
   }
 
+  .md-datepicker-input-container{
+    visibility: hidden;
+    width: 0;
+  }
+
   .baja{
     md-input-container:not(.md-input-invalid).md-input-has-value label{
       color: rgb(244,67,54);
