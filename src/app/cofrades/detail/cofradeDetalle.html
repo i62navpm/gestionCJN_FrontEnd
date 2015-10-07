@@ -11,11 +11,29 @@
           </span>
         </h4>
         <span flex></span>
-        <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(vm.cofrade.id, $event)">
-          <md-icon md-font-library="material-icons">mode_edit</md-icon>
-        </md-button>
-        <remove-Cofrade cofrade="vm.cofrade.id" ss="md-icon-button" aria-label="Eliminar Cofrade" ng-if="(vm.cofrade.numeroOrden && vm.cofrade.numeroCofrade)"></remove-Cofrade>
-        <restore-Cofrade cofrade="vm.cofrade.id" ss="md-icon-button" aria-label="Restaurar Cofrade" ng-if="(vm.cofrade.numeroOrden && !vm.cofrade.numeroCofrade)"></restore-Cofrade>
+        <div hide-sm layout="row">
+          <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(vm.cofrade.id, $event)">
+            <md-icon md-font-library="material-icons">mode_edit</md-icon>
+          </md-button>
+          <remove-Cofrade cofrade="vm.cofrade.id" aria-label="Eliminar Cofrade" ng-if="(vm.cofrade.numeroOrden && vm.cofrade.numeroCofrade)"></remove-Cofrade>
+          <restore-Cofrade cofrade="vm.cofrade.id" aria-label="Restaurar Cofrade" ng-if="(vm.cofrade.numeroOrden && !vm.cofrade.numeroCofrade)"></restore-Cofrade>
+        </div>
+        
+        <div layout="column" layout-align="center end">
+          <md-menu hide-gt-sm width="1">
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item ng-if="(vm.cofrade.numeroOrden && vm.cofrade.numeroCofrade)">
+                <remove-Cofrade cofrade="vm.cofrade.id" aria-label="Eliminar Cofrade" ></remove-Cofrade>
+              </md-menu-item>
+              <md-menu-item ng-if="(vm.cofrade.numeroOrden && !vm.cofrade.numeroCofrade)">
+                <restore-Cofrade cofrade="vm.cofrade.id" aria-label="Restaurar Cofrade" ></restore-Cofrade>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
       </div>
     </md-toolbar>
 
