@@ -1,0 +1,277 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaCostaleros">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Detalles Costalero" ui-sref="costaleros">
+          <md-icon md-font-library="material-icons">arrow_back</md-icon>
+        </md-button>
+        <h4>
+          <span>
+            {{vm.costalero.datosPersonales.nombre}} {{vm.costalero.datosPersonales.apellido1}} {{vm.costalero.datosPersonales.apellido2}}
+          </span>
+        </h4>
+        <span flex></span>
+        <div hide-sm layout="row">
+          <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(vm.costalero.id, $event)">
+            <md-icon md-font-library="material-icons">mode_edit</md-icon>
+          </md-button>
+          <remove-Costalero costalero="vm.costalero.id" aria-label="Eliminar Costalero" ng-if="(vm.costalero.numeroOrden && vm.costalero.numeroCostalero)"></remove-Costalero>
+          <restore-Costalero costalero="vm.costalero.id" aria-label="Restaurar Costalero" ng-if="(vm.costalero.numeroOrden && !vm.costalero.numeroCostalero)"></restore-Costalero>
+        </div>
+        
+        <div layout="column" layout-align="center end">
+          <md-menu hide-gt-sm width="1">
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item ng-if="(vm.costalero.numeroOrden && vm.costalero.numeroCostalero)">
+                <remove-Costalero costalero="vm.costalero.id" aria-label="Eliminar Costalero" ></remove-Costalero>
+              </md-menu-item>
+              <md-menu-item ng-if="(vm.costalero.numeroOrden && !vm.costalero.numeroCostalero)">
+                <restore-Costalero costalero="vm.costalero.id" aria-label="Restaurar Costalero" ></restore-Costalero>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-toolbar>
+
+
+    <md-content class="md-padding">
+      
+      <div layout layout-padding class="md-padding" layout-align="space-around center">
+        <div class="md-2-line costalero-detalle" flex="40">
+          <div class="md-item-text md-whiteframe-z1">
+            <h3>Número de<br>orden</h3>
+            <p>{{vm.costalero.numeroOrden}}</p>
+          </div>
+        </div>
+        <div class="md-2-line costalero-detalle" flex="40">
+          <div class="md-item-text md-whiteframe-z1">
+            <h3>Número de<br>costalero</h3>
+            <p>{{vm.costalero.numeroCostalero}}</p>
+          </div>
+        </div>
+      </div>
+      
+      
+
+      <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
+      <md-tab>
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">person</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          
+          <div layout layout-sm="column" layout-align="space-around center" ng-if="vm.costalero.baja" class="baja">
+            <md-input-container flex="33">
+              <label>Fecha de baja</label>
+              <input ng-model="vm.costalero.baja.fechaBaja" type="text" readonly>
+            </md-input-container>
+            <md-input-container flex="50">
+              <label>Motivo de baja</label>
+              <input ng-model="vm.costalero.baja.motivo" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <h1>Datos personales</h1>
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="75">
+              <label>Nombre</label>
+              <md-icon md-font-library="material-icons">face</md-icon>
+              <input ng-model="vm.costalero.datosPersonales.nombre" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Primer apellido</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+              <input ng-model="vm.costalero.datosPersonales.apellido1" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Segundo apellido</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+              <input ng-model="vm.costalero.datosPersonales.apellido2" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>DNI</label>
+              <md-icon md-font-library="material-icons">credit_card</md-icon>
+              <input ng-model="vm.costalero.datosPersonales.dni" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Sexo</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.costalero.datosPersonales.sexo" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Teléfono</label>
+              <md-icon md-font-library="material-icons">local_phone</md-icon>
+              <input ng-model="vm.costalero.datosPersonales.telefono" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Email</label>
+              <md-icon md-font-library="material-icons">email</md-icon>
+               <input ng-model="vm.costalero.datosPersonales.email" type="text" readonly>
+            </md-input-container>
+          </div>
+
+           <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Fecha de nacimiento:</label>
+              <md-icon md-font-library="material-icons">event_note</md-icon>
+              <input ng-model="vm.costalero.datosPersonales.fechaNacimiento" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Fecha de inscripción:</label>
+              <md-icon md-font-library="material-icons">event_note</md-icon>
+              <input ng-model="vm.costalero.datosPersonales.fechaInscripcion" type="text" readonly>
+            </md-input-container>
+          </div>
+
+          <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
+          <div layout layout-sm="column">
+            <div offset="5" flex="40">
+              <p>{{vm.costalero.datosPersonales.direccion.calle}}
+              <span ng-if="vm.costalero.datosPersonales.direccion.numero">, {{vm.costalero.datosPersonales.direccion.numero}}</span>
+              <span ng-if="vm.costalero.datosPersonales.direccion.planta">, {{vm.costalero.datosPersonales.direccion.planta}}</span>
+              <span ng-if="vm.costalero.datosPersonales.direccion.piso">, {{vm.costalero.datosPersonales.direccion.piso}}</span></p>
+              <p>{{vm.costalero.datosPersonales.direccion.municipio}}, {{vm.costalero.datosPersonales.direccion.cp}}</p>
+              <p>{{vm.costalero.datosPersonales.direccion.provincia}}</p>
+            </div>
+            <div offset="5" flex="50">
+              <ui-gmap-google-map center='vm.maps.coord' zoom='vm.maps.zoom'>
+                <ui-gmap-marker coords="vm.maps.marker" idKey="1" ></ui-gmap-marker>
+              </ui-gmap-google-map>
+            </div>
+          </div>
+
+          <div ng-if="vm.costalero.datosPersonales.nota" layout="column">
+            <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
+            <div flex offset="5">
+              <p>{{vm.costalero.datosPersonales.nota}}</p>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab ng-disabled="!vm.costalero.datosFinancieros">
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">account_balance</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          <h1>Datos bancarios</h1>
+          <div layout="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>IBAN</label>
+              <md-icon md-font-library="material-icons">attach_money</md-icon>
+              <input ng-model="vm.iban" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>CC</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.cc" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Banco</label>
+              <md-icon md-font-library="material-icons">account_balance</md-icon>
+              <input ng-model="vm.costalero.datosFinancieros.banco" type="text" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Driección del banco</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.costalero.datosFinancieros.direccionBanco" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Deudas</label>
+              <md-icon md-font-library="material-icons">mood_bad</md-icon>
+              <input ng-model="vm.costalero.datosFinancieros.deuda" type="text" readonly>
+            </md-input-container>
+          </div>
+          
+          <div layout layout-sm="column">
+            <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.costalero.datosFinancieros.domiciliarPagos" class="md-primary" ng-disabled="true">
+              Pagos domicilados
+            </md-checkbox>
+            <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.costalero.datosFinancieros.domiciliarLoteria" class="md-primary" ng-disabled="true">
+              Lotería domiciliada
+            </md-checkbox>
+          </div>
+
+        </md-content>
+      </md-tab>
+      <md-tab ng-disabled="!vm.costalero.datosLoteria">
+        <md-tab-label>
+          <md-icon md-font-library="material-icons">local_play</md-icon>
+        </md-tab-label>
+        <md-content class="md-padding">
+          <h1>Datos Loteria</h1>
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número de Navidad 1</label>
+              <md-icon md-font-library="material-icons">local_play</md-icon>
+              <input ng-model="vm.costalero.datosLoteria.numeroNavidad1" type="number" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número de Navidad 2</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.costalero.datosLoteria.numeroNavidad2" type="number" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número del Niño 1</label>
+              <md-icon md-font-library="material-icons">local_play</md-icon>
+              <input ng-model="vm.costalero.datosLoteria.numeroNinio1" type="number" readonly>
+            </md-input-container>
+            <md-input-container class="md-icon-float" flex="50">
+              <label>Número del Niño 2</label>
+              <md-icon md-font-library="material-icons"></md-icon>
+               <input ng-model="vm.costalero.datosLoteria.numeroNinio2" type="number" readonly>
+            </md-input-container>
+          </div>
+
+          <div layout layout-sm="column">
+            <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.costalero.datosLoteria.participacionNavidad" class="md-primary" ng-disabled="true">
+              Participaciones de Navidad
+            </md-checkbox>
+            <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.costalero.datosLoteria.participacionNinio" class="md-primary" ng-disabled="true">
+              Participaciones del niño
+            </md-checkbox>
+          </div>
+          
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+    <!-- 
+      
+
+      <div ng-if="vm.costalero.datosFinancieros" layout="column">
+
+        
+      </div>
+      
+      <div ng-if="vm.costalero.datosLoteria" layout="column">
+        <md-divider></md-divider>
+        
+
+      </div> -->
+        
+    </md-content>
+
+  </div>
+</div>

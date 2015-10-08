@@ -2,13 +2,13 @@
   'use strict';
   angular
     .module('app')
-    .controller('CofradeNuevo', CofradeNuevo);
+    .controller('CostaleroAddModify', CostaleroAddModify);
 
-  function CofradeNuevo($filter, $document, $mdToast, $state, getCofradePrepService, cofradesService, sectoresService) {
+  function CostaleroAddModify($filter, $document, $mdToast, $state, getCostaleroPrepService, costalerosService, sectoresService) {
     var vm = this;
     
     vm.nuevaCalle = true;
-    vm.cofrade = {datosFinancieros: {cuenta: {}, 
+    vm.costalero = {datosFinancieros: {cuenta: {}, 
                                      deuda: []},
                   datosPersonales:  {direccion: {},
                                      sexo: "Hombre",
@@ -26,30 +26,30 @@
     activate();
 
     function activate() {
-      if (getCofradePrepService){
-        getCofradePrepService.$promise.then(initCofrade);
+      if (getCostaleroPrepService){
+        getCostaleroPrepService.$promise.then(initCostalero);
       }
       else{
-        cofradesService.getRegistros().then(function(response){
-                                              vm.cofrade.numeroOrden = response.data.numeroOrden;
-                                              vm.cofrade.numeroCofrade = response.data.numeroCofrade;
+        costalerosService.getRegistros().then(function(response){
+                                              vm.costalero.numeroOrden = response.data.numeroOrden;
+                                              vm.costalero.numeroCostalero = response.data.numeroCostalero;
                                             });
 
       }
     }
 
-    function initCofrade(data) {
-      vm.cofrade = data;
-      vm.calleSelected = {calle: vm.cofrade.datosPersonales.direccion.calle,
-                          cp: vm.cofrade.datosPersonales.direccion.cp,
-                          provincia: vm.cofrade.datosPersonales.direccion.provincia,
-                          municipio: vm.cofrade.datosPersonales.direccion.municipio};
+    function initCostalero(data) {
+      vm.costalero = data;
+      vm.calleSelected = {calle: vm.costalero.datosPersonales.direccion.calle,
+                          cp: vm.costalero.datosPersonales.direccion.cp,
+                          provincia: vm.costalero.datosPersonales.direccion.provincia,
+                          municipio: vm.costalero.datosPersonales.direccion.municipio};
 
-      vm.fechaNacimiento = vm.cofrade.datosPersonales.fechaNacimiento;
-      vm.fechaInscripcion = vm.cofrade.datosPersonales.fechaInscripcion;
-      vm.cofrade.datosFinancieros = vm.cofrade.datosFinancieros || {cuenta: {}, deuda: []};
-      vm.cofrade.datosFinancieros.cuenta = vm.cofrade.datosFinancieros.cuenta || {};
-      vm.cofrade.datosFinancieros.deuda = vm.cofrade.datosFinancieros.deuda || [];
+      vm.fechaNacimiento = vm.costalero.datosPersonales.fechaNacimiento;
+      vm.fechaInscripcion = vm.costalero.datosPersonales.fechaInscripcion;
+      vm.costalero.datosFinancieros = vm.costalero.datosFinancieros || {cuenta: {}, deuda: []};
+      vm.costalero.datosFinancieros.cuenta = vm.costalero.datosFinancieros.cuenta || {};
+      vm.costalero.datosFinancieros.deuda = vm.costalero.datosFinancieros.deuda || [];
       return true;
     }
 
@@ -58,21 +58,21 @@
     }
 
     function querySearch(query) {
-      return cofradesService.getCalles(query).then(function(response){return response.data;});
+      return costalerosService.getCalles(query).then(function(response){return response.data;});
     }
 
     function selectedItemChange(item) {
       if (item){
-        vm.cofrade.datosPersonales.direccion.calle = item.calle;
-        vm.cofrade.datosPersonales.direccion.municipio = item.municipio;
-        vm.cofrade.datosPersonales.direccion.cp = item.cp;
-        vm.cofrade.datosPersonales.direccion.provincia = item.provincia;
+        vm.costalero.datosPersonales.direccion.calle = item.calle;
+        vm.costalero.datosPersonales.direccion.municipio = item.municipio;
+        vm.costalero.datosPersonales.direccion.cp = item.cp;
+        vm.costalero.datosPersonales.direccion.provincia = item.provincia;
         searchSector(item.calle);
       }else{
-        vm.cofrade.datosPersonales.direccion.calle = null;
-        vm.cofrade.datosPersonales.direccion.municipio = null;
-        vm.cofrade.datosPersonales.direccion.cp = null;
-        vm.cofrade.datosPersonales.direccion.provincia = null;
+        vm.costalero.datosPersonales.direccion.calle = null;
+        vm.costalero.datosPersonales.direccion.municipio = null;
+        vm.costalero.datosPersonales.direccion.cp = null;
+        vm.costalero.datosPersonales.direccion.provincia = null;
         vm.sector = null;
         vm.nuevaCalle = true;
       }
@@ -86,29 +86,29 @@
     }
 
     function calcularCC() {
-      if (vm.cofrade.datosFinancieros.cuenta.iban)
-        vm.cofrade.datosFinancieros.cuenta.cc = $filter('calcularCC')(vm.cofrade.datosFinancieros.cuenta.iban);
+      if (vm.costalero.datosFinancieros.cuenta.iban)
+        vm.costalero.datosFinancieros.cuenta.cc = $filter('calcularCC')(vm.costalero.datosFinancieros.cuenta.iban);
     }
 
     function calcularIban() {
-      if (vm.cofrade.datosFinancieros.cuenta.cc)
-        vm.cofrade.datosFinancieros.cuenta.iban = $filter('calcularIban')(vm.cofrade.datosFinancieros.cuenta.cc);
+      if (vm.costalero.datosFinancieros.cuenta.cc)
+        vm.costalero.datosFinancieros.cuenta.iban = $filter('calcularIban')(vm.costalero.datosFinancieros.cuenta.cc);
     }
 
     function guardar(isValid) {
       if(isValid){
         var datosFinancieros = {cuenta: {}, deuda: []};
 
-        vm.cofrade.datosPersonales.direccion.calle = vm.searchText;
+        vm.costalero.datosPersonales.direccion.calle = vm.searchText;
 
-        if (JSON.stringify(vm.cofrade.datosFinancieros) === JSON.stringify(datosFinancieros))
-          delete vm.cofrade.datosFinancieros;
+        if (JSON.stringify(vm.costalero.datosFinancieros) === JSON.stringify(datosFinancieros))
+          delete vm.costalero.datosFinancieros;
         
-        var CofradeResource = cofradesService.cofradesRest();
+        var CostaleroResource = costalerosService.costalerosRest();
         if(vm.nuevaCalle)
           guardarCalle();
         else{
-          CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+          CostaleroResource.save(vm.costalero, guardarSuccess, guardarError);
         }
       }
       else
@@ -121,7 +121,7 @@
           if(sectorResource){
             sectorResource.calles.push(vm.searchText);
             sectorResource.$save();
-            CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+            CostaleroResource.save(vm.costalero, guardarSuccess, guardarError);
           }
           else{
             $mdToast.show(
@@ -143,7 +143,7 @@
           .position('top right')
           .hideDelay(3000)
       );
-      $state.go('cofrades');
+      $state.go('costaleros');
     }
 
     function guardarError(response) {

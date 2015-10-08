@@ -32,11 +32,11 @@
         }
       }).
       state('cofradesCambios', {
-        url: "/cofrades/nuevos/:cofradeId",
+        url: "/cofrades/cambios/:cofradeId",
         templateProvider: function($templateCache){  
-          return $templateCache.get('cofrades/add/cofradeNuevo.html'); 
+          return $templateCache.get('cofrades/addModify/cofradeAddModify.html'); 
         },
-        controller: 'CofradeNuevo',
+        controller: 'CofradeAddModify',
         controllerAs: 'vm',
         resolve: {
             getCofradePrepService: getCofradePrepService

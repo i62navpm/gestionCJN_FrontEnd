@@ -1,0 +1,79 @@
+.costaleros{
+  md-radio-button {
+    margin: 0;
+  }
+  md-input-container {
+    padding-bottom: 16px;
+  }
+  md-content.lista-costaleros{
+    .sitio{
+      text-align: right;
+    }
+    
+    .md-list-item-text{
+      padding: 0;
+    }
+
+  }
+  .vacio{
+    background-color: crimson;
+  }
+  p.numeroOrden{
+    color: rgba(0, 0, 0, 0.541176);
+  }
+
+}
+
+.listaCostaleros{
+  .costalero-detalle {
+    .md-item-text {
+      padding: 8px;
+      background: #f0f0f0;
+      border-radius: 3px; 
+    }
+    .md-item-text h3,  .md-item-text p {
+      text-align: center;
+      padding: 0;
+      margin: 0; 
+    }
+    .md-item-text p{
+      padding-top: 8px;
+    }
+  }
+  .angular-google-map-container { height: 250px; }
+  
+  .autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal; }
+  .autocomplete-custom-template li:last-child {
+    border-bottom-width: 0; }
+  .autocomplete-custom-template .item-title, .autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2; }
+  .autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px; 
+    margin-right: 8px;
+  }
+  .validation-messages{
+    font-size: 12px;
+    line-height: 14px;
+    overflow: hidden;
+    padding-top: 5px;
+    color: rgb(244,67,54);
+  }
+
+  .md-datepicker-input-container{
+    visibility: hidden;
+    width: 0;
+  }
+
+  .baja{
+    md-input-container:not(.md-input-invalid).md-input-has-value label{
+      color: rgb(244,67,54);
+    }
+  }
+}
