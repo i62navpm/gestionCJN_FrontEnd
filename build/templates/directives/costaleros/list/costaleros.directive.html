@@ -23,9 +23,7 @@
               <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
                 <md-icon md-font-library="material-icons">mode_edit</md-icon>
               </md-button>
-               <md-button class="md-icon-button" aria-label="Eliminar Costalero" ng-click="vm.removeCostalero(costalero.id, $event)" ng-if="costalero.numeroOrden">
-                <md-icon md-font-library="material-icons">clear</md-icon>
-              </md-button>
+              <remove-Costalero costalero="costalero.id" ng-if="costalero.numeroOrden"></remove-Costalero>
             </div>
 
             <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
@@ -43,9 +41,7 @@
                   </md-menu-item>
                   <md-menu-item ng-if="costalero.numeroOrden">
                     <div>
-                      <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
-                        <md-icon md-font-library="material-icons">clear</md-icon>
-                      </md-button>
+                      <remove-Costalero costalero="costalero.id"></remove-Costalero>
                     </div>
                   </md-menu-item>
                 </md-menu-content>
