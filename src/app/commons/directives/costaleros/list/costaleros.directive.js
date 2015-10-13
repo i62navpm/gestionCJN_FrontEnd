@@ -18,7 +18,7 @@
             if(newVal) { 
               scope.vm.costalerosShort = scope.vm.costaleros.map(function(costalero){
                 var aux = {id: costalero.id, 
-                           sitio: costalero.sitio,};
+                           sitio: costalero.sitio};
                 if (costalero.cofrade){
                   aux.numeroOrden = costalero.cofrade.numeroOrden;
                   aux.nombre = costalero.cofrade.datosPersonales.nombre    + ' ' +

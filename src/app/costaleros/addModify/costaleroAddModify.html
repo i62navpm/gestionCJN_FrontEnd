@@ -22,39 +22,37 @@
       <md-content class="md-padding">
         <div layout="row" id="toastBounds"></div>
         <h4><md-icon md-font-library="material-icons">face</md-icon> Costalero</h4>
-        <div layout layout-sm="column" layout-align="space-between center">
-          <div flex="70">
-            <md-autocomplete required
-              md-input-name="cofrade"
-              md-no-cache="true"
-              md-search-text="vm.searchText"
-              md-selected-item="vm.cofradeSelected"
-              md-selected-item-change="vm.selectedItemChange(item)"
-              md-items="item in vm.querySearch(vm.searchText)"
-              md-item-text="item.datosPersonales.nombre + ' ' + item.datosPersonales.apellido1  + ' ' + item.datosPersonales.apellido2" 
-              md-min-length="0"
-              md-floating-label="Seleccione un costalero"
-              md-menu-class="autocomplete-custom-template">
-              <md-item-template>
-                <span class="item-title">
-                  <md-icon md-font-library="material-icons">assignment_ind</md-icon>
-                  <span> {{item.datosPersonales.nombre}} {{item.datosPersonales.apellido1}} {{item.datosPersonales.apellido2}} </span>
+        <div layout layout-sm="column">
+          <md-autocomplete required
+            md-input-name="cofrade"
+            md-no-cache="true"
+            md-search-text="vm.searchText"
+            md-selected-item="vm.cofradeSelected"
+            md-selected-item-change="vm.selectedItemChange(item)"
+            md-items="item in vm.querySearch(vm.searchText)"
+            md-item-text="item.datosPersonales.nombre + ' ' + item.datosPersonales.apellido1  + ' ' + item.datosPersonales.apellido2" 
+            md-min-length="0"
+            md-floating-label="Seleccione un costalero"
+            md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+              <span class="item-title">
+                <md-icon md-font-library="material-icons">assignment_ind</md-icon>
+                <span> {{item.datosPersonales.nombre}} {{item.datosPersonales.apellido1}} {{item.datosPersonales.apellido2}} </span>
+              </span>
+              <span class="item-metadata">
+                <span class="item-metastat">
+                  <strong>N. Orden: {{item.numeroOrden}}</strong> - {{item.datosPersonales.direccion.municipio}}
                 </span>
-                <span class="item-metadata">
-                  <span class="item-metastat">
-                    <strong>N. Orden: {{item.numeroOrden}}</strong> - {{item.datosPersonales.direccion.municipio}}
-                  </span>
-                </span>
-              </md-item-template>
-              <md-not-found>
-                No hay coincidencias para: "{{vm.searchText}}".
-              </md-not-found>
+              </span>
+            </md-item-template>
+            <md-not-found>
+              No hay coincidencias para: "{{vm.searchText}}".
+            </md-not-found>
 
-              <div ng-messages="costaleroForm.cofrade.$error" ng-if="costaleroForm.cofrade.$dirty || costaleroForm.cofrade.$touched || costaleroForm.$submitted">
-                <div ng-message="required">El cofrade es obligatorio (haga click en la lista)</div>
-              </div>
-            </md-autocomplete>
-          </div>
+            <div ng-messages="costaleroForm.cofrade.$error" ng-if="costaleroForm.cofrade.$dirty || costaleroForm.cofrade.$touched || costaleroForm.$submitted">
+              <div ng-message="required">El cofrade es obligatorio (haga click en la lista)</div>
+            </div>
+          </md-autocomplete>
         </div>
 
         <div layout layout-sm="column">
