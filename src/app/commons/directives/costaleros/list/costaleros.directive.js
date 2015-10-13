@@ -17,9 +17,9 @@
         scope.$watch('vm.costaleros', function(newVal) {
             if(newVal) { 
               scope.vm.costalerosShort = scope.vm.costaleros.map(function(costalero){
-                var aux = {sitio: costalero.sitio};
+                var aux = {id: costalero.id, 
+                           sitio: costalero.sitio,};
                 if (costalero.cofrade){
-                  aux.id = costalero.id;
                   aux.numeroOrden = costalero.cofrade.numeroOrden;
                   aux.nombre = costalero.cofrade.datosPersonales.nombre    + ' ' +
                                costalero.cofrade.datosPersonales.apellido1 + ' ' + 
