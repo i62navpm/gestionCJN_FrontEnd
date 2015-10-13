@@ -78,7 +78,7 @@
               </md-input-container>
             </div>
 
-            <div layout layout-sm="column" layout-align="space-between center">
+            <div layout layout-sm="column">
               <md-input-container class="md-icon-float" flex="50">
                 <label>DNI</label>
                 <md-icon md-font-library="material-icons">credit_card</md-icon>
@@ -87,7 +87,7 @@
                   <div ng-message="pattern">Introduce un DNI válido 00000000X</div>
                 </div>
               </md-input-container>
-              <md-input-container flex="45">
+              <md-input-container flex>
                 <label>Sexo</label>
                   <md-select ng-model="vm.cofrade.datosPersonales.sexo">
                     <md-option value="Hombre">Hombre</md-option>
@@ -142,7 +142,7 @@
 
 
             <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
-            <div layout layout-sm="column" layout-align="space-between center">
+            <div layout layout-sm="column">
               <div flex="70">
                 <md-autocomplete required
                   md-input-name="calle"
@@ -182,7 +182,7 @@
                 </div>
               </md-input-container>
             </div>
-            <div layout layout-sm="column" layout-align="space-between center">
+            <div layout layout-sm="column">
               <md-input-container  flex="25">
                 <label>Número</label>
                 <input name="numero" ng-model="vm.cofrade.datosPersonales.direccion.numero" required>
@@ -199,7 +199,7 @@
                 <input name="" ng-model="vm.cofrade.datosPersonales.direccion.piso" type="text">
               </md-input-container>
             </div>
-            <div layout layout-sm="column" layout-align="space-between center">
+            <div layout layout-sm="column">
               <md-input-container  flex="70">
                 <label>Municipio</label>
                 <input name="municipio" ng-model="vm.cofrade.datosPersonales.direccion.municipio" required>
