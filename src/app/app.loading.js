@@ -37,7 +37,7 @@
       // optional method
      'responseError': function(rejection) {
         // do something on error
-
+        loadScreen.css('display', 'none');
         return $q.reject(rejection);
       }
     };

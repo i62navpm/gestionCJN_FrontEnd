@@ -12,7 +12,7 @@
 
     function modifyCostalero(id, event){
       event.stopPropagation();
-      $state.go('costalerosCambios', {cofradeId: id});
+      $state.go('costalerosCambios', {costaleroId: id});
     }
 
   }

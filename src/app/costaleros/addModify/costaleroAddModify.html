@@ -1,361 +1,82 @@
 <div layout="row" layout-align="center center">
   <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaCostaleros">
     <form name="costaleroForm" novalidate>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Detalles Costalero" ng-click="vm.backState()">
-          <md-icon md-font-library="material-icons">arrow_back</md-icon>
-        </md-button>
-        <h4>
-          <span>
-            {{vm.costalero.datosPersonales.nombre}} {{vm.costalero.datosPersonales.apellido1}} {{vm.costalero.datosPersonales.apellido2}}
-          </span>
-        </h4>
-        <span flex></span>
-        <md-button class="md-icon-button" aria-label="Detalles Costalero" ng-click="vm.guardar(costaleroForm.$valid)"  type="submit">
-          <md-icon md-font-library="material-icons">save</md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Detalles Costalero" ng-click="vm.backState()">
+            <md-icon md-font-library="material-icons">arrow_back</md-icon>
+          </md-button>
+          <h4>
+            <span>
+              Posición: {{vm.costalero.sitio}}
+            </span>
+          </h4>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Guad Costalero" ng-click="vm.guardar(costaleroForm.$valid)"  type="submit">
+            <md-icon md-font-library="material-icons">save</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
 
 
-    <md-content class="md-padding">
-      <div layout="row" id="toastBounds"></div>
-      <div layout layout-padding class="md-padding" layout-align="space-around center">
-        <div class="md-2-line costalero-detalle" flex="40">
-          <div class="md-item-text md-whiteframe-z1">
-            <h3>Número de<br>orden</h3>
-            <p>{{vm.costalero.numeroOrden}}</p>
+      <md-content class="md-padding">
+        <div layout="row" id="toastBounds"></div>
+        <h4><md-icon md-font-library="material-icons">face</md-icon> Costalero</h4>
+        <div layout layout-sm="column" layout-align="space-between center">
+          <div flex="70">
+            <md-autocomplete required
+              md-input-name="cofrade"
+              md-no-cache="true"
+              md-search-text="vm.searchText"
+              md-selected-item="vm.cofradeSelected"
+              md-selected-item-change="vm.selectedItemChange(item)"
+              md-items="item in vm.querySearch(vm.searchText)"
+              md-item-text="item.datosPersonales.nombre + ' ' + item.datosPersonales.apellido1  + ' ' + item.datosPersonales.apellido2" 
+              md-min-length="0"
+              md-floating-label="Seleccione un costalero"
+              md-menu-class="autocomplete-custom-template">
+              <md-item-template>
+                <span class="item-title">
+                  <md-icon md-font-library="material-icons">assignment_ind</md-icon>
+                  <span> {{item.datosPersonales.nombre}} {{item.datosPersonales.apellido1}} {{item.datosPersonales.apellido2}} </span>
+                </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <strong>N. Orden: {{item.numeroOrden}}</strong> - {{item.datosPersonales.direccion.municipio}}
+                  </span>
+                </span>
+              </md-item-template>
+              <md-not-found>
+                No hay coincidencias para: "{{vm.searchText}}".
+              </md-not-found>
+
+              <div ng-messages="costaleroForm.cofrade.$error" ng-if="costaleroForm.cofrade.$dirty || costaleroForm.cofrade.$touched || costaleroForm.$submitted">
+                <div ng-message="required">El cofrade es obligatorio (haga click en la lista)</div>
+              </div>
+            </md-autocomplete>
           </div>
         </div>
-        <div class="md-2-line costalero-detalle" flex="40">
-          <div class="md-item-text md-whiteframe-z1">
-            <h3>Número de<br>costalero</h3>
-            <p>{{vm.costalero.numeroCostalero}}</p>
+
+        <div layout layout-sm="column">
+          <div flex="50" layout="row" layout-align="start start">
+            <md-input-container class="md-icon-float" flex>
+              <label>Fecha</label>
+              <md-icon md-font-library="material-icons">today</md-icon>
+              <input name="fecha" ng-model="vm.costalero.fecha" pattern="(\d{1,2}/\d{1,2}/\d{2,4})">
+              <div class="validation-messages" ng-messages="costaleroForm.fecha.$error" ng-if="costaleroForm.fecha.$dirty || costaleroForm.fecha.$touched || costaleroForm.$submitted">
+                <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div flex="50" layout="row" layout-align="start start">
+            <md-input-container class="md-icon-float" flex>
+              <label>Talla</label>
+              <md-icon md-font-library="material-icons">accessibility</md-icon>
+              <input name="talla" ng-model="vm.costalero.talla" type="number" step="0.01">
+            </md-input-container>
           </div>
         </div>
-      </div>
-      
-      
-      
-      <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always">
-      
-        <!-- DATOS PERSONALES -->
-        <md-tab>
-          <md-tab-label>
-            <md-icon md-font-library="material-icons">person</md-icon>
-          </md-tab-label>
-          <md-content class="md-padding">
-            <h1>Datos personales</h1>
-            
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="75">
-                <label>Nombre</label>
-                <md-icon md-font-library="material-icons">face</md-icon>
-                <input name="nombre" ng-model="vm.costalero.datosPersonales.nombre" required>
-                <div ng-messages="costaleroForm.nombre.$error" ng-if="costaleroForm.nombre.$dirty || costaleroForm.nombre.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El nombre es obligatorio</div>
-                </div>
-              </md-input-container>
-            </div>
-            
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Primer apellido</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                <input name="apellido1" ng-model="vm.costalero.datosPersonales.apellido1" required>
-                <div ng-messages="costaleroForm.apellido1.$error" ng-if="costaleroForm.apellido1.$dirty || costaleroForm.apellido1.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El apellido es obligatorio</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Segundo apellido</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                <input name="apellido2" ng-model="vm.costalero.datosPersonales.apellido2" required>
-                <div ng-messages="costaleroForm.apellido2.$error" ng-if="costaleroForm.apellido2.$dirty || costaleroForm.apellido2.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El apellido es obligatorio</div>
-                </div>
-              </md-input-container>
-            </div>
-
-            <div layout layout-sm="column" layout-align="space-between center">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>DNI</label>
-                <md-icon md-font-library="material-icons">credit_card</md-icon>
-                <input name="dni" ng-model="vm.costalero.datosPersonales.dni" maxlength="9" pattern="(\d{8})([a-zA-Z]{1})">
-                <div ng-messages="costaleroForm.dni.$error" ng-if="costaleroForm.dni.$dirty || costaleroForm.dni.$touched || costaleroForm.$submitted">
-                  <div ng-message="pattern">Introduce un DNI válido 00000000X</div>
-                </div>
-              </md-input-container>
-              <md-input-container flex="45">
-                <label>Sexo</label>
-                  <md-select ng-model="vm.costalero.datosPersonales.sexo">
-                    <md-option value="Hombre">Hombre</md-option>
-                    <md-option value="Mujer">Mujer</md-option>
-                  </md-select>
-              </md-input-container>
-            </div>
-
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Teléfono</label>
-                <md-icon md-font-library="material-icons">local_phone</md-icon>
-                <input name="telefono" ng-model="vm.costalero.datosPersonales.telefono" maxlength="9" pattern="(\d{9})">
-                <div ng-messages="costaleroForm.telefono.$error" ng-if="costaleroForm.telefono.$dirty || costaleroForm.telefono.$touched || costaleroForm.$submitted">
-                  <div ng-message="pattern">Introduce un teléfono válido</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Email</label>
-                <md-icon md-font-library="material-icons">email</md-icon>
-                 <input name="email" ng-model="vm.costalero.datosPersonales.email" type="email">
-                 <div ng-messages="costaleroForm.email.$error" ng-if="costaleroForm.email.$dirty || costaleroForm.email.$touched || costaleroForm.$submitted">
-                  <div ng-message="email">Introduce un email válido</div>
-                </div>
-              </md-input-container>
-            </div>
-
-             <div layout layout-sm="column">
-              <div flex="50" layout="row" layout-align="start start">
-                <md-input-container class="md-icon-float" flex>
-                  <label>Fecha de nacimiento</label>
-                  <md-icon md-font-library="material-icons">today</md-icon>
-                  <input name="fechaNacimiento" ng-model="vm.costalero.datosPersonales.fechaNacimiento" pattern="(\d{1,2}/\d{1,2}/\d{2,4})" required>
-                  <div class="validation-messages" ng-messages="costaleroForm.fechaNacimiento.$error" ng-if="costaleroForm.fechaNacimiento.$dirty || costaleroForm.fechaNacimiento.$touched || costaleroForm.$submitted">
-                    <div ng-message="required">Introduce una fecha</div>
-                    <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
-                  </div>
-                </md-input-container>
-              </div>
-              <div flex="50" layout="row" layout-align="start start">
-                <md-input-container class="md-icon-float" flex>
-                  <label>Fecha de Inscripcion</label>
-                  <md-icon md-font-library="material-icons">today</md-icon>
-                  <input name="fechaInscripcion" ng-model="vm.costalero.datosPersonales.fechaInscripcion" pattern="(\d{1,2}/\d{1,2}/\d{2,4})" required>
-                  <div class="validation-messages" ng-messages="costaleroForm.fechaInscripcion.$error" ng-if="costaleroForm.fechaInscripcion.$dirty || costaleroForm.fechaInscripcion.$touched || costaleroForm.$submitted">
-                    <div ng-message="required">Introduce una fecha</div>
-                    <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
-                  </div>
-                </md-input-container>
-              </div>
-            </div>
-
-
-            <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
-            <div layout layout-sm="column" layout-align="space-between center">
-              <div flex="70">
-                <md-autocomplete required
-                  md-input-name="calle"
-                  md-search-text="vm.searchText"
-                  md-selected-item="vm.calleSelected"
-                  md-selected-item-change="vm.selectedItemChange(item)"
-                  md-items="item in vm.querySearch(vm.searchText)"
-                  md-item-text="item.calle"
-                  md-min-length="0"
-                  md-floating-label="Selecciona una calle"
-                  md-menu-class="autocomplete-custom-template">
-                 <md-item-template>
-                    <span class="item-title">
-                      <md-icon md-font-library="material-icons">map</md-icon>
-                      <span> {{item.calle}} </span>
-                    </span>
-                    <span class="item-metadata">
-                      <span class="item-metastat">
-                        <strong>{{item.municipio}}</strong> - {{item.provincia}}
-                      </span>
-                    </span>
-                  </md-item-template>
-                  <md-not-found>
-                    No hay coincidencias para: "{{vm.searchText}}".
-                  </md-not-found>
-
-                  <div ng-messages="costaleroForm.calle.$error" ng-if="costaleroForm.calle.$dirty || costaleroForm.calle.$touched || costaleroForm.$submitted">
-                    <div ng-message="required">La calle es obligatoria</div>
-                  </div>
-                </md-autocomplete>
-              </div>
-              <md-input-container flex="25">
-                <label>Sector</label>
-                <input name="sector" ng-model="vm.sector" type="number" ng-readonly="!vm.nuevaCalle">
-                <div ng-messages="costaleroForm.sector.$error" ng-if="costaleroForm.sector.$dirty || costaleroForm.sector.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El sector es obligatorio</div>
-                </div>
-              </md-input-container>
-            </div>
-            <div layout layout-sm="column" layout-align="space-between center">
-              <md-input-container  flex="25">
-                <label>Número</label>
-                <input name="numero" ng-model="vm.costalero.datosPersonales.direccion.numero" required>
-                <div ng-messages="costaleroForm.numero.$error" ng-if="costaleroForm.numero.$dirty || costaleroForm.numero.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El número es obligatorio</div>
-                </div>
-              </md-input-container>
-              <md-input-container  flex="40">
-                <label>Planta</label>
-                <input name="" ng-model="vm.costalero.datosPersonales.direccion.planta" type="text">
-              </md-input-container>
-              <md-input-container  flex="35">
-                <label>Piso</label>
-                <input name="" ng-model="vm.costalero.datosPersonales.direccion.piso" type="text">
-              </md-input-container>
-            </div>
-            <div layout layout-sm="column" layout-align="space-between center">
-              <md-input-container  flex="70">
-                <label>Municipio</label>
-                <input name="municipio" ng-model="vm.costalero.datosPersonales.direccion.municipio" required>
-                <div ng-messages="costaleroForm.municipio.$error" ng-if="costaleroForm.municipio.$dirty || costaleroForm.municipio.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El municipio es obligatorio</div>
-                </div>
-              </md-input-container>
-              <md-input-container  flex="25" required>
-                <label>Código postal</label>
-                <input name="cp" ng-model="vm.costalero.datosPersonales.direccion.cp" type="number" required>
-                <div ng-messages="costaleroForm.cp.$error" ng-if="costaleroForm.cp.$dirty || costaleroForm.cp.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">El código postal es obligatorio</div>
-                </div>
-              </md-input-container>
-            </div>
-            <div layout layout-sm="column">
-              <md-input-container>
-                <label>Provincia</label>
-                <input name="provincia" ng-model="vm.costalero.datosPersonales.direccion.provincia" required>
-                <div ng-messages="costaleroForm.provincia.$error" ng-if="costaleroForm.provincia.$dirty || costaleroForm.provincia.$touched || costaleroForm.$submitted">
-                  <div ng-message="required">La provinica es obligatoria</div>
-                </div>
-              </md-input-container>
-            </div>
-
-            <div layout="column">
-              <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
-              <md-input-container flex>
-                <label>Nota</label>
-                <textarea ng-model="vm.costalero.datosPersonales.nota"></textarea>
-              </md-input-container>
-            </div>
-          </md-content>
-        </md-tab>
-
-        <!-- DATOS FINANCIEROS -->
-        <md-tab>
-          <md-tab-label>
-            <md-icon md-font-library="material-icons">account_balance</md-icon>
-          </md-tab-label>
-          <md-content class="md-padding">
-            <h1>Datos bancarios</h1>
-            <div layout="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>IBAN</label>
-                <md-icon md-font-library="material-icons">attach_money</md-icon>
-                <input name="iban" ng-model="vm.costalero.datosFinancieros.cuenta.iban" type="text" pattern="([a-zA-Z]{2})(\d{22})" maxlength="24" ng-blur="vm.calcularCC()">
-                <div ng-messages="costaleroForm.iban.$error" ng-if="costaleroForm.iban.$dirty || costaleroForm.iban.$touched || costaleroForm.$submitted">
-                  <div ng-message="pattern">Introduce un IBAN válido ES0000000000000000000000</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>CC</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="cc" ng-model="vm.costalero.datosFinancieros.cuenta.cc" pattern="(\d{20})" maxlength="20" ng-blur="vm.calcularIban()">
-                 <div ng-messages="costaleroForm.cc.$error" ng-if="costaleroForm.cc.$dirty || costaleroForm.cc.$touched || costaleroForm.$submitted">
-                  <div ng-message="pattern">Introduce una CC válida 00000000000000000000</div>
-                </div>
-              </md-input-container>
-            </div>
-            
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Banco</label>
-                <md-icon md-font-library="material-icons">account_balance</md-icon>
-                <input name="" ng-model="vm.costalero.datosFinancieros.banco" type="text">
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Driección del banco</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="" ng-model="vm.costalero.datosFinancieros.direccionBanco" type="text">
-              </md-input-container>
-            </div>
-            
-            <div layout="column">
-              <label><md-icon md-font-library="material-icons">mood_bad</md-icon> Deudas</label>
-              <md-chips ng-model="vm.costalero.datosFinancieros.deuda" flex>
-                <input placeholder="Introduzca un año XXXX" maxlength="4">
-                <md-chip-template>
-                  <strong>{{$chip}}</strong>
-                </md-chip-template>
-              </md-chips>
-            </div>
-            
-            <div layout layout-sm="column">
-              <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.costalero.datosFinancieros.domiciliarPagos" class="md-primary">
-                Pagos domicilados
-              </md-checkbox>
-              <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.costalero.datosFinancieros.domiciliarLoteria" class="md-primary">
-                Lotería domiciliada
-              </md-checkbox>
-            </div>
-
-          </md-content>
-        </md-tab>
-        
-        <!-- DATOS LOTERIA -->
-        <md-tab>
-          <md-tab-label>
-            <md-icon md-font-library="material-icons">local_play</md-icon>
-          </md-tab-label>
-          <md-content class="md-padding">
-            <h1>Datos Loteria</h1>
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Número de Navidad 1</label>
-                <md-icon md-font-library="material-icons">local_play</md-icon>
-                <input name="navidad1" ng-model="vm.costalero.datosLoteria.numeroNavidad1" type="number" min="0">
-                <div ng-messages="costaleroForm.navidad1.$error" ng-if="costaleroForm.navidad1.$dirty || costaleroForm.navidad1.$touched || costaleroForm.$submitted">
-                  <div ng-message="min">El número debe de ser mayor que 0</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Número de Navidad 2</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="navidad2" ng-model="vm.costalero.datosLoteria.numeroNavidad2" type="number" min="0">
-                 <div ng-messages="costaleroForm.navidad2.$error" ng-if="costaleroForm.navidad2.$dirty || costaleroForm.navidad2.$touched || costaleroForm.$submitted">
-                  <div ng-message="min">El número debe de ser mayor que 0</div>
-                </div>
-              </md-input-container>
-            </div>
-
-            <div layout layout-sm="column">
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Número del Niño 1</label>
-                <md-icon md-font-library="material-icons">local_play</md-icon>
-                <input name="ninio1" ng-model="vm.costalero.datosLoteria.numeroNinio1" type="number" min="0">
-                <div ng-messages="costaleroForm.ninio1.$error" ng-if="costaleroForm.ninio1.$dirty || costaleroForm.ninio1.$touched || costaleroForm.$submitted">
-                  <div ng-message="min">El número debe de ser mayor que 0</div>
-                </div>
-              </md-input-container>
-              <md-input-container class="md-icon-float" flex="50">
-                <label>Número del Niño 2</label>
-                <md-icon md-font-library="material-icons"></md-icon>
-                 <input name="ninio2" ng-model="vm.costalero.datosLoteria.numeroNinio2" type="number" min="0">
-                 <div ng-messages="costaleroForm.ninio2.$error" ng-if="costaleroForm.ninio2.$dirty || costaleroForm.ninio2.$touched || costaleroForm.$submitted">
-                  <div ng-message="min">El número debe de ser mayor que 0</div>
-                </div>
-              </md-input-container>
-            </div>
-
-            <div layout layout-sm="column">
-              <md-checkbox flex="50" aria-label="Domiciliar pagos" ng-model="vm.costalero.datosLoteria.participacionNavidad" class="md-primary">
-                Participaciones de Navidad
-              </md-checkbox>
-              <md-checkbox flex="40" aria-label="Domiciliar loteria" ng-model="vm.costalero.datosLoteria.participacionNinio" class="md-primary">
-                Participaciones del niño
-              </md-checkbox>
-            </div>
-            
-          </md-content>
-        </md-tab>
-      </md-tabs>
-    
-        
-    </md-content>
+      </md-content>
     </form>
   </div>
 </div>
