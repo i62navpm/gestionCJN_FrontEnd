@@ -1,0 +1,56 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaAspirantes">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Detalles Aspirante" ui-sref="aspirantes">
+          <md-icon md-font-library="material-icons">arrow_back</md-icon>
+        </md-button>
+        <h4>
+          <span>
+            {{vm.aspirante.cofrade.datosPersonales.nombre}} {{vm.aspirante.cofrade.datosPersonales.apellido1}} {{vm.aspirante.cofrade.datosPersonales.apellido2}}
+          </span>
+        </h4>
+        <span flex></span>
+        <div hide-sm layout="row">
+          <md-button class="md-icon-button" aria-label="Editar Aspirante" ng-click="vm.modifyAspirante(vm.aspirante.id, $event)">
+            <md-icon md-font-library="material-icons">mode_edit</md-icon>
+          </md-button>
+          <remove-Aspirante aspirante="vm.aspirante.id" aria-label="Eliminar Aspirante"></remove-Aspirante>
+        </div>
+        
+        <div layout="column" layout-align="center end">
+          <md-menu hide-gt-sm width="1">
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                <div>
+                  <md-button class="md-icon-button" aria-label="Editar Aspirante" ng-click="vm.modifyAspirante(vm.aspirante.id, $event)">
+                    <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                  </md-button>
+                </div>
+              </md-menu-item>
+              <md-menu-item>
+                <remove-Aspirante aspirante="vm.aspirante.id" aria-label="Eliminar Aspirante" ></remove-Aspirante>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-content class="md-padding">
+      <div layout="row" id="toastBounds"></div>
+      <h4><md-icon md-font-library="material-icons">face</md-icon> Aspirante</h4>
+      <div layout layout-sm="column">
+        <md-input-container class="md-icon-float" flex>
+          <label>Fecha</label>
+          <md-icon md-font-library="material-icons">today</md-icon>
+          <input readonly name="fecha" ng-model="vm.aspirante.fecha" pattern="(\d{1,2}/\d{1,2}/\d{2,4})">
+        </md-input-container>
+      </div>
+
+    </md-content>
+  </div>
+</div>

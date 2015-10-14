@@ -1,3 +1,37 @@
+.aspirantes md-radio-button {
+  margin: 0; }
+
+.aspirantes md-input-container {
+  padding-bottom: 16px; }
+
+.aspirantes md-content.lista-aspirantes .sitio {
+  text-align: right; }
+
+.aspirantes md-content.lista-aspirantes .md-list-item-text {
+  padding: 0; }
+
+.aspirantes p.fecha {
+  color: rgba(0, 0, 0, 0.541176); }
+
+.aspirantes .fab-aspirante {
+  position: fixed;
+  bottom: 0;
+  right: 8px;
+  margin: 0 32px 23px 23px; }
+
+.listaAspirantes .aspirante-detalle .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.listaAspirantes .aspirante-detalle .md-item-text h3, .listaAspirantes .aspirante-detalle .md-item-text p {
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.listaAspirantes .aspirante-detalle .md-item-text p {
+  padding-top: 8px; }
+
 .autocomplete-custom-template li {
   border-bottom: 1px solid #ccc;
   height: auto;

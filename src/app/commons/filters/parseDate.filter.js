@@ -21,6 +21,7 @@
 
   function formatDates(){
     return function(data){
+      
       var date = null;
       if (data.datosPersonales){
         date = data.datosPersonales.fechaNacimiento.split("/");
@@ -28,9 +29,12 @@
         date = data.datosPersonales.fechaInscripcion.split("/");
         data.datosPersonales.fechaInscripcion = date[2] + '-' + date[1] + '-' + date[0];
       }
-      if (data.fecha){
+      else if (data.fecha){
         date = data.fecha.split("/");
         data.fecha  = date[2] + '-' + date[1] + '-' + date[0];
+      }
+      else{
+        data = new Date(data).toLocaleDateString();
       }
 
       return data;

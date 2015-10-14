@@ -1,0 +1,71 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaAspirantes">
+    <form name="aspiranteForm" novalidate>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Detalles Aspirante" ng-click="vm.backState()">
+            <md-icon md-font-library="material-icons">arrow_back</md-icon>
+          </md-button>
+          <h4>
+            <span>
+              {{vm.aspirante.cofrade.datosPersonales.nombre}} {{vm.aspirante.cofrade.datosPersonales.apellido1}} {{vm.aspirante.cofrade.datosPersonales.apellido2}}
+            </span>
+          </h4>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Guardar Aspirante" ng-click="vm.guardar(aspiranteForm.$valid)"  type="submit">
+            <md-icon md-font-library="material-icons">save</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-content class="md-padding">
+        <div layout="row" id="toastBounds"></div>
+        <h4><md-icon md-font-library="material-icons">face</md-icon> Aspirante</h4>
+        
+        <div layout layout-sm="column" ng-if="vm.newCofrade">
+          <md-autocomplete required flex
+            md-input-name="cofrade"
+            md-no-cache="true"
+            md-search-text="vm.searchText"
+            md-selected-item="vm.cofradeSelected"
+            md-selected-item-change="vm.selectedItemChange(item)"
+            md-items="item in vm.querySearch(vm.searchText)"
+            md-item-text="item.datosPersonales.nombre + ' ' + item.datosPersonales.apellido1  + ' ' + item.datosPersonales.apellido2" 
+            md-floating-label="Seleccione un aspirante"
+            md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+              <span class="item-title">
+                <md-icon md-font-library="material-icons">assignment_ind</md-icon>
+                <span> {{item.datosPersonales.nombre}} {{item.datosPersonales.apellido1}} {{item.datosPersonales.apellido2}} </span>
+              </span>
+              <span class="item-metadata">
+                <span class="item-metastat">
+                  <strong>N. Orden: {{item.numeroOrden}}</strong> - {{item.datosPersonales.direccion.municipio}}
+                </span>
+              </span>
+            </md-item-template>
+            <md-not-found>
+              No hay coincidencias para: "{{vm.searchText}}".
+            </md-not-found>
+
+            <div ng-messages="aspiranteForm.cofrade.$error" ng-if="aspiranteForm.cofrade.$dirty || aspiranteForm.cofrade.$touched || aspiranteForm.$submitted">
+              <div ng-message="required">El cofrade es obligatorio (haga click en la lista)</div>
+            </div>
+          </md-autocomplete>
+        </div>
+
+        <div layout layout-sm="column">
+          <md-input-container class="md-icon-float" flex>
+            <label>Fecha</label>
+            <md-icon md-font-library="material-icons">today</md-icon>
+            <input name="fecha" ng-model="vm.aspirante.fecha" pattern="(\d{1,2}/\d{1,2}/\d{2,4})" required>
+            <div class="validation-messages" ng-messages="aspiranteForm.fecha.$error" ng-if="aspiranteForm.fecha.$dirty || aspiranteForm.fecha.$touched || aspiranteForm.$submitted">
+              <div ng-message="required">El nombre es obligatorio</div>
+              <div ng-message="pattern">Introduce una fecha válida XX/XX/XXXX</div>
+            </div>
+          </md-input-container>
+        </div>
+      </md-content>
+    </form>
+  </div>
+</div>
