@@ -129,6 +129,40 @@
 .listaCostaleros .costalero-detalle .md-item-text p {
   padding-top: 8px; }
 
+.directivos md-radio-button {
+  margin: 0; }
+
+.directivos md-input-container {
+  padding-bottom: 16px; }
+
+.directivos md-content.lista-directivos .numeroOrden {
+  text-align: right; }
+
+.directivos md-content.lista-directivos .md-list-item-text {
+  padding: 0; }
+
+.directivos p.posicion {
+  color: rgba(0, 0, 0, 0.541176); }
+
+.directivos .fab-directivo {
+  position: fixed;
+  bottom: 0;
+  right: 8px;
+  margin: 0 32px 23px 23px; }
+
+.listaDirectivos .directivo-detalle .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.listaDirectivos .directivo-detalle .md-item-text h3, .listaDirectivos .directivo-detalle .md-item-text p {
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.listaDirectivos .directivo-detalle .md-item-text p {
+  padding-top: 8px; }
+
 div.m-app-loading {
   z-index: 9999999;
   display: none; }

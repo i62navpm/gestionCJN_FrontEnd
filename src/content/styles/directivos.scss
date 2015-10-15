@@ -1,0 +1,47 @@
+.directivos{
+  md-radio-button {
+    margin: 0;
+  }
+  md-input-container {
+    padding-bottom: 16px;
+  }
+  md-content.lista-directivos{
+    .numeroOrden{
+      text-align: right;
+    }
+    
+    .md-list-item-text{
+      padding: 0;
+    }
+
+  }
+  p.posicion{
+    color: rgba(0, 0, 0, 0.541176);
+  }
+
+  .fab-directivo{
+    position: fixed;
+    bottom: 0;
+    right: 8px;
+    margin: 0 32px 23px 23px;
+  }
+
+}
+
+.listaDirectivos{
+  .directivo-detalle {
+    .md-item-text {
+      padding: 8px;
+      background: #f0f0f0;
+      border-radius: 3px; 
+    }
+    .md-item-text h3,  .md-item-text p {
+      text-align: center;
+      padding: 0;
+      margin: 0; 
+    }
+    .md-item-text p{
+      padding-top: 8px;
+    }
+  }
+}

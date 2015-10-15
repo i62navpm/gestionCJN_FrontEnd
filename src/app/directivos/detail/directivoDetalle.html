@@ -1,0 +1,56 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaDirectivos">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Detalles Directivo" ui-sref="directivos">
+          <md-icon md-font-library="material-icons">arrow_back</md-icon>
+        </md-button>
+        <h4>
+          <span>
+            {{vm.directivo.cofrade.datosPersonales.nombre}} {{vm.directivo.cofrade.datosPersonales.apellido1}} {{vm.directivo.cofrade.datosPersonales.apellido2}}
+          </span>
+        </h4>
+        <span flex></span>
+        <div hide-sm layout="row">
+          <md-button class="md-icon-button" aria-label="Editar Directivo" ng-click="vm.modifyDirectivo(vm.directivo.id, $event)">
+            <md-icon md-font-library="material-icons">mode_edit</md-icon>
+          </md-button>
+          <remove-Directivo directivo="vm.directivo.id" aria-label="Eliminar Directivo"></remove-Directivo>
+        </div>
+        
+        <div layout="column" layout-align="center end">
+          <md-menu hide-gt-sm width="1">
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <md-icon md-font-library="material-icons">menu</md-icon>
+            </md-button>
+            <md-menu-content>
+              <md-menu-item>
+                <div>
+                  <md-button class="md-icon-button" aria-label="Editar Directivo" ng-click="vm.modifyDirectivo(vm.directivo.id, $event)">
+                    <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                  </md-button>
+                </div>
+              </md-menu-item>
+              <md-menu-item>
+                <remove-Directivo directivo="vm.directivo.id" aria-label="Eliminar Directivo" ></remove-Directivo>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </div>
+      </div>
+    </md-toolbar>
+
+    <md-content class="md-padding">
+      <div layout="row" id="toastBounds"></div>
+      <h4><md-icon md-font-library="material-icons">face</md-icon> Directivo</h4>
+      <div layout layout-sm="column">
+        <md-input-container class="md-icon-float" flex>
+          <label>Posición</label>
+          <md-icon md-font-library="material-icons">supervisor_account</md-icon>
+          <input readonly name="posicion" ng-model="vm.directivo.posicion">
+        </md-input-container>
+      </div>
+
+    </md-content>
+  </div>
+</div>

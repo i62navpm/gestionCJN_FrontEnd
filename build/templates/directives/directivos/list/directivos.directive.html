@@ -8,20 +8,20 @@
   </div>
 
   
-  <md-content class="lista-aspirantes" flex>
-    <md-list-item class="md-2-line" ng-repeat="aspirante in vm.aspirantesShort | filter: vm.buscar | orderBy : 'fecha'" ng-click="vm.goToAspirante(aspirante.id, $event)">
-      <h3 flex="10" flex-sm="20" class="sitio">{{$index + 1}}</h3>
+  <md-content class="lista-directivos" flex>
+    <md-list-item class="md-2-line" ng-repeat="directivo in vm.directivosShort | filter: vm.buscar | orderBy : 'numeroOrden'" ng-click="vm.goToDirectivo(directivo.id, $event)">
+      <h3 flex="10" flex-sm="20" class="numeroOrden">{{directivo.numeroOrden}}</h3>
       <div layout="row" class="md-list-item-text">
         <div flex="70" flex-sm offset="5" offset-sm="0">
-          <h4>{{aspirante.nombre}}</h4>
-          <p class="fecha">N. Orden: <em>{{aspirante.numeroOrden}}</em> - Fecha: <em>{{aspirante.fecha | formatDates}}</em></p>
+          <h4>{{directivo.nombre}}</h4>
+          <p class="posicion">Posición: <em>{{directivo.posicion}}</em></p>
         </div>
         
         <div flex="25" hide-sm layout="row" layout-align="space-around center">
-          <md-button class="md-icon-button" aria-label="Editar Aspirante" ng-click="vm.modifyAspirante(aspirante.id, $event)">
+          <md-button class="md-icon-button" aria-label="Editar Directivo" ng-click="vm.modifyDirectivo(directivo.id, $event)">
             <md-icon md-font-library="material-icons">mode_edit</md-icon>
           </md-button>
-          <remove-Aspirante aspirante="aspirante.id" ng-if="aspirante.numeroOrden"></remove-Aspirante>
+          <remove-Directivo directivo="directivo.id" ng-if="directivo.numeroOrden"></remove-Directivo>
         </div>
 
         <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
@@ -32,14 +32,14 @@
             <md-menu-content width="1">
               <md-menu-item>
                 <div>
-                  <md-button class="md-icon-button" aria-label="Editar Aspirante" ng-click="vm.modifyAspirante(aspirante.id, $event)">
+                  <md-button class="md-icon-button" aria-label="Editar Directivo" ng-click="vm.modifyDirectivo(directivo.id, $event)">
                     <md-icon md-font-library="material-icons">mode_edit</md-icon>
                   </md-button>
                 </div>
               </md-menu-item>
-              <md-menu-item ng-if="aspirante.numeroOrden">
+              <md-menu-item ng-if="directivo.numeroOrden">
                 <div>
-                  <remove-Aspirante aspirante="aspirante.id"></remove-Aspirante>
+                  <remove-Directivo directivo="directivo.id"></remove-Directivo>
                 </div>
               </md-menu-item>
             </md-menu-content>
