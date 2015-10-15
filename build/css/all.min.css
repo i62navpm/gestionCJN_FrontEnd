@@ -58,6 +58,43 @@
   padding-top: 5px;
   color: #f44336; }
 
+.autoridades md-radio-button {
+  margin: 0; }
+
+.autoridades md-input-container {
+  padding-bottom: 16px; }
+
+.autoridades md-content.lista-autoridades .sitio {
+  text-align: right; }
+
+.autoridades md-content.lista-autoridades .md-list-item-text {
+  padding: 0; }
+
+.autoridades p.posicion {
+  color: rgba(0, 0, 0, 0.541176); }
+
+.autoridades .fab-autoridad {
+  position: fixed;
+  bottom: 0;
+  right: 8px;
+  margin: 0 32px 23px 23px; }
+
+.listaAutoridades .autoridad-detalle .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.listaAutoridades .autoridad-detalle .md-item-text h3, .listaAutoridades .autoridad-detalle .md-item-text p {
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.listaAutoridades .autoridad-detalle .md-item-text p {
+  padding-top: 8px; }
+
+.listaAutoridades .angular-google-map-container {
+  height: 250px; }
+
 .cofrades md-radio-button {
   margin: 0; }
 
