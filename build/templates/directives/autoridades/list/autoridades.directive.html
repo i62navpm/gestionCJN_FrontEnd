@@ -9,44 +9,46 @@
 
   
   <md-content class="lista-autoridades" flex>
-    <md-list-item class="md-2-line" ng-repeat="autoridad in vm.autoridades | filter: vm.buscar | orderBy : 'entidad'" ng-click="vm.goToAutoridad(autoridad.id, $event)">
-      <h3 flex="10" flex-sm="20" class="sitio">{{$index + 1}}</h3>
-      <div layout="row" class="md-list-item-text">
-        <div flex="70" flex-sm offset="5" offset-sm="0">
-          <h4>{{autoridad.entidad}}</h4>
-          <p class="posicion" ng-if="autoridad.posicion">{{autoridad.posicion}}</p>
-        </div>
-        
-        <div flex="25" hide-sm layout="row" layout-align="space-around center">
-          <md-button class="md-icon-button" aria-label="Editar Autoridad" ng-click="vm.modifyAutoridad(autoridad.id, $event)">
-            <md-icon md-font-library="material-icons">mode_edit</md-icon>
-          </md-button>
-          <remove-Autoridad autoridad="autoridad.id"></remove-Autoridad>
-        </div>
-
-        <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
-          <md-menu>
-            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-              <md-icon md-font-library="material-icons">menu</md-icon>
+    <md-list ng-cloak>
+      <md-list-item class="md-2-line" ng-repeat="autoridad in vm.autoridades | filter: vm.buscar | orderBy : 'entidad'" ng-click="vm.goToAutoridad(autoridad.id, $event)">
+        <h3 flex="10" flex-sm="20" class="sitio">{{$index + 1}}</h3>
+        <div layout="row" class="md-list-item-text">
+          <div flex="70" flex-sm offset="5" offset-sm="0">
+            <h4>{{autoridad.entidad}}</h4>
+            <p class="posicion" ng-if="autoridad.posicion">{{autoridad.posicion}}</p>
+          </div>
+          
+          <div flex="25" hide-sm layout="row" layout-align="space-around center">
+            <md-button class="md-icon-button" aria-label="Editar Autoridad" ng-click="vm.modifyAutoridad(autoridad.id, $event)">
+              <md-icon md-font-library="material-icons">mode_edit</md-icon>
             </md-button>
-            <md-menu-content width="1">
-              <md-menu-item>
-                <div>
-                  <md-button class="md-icon-button" aria-label="Editar Autoridad" ng-click="vm.modifyAutoridad(autoridad.id, $event)">
-                    <md-icon md-font-library="material-icons">mode_edit</md-icon>
-                  </md-button>
-                </div>
-              </md-menu-item>
-              <md-menu-item>
-                <div>
-                  <remove-Autoridad autoridad="autoridad.id"></remove-Autoridad>
-                </div>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
+            <remove-Autoridad autoridad="autoridad.id"></remove-Autoridad>
+          </div>
+
+          <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+            <md-menu>
+              <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-icon md-font-library="material-icons">menu</md-icon>
+              </md-button>
+              <md-menu-content width="1">
+                <md-menu-item>
+                  <div>
+                    <md-button class="md-icon-button" aria-label="Editar Autoridad" ng-click="vm.modifyAutoridad(autoridad.id, $event)">
+                      <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                    </md-button>
+                  </div>
+                </md-menu-item>
+                <md-menu-item>
+                  <div>
+                    <remove-Autoridad autoridad="autoridad.id"></remove-Autoridad>
+                  </div>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </div>
         </div>
-      </div>
-    </md-list-item>
+      </md-list-item>
+    </md-list>
   </md-content>
 
     

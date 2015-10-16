@@ -10,45 +10,46 @@
   <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary">
     <md-tab label="{{tab}}" ng-repeat="tab in ['DELANTERA', 'TRASERA', 'LATERAL', 'INTERIOR']">
       <md-content class="lista-costaleros" flex>
-
-        <md-list-item class="md-2-line" ng-repeat="costalero in vm.costalerosShort | filter: vm.buscar | filter: {sitio: tab[0]+'-'} | orderBy : 'sitio'" ng-click="vm.goToCostalero(costalero.id, $event)" ng-class="{vacio: !costalero.numeroOrden}">
-          <h3 flex="10" flex-sm="20" class="sitio">{{costalero.sitio}}</h3>
-          <div layout="row" class="md-list-item-text">
-            <div flex="70" flex-sm offset="5" offset-sm="0">
-              <h4>{{costalero.nombre}}</h4>
-              <p class="numeroOrden" ng-if="costalero.numeroOrden">N. Orden: {{costalero.numeroOrden}}</p>
-            </div>
-            
-            <div flex="25" hide-sm layout="row" layout-align="space-around center">
-              <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
-                <md-icon md-font-library="material-icons">mode_edit</md-icon>
-              </md-button>
-              <remove-Costalero costalero="costalero.id" ng-if="costalero.numeroOrden"></remove-Costalero>
-            </div>
-
-            <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
-              <md-menu>
-                <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                  <md-icon md-font-library="material-icons">menu</md-icon>
+        <md-list ng-cloak>
+          <md-list-item class="md-2-line" ng-repeat="costalero in vm.costalerosShort | filter: vm.buscar | filter: {sitio: tab[0]+'-'} | orderBy : 'sitio'" ng-click="vm.goToCostalero(costalero.id, $event)" ng-class="{vacio: !costalero.numeroOrden}">
+            <h3 flex="10" flex-sm="20" class="sitio">{{costalero.sitio}}</h3>
+            <div layout="row" class="md-list-item-text">
+              <div flex="70" flex-sm offset="5" offset-sm="0">
+                <h4>{{costalero.nombre}}</h4>
+                <p class="numeroOrden" ng-if="costalero.numeroOrden">N. Orden: {{costalero.numeroOrden}}</p>
+              </div>
+              
+              <div flex="25" hide-sm layout="row" layout-align="space-around center">
+                <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
+                  <md-icon md-font-library="material-icons">mode_edit</md-icon>
                 </md-button>
-                <md-menu-content width="1">
-                  <md-menu-item>
-                    <div>
-                      <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
-                        <md-icon md-font-library="material-icons">mode_edit</md-icon>
-                      </md-button>
-                    </div>
-                  </md-menu-item>
-                  <md-menu-item ng-if="costalero.numeroOrden">
-                    <div>
-                      <remove-Costalero costalero="costalero.id"></remove-Costalero>
-                    </div>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
+                <remove-Costalero costalero="costalero.id" ng-if="costalero.numeroOrden"></remove-Costalero>
+              </div>
+
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+                <md-menu>
+                  <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-library="material-icons">menu</md-icon>
+                  </md-button>
+                  <md-menu-content width="1">
+                    <md-menu-item>
+                      <div>
+                        <md-button class="md-icon-button" aria-label="Editar Costalero" ng-click="vm.modifyCostalero(costalero.id, $event)">
+                          <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                        </md-button>
+                      </div>
+                    </md-menu-item>
+                    <md-menu-item ng-if="costalero.numeroOrden">
+                      <div>
+                        <remove-Costalero costalero="costalero.id"></remove-Costalero>
+                      </div>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+              </div>
             </div>
-          </div>
-        </md-list-item>
+          </md-list-item>
+        </md-list>
       </md-content>
     </md-tab>
 
