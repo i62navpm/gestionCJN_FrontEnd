@@ -1,0 +1,149 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-md="80" class="md-primary md-whiteframe-z2 listaSectores">
+    <form name="sectorForm" novalidate>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Detalles Sector" ng-click="vm.backState()">
+            <md-icon md-font-library="material-icons">arrow_back</md-icon>
+          </md-button>
+          <h4>
+            <span>
+              {{vm.sector.entidad}}
+            </span>
+          </h4>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Guardar Sector" ng-click="vm.guardar(sectorForm.$valid)"  type="submit">
+            <md-icon md-font-library="material-icons">save</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-content class="md-padding">
+        <div layout="row" id="toastBounds"></div>
+        <h1>Datos sector</h1>
+        <div layout layout-sm="column">
+          <md-input-container class="md-icon-float" flex="75">
+            <label>Entidad</label>
+            <md-icon md-font-library="material-icons">face</md-icon>
+            <input name="entidad" ng-model="vm.sector.entidad" required>
+            <div ng-messages="sectorForm.entidad.$error" ng-if="sectorForm.entidad.$dirty || sectorForm.entidad.$touched || sectorForm.$submitted">
+              <div ng-message="required">La entidad es obligatoria</div>
+            </div>
+          </md-input-container>
+        </div>
+        
+        <div layout layout-sm="column">
+          <md-input-container class="md-icon-float" flex="75">
+            <label>Posición</label>
+            <md-icon md-font-library="material-icons"></md-icon>
+            <input name="posicion" ng-model="vm.sector.posicion">
+          </md-input-container>
+        </div>
+
+        <div layout layout-sm="column">
+          <md-input-container class="md-icon-float" flex="50">
+            <label>Teléfono</label>
+            <md-icon md-font-library="material-icons">local_phone</md-icon>
+            <input name="telefono" ng-model="vm.sector.telefono" maxlength="9" pattern="(\d{9})">
+            <div ng-messages="sectorForm.telefono.$error" ng-if="sectorForm.telefono.$dirty || sectorForm.telefono.$touched || sectorForm.$submitted">
+              <div ng-message="pattern">Introduce un teléfono válido</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-icon-float" flex="50">
+            <label>Email</label>
+            <md-icon md-font-library="material-icons">email</md-icon>
+             <input name="email" ng-model="vm.sector.email" type="email">
+             <div ng-messages="sectorForm.email.$error" ng-if="sectorForm.email.$dirty || sectorForm.email.$touched || sectorForm.$submitted">
+              <div ng-message="email">Introduce un email válido</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
+        <div layout layout-sm="column">
+          <div flex="70">
+            <md-autocomplete required
+              md-input-name="calle"
+              md-search-text="vm.searchText"
+              md-selected-item="vm.calleSelected"
+              md-selected-item-change="vm.selectedItemChange(item)"
+              md-items="item in vm.querySearch(vm.searchText)"
+              md-item-text="item.calle"
+              md-min-length="0"
+              md-floating-label="Selecciona una calle"
+              md-menu-class="autocomplete-custom-template">
+             <md-item-template>
+                <span class="item-title">
+                  <md-icon md-font-library="material-icons">map</md-icon>
+                  <span> {{item.calle}} </span>
+                </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <strong>{{item.municipio}}</strong> - {{item.provincia}}
+                  </span>
+                </span>
+              </md-item-template>
+              <md-not-found>
+                No hay coincidencias para: "{{vm.searchText}}".
+              </md-not-found>
+
+              <div ng-messages="sectorForm.calle.$error" ng-if="sectorForm.calle.$dirty || sectorForm.calle.$touched || sectorForm.$submitted">
+                <div ng-message="required">La calle es obligatoria</div>
+              </div>
+            </md-autocomplete>
+          </div>
+        </div>
+        <div layout layout-sm="column">
+          <md-input-container  flex="25">
+            <label>Número</label>
+            <input name="numero" ng-model="vm.sector.direccion.numero" required>
+            <div ng-messages="sectorForm.numero.$error" ng-if="sectorForm.numero.$dirty || sectorForm.numero.$touched || sectorForm.$submitted">
+              <div ng-message="required">El número es obligatorio</div>
+            </div>
+          </md-input-container>
+          <md-input-container  flex="40">
+            <label>Planta</label>
+            <input name="" ng-model="vm.sector.direccion.planta" type="text">
+          </md-input-container>
+          <md-input-container  flex="35">
+            <label>Piso</label>
+            <input name="" ng-model="vm.sector.direccion.piso" type="text">
+          </md-input-container>
+        </div>
+        <div layout layout-sm="column">
+          <md-input-container  flex="70">
+            <label>Municipio</label>
+            <input name="municipio" ng-model="vm.sector.direccion.municipio" required>
+            <div ng-messages="sectorForm.municipio.$error" ng-if="sectorForm.municipio.$dirty || sectorForm.municipio.$touched || sectorForm.$submitted">
+              <div ng-message="required">El municipio es obligatorio</div>
+            </div>
+          </md-input-container>
+          <md-input-container  flex="25" required>
+            <label>Código postal</label>
+            <input name="cp" ng-model="vm.sector.direccion.cp" type="number" required>
+            <div ng-messages="sectorForm.cp.$error" ng-if="sectorForm.cp.$dirty || sectorForm.cp.$touched || sectorForm.$submitted">
+              <div ng-message="required">El código postal es obligatorio</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout layout-sm="column">
+          <md-input-container>
+            <label>Provincia</label>
+            <input name="provincia" ng-model="vm.sector.direccion.provincia" required>
+            <div ng-messages="sectorForm.provincia.$error" ng-if="sectorForm.provincia.$dirty || sectorForm.provincia.$touched || sectorForm.$submitted">
+              <div ng-message="required">La provinica es obligatoria</div>
+            </div>
+          </md-input-container>
+        </div>
+
+        <div layout="column">
+          <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
+          <md-input-container flex>
+            <label>Nota</label>
+            <textarea ng-model="vm.sector.nota"></textarea>
+          </md-input-container>
+        </div>
+      </md-content>
+    </form>
+  </div>
+</div>
