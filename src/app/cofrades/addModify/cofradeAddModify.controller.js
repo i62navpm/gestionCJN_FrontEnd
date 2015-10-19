@@ -105,23 +105,28 @@
           delete vm.cofrade.datosFinancieros;
         
         var CofradeResource = cofradesService.cofradesRest();
-        if(vm.nuevaCalle)
+        if(vm.nuevaCalle){
           guardarCalle();
+        }
         else{
-          CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+          guardarCofrade();
         }
       }
       else
         showActionToast();
       
+      function guardarCofrade(){
+        CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+      }
+
       function guardarCalle() {
         sectoresService.sectoresRest().get({sector: vm.sector}, function(data){
           var sectorResource =  data[0];
           
           if(sectorResource){
+            sectorResource.cofrade = sectorResource.cofrade.id;
             sectorResource.calles.push(vm.searchText);
-            sectorResource.$save();
-            CofradeResource.save(vm.cofrade, guardarSuccess, guardarError);
+            sectorResource.$save(null, guardarCofrade, guardarError);            
           }
           else{
             $mdToast.show(
