@@ -28,6 +28,24 @@
   .ocultar{
     display: none;
   }
+  .tablaCalles{
+    md-list-item{
+      border-left: 5px solid #558ABB;
+      margin-bottom: 2px;
+      &.nuevaCalle{
+        border-left: 5px solid #44B449;
+        p{
+          md-icon{
+            color: #44B449;
+          }
+          color: #44B449;
+          font-style: italic;
+        }
+      }
+    }
+    .calle{
+    }
+  }
 }
 
 .listaSectores{

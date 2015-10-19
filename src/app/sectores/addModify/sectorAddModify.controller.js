@@ -4,10 +4,11 @@
     .module('app')
     .controller('SectorAddModify', SectorAddModify);
 
-  function SectorAddModify($scope, $document, $mdToast, $state, getSectorPrepService, sectoresService, cofradesService) {
+  function SectorAddModify($scope, $filter, $document, $mdToast, $state, $stateParams, getSectorPrepService, sectoresService, cofradesService) {
     var vm = this;
     
-    vm.newCofrade = false;
+    vm.newEncargado = false;
+    vm.indexCalle   = null;
 
     vm.backState          = backState;
     vm.querySearch        = querySearch;
@@ -21,23 +22,21 @@
         getSectorPrepService.$promise.then(initSector);
       }
       else{
-        newSector();
+        newEncargado();
       }
-
     }
 
     function initSector(data) {
-      vm.sector = data;
-      vm.calleSelected = {calle: vm.sector.direccion.calle,
-                          cp: vm.sector.direccion.cp,
-                          provincia: vm.sector.direccion.provincia,
-                          municipio: vm.sector.direccion.municipio};
+      vm.sector = data[0];
+      vm.cofradeSelected = vm.sector.cofrade;
+      vm.originSector = vm.sector.numeroSector;
+      vm.indexCalle = (vm.sector.calles.indexOf($stateParams.calle) > -1) ? vm.sector.calles.indexOf($stateParams.calle) : null;
       return true;
     }
 
-    function newSector() {
-      vm.newCofrade = true;
-      vm.sector = {direccion: {}};
+    function newEncargado() {
+      vm.newEncargado = true;
+      vm.sector = {cofrade: null};
     }
 
     function backState() {
@@ -45,32 +44,68 @@
     }
 
     function querySearch(query) {
-      return cofradesService.getCalles(query).then(function(response){return response.data;});
+      var filtro = {};
+      if (isNaN(query))
+        filtro.nombre = query;
+      else if(!isNaN(query))
+        filtro.numeroOrden = query;
+
+      return cofradesService.cofradesRest().query(filtro).$promise.then(function (response) {
+        return response.results;
+      });
     }
 
     function selectedItemChange(item) {
-      if (item){
-        vm.sector.direccion.calle = item.calle;
-        vm.sector.direccion.municipio = item.municipio;
-        vm.sector.direccion.cp = item.cp;
-        vm.sector.direccion.provincia = item.provincia;
-      }else{
-        vm.sector.direccion.calle = null;
-        vm.sector.direccion.municipio = null;
-        vm.sector.direccion.cp = null;
-        vm.sector.direccion.provincia = null;
-      }
+      vm.sector.cofrade =  item ? item.id : null;
     }
 
     function guardar(isValid) {
       if(isValid){
-        vm.sector.direccion.calle = vm.sector.direccion.calle ? vm.sector.direccion.calle : vm.searchText;
-        sectoresService.sectoresRest().save(vm.sector, guardarSuccess, guardarError);
+        if (!vm.sector.cofrade){
+          $scope.sectorForm.cofrade.$error.required = true;
+          showActionToast();
+        }
+        else{
+          if (vm.sector.numeroSector === vm.originSector || vm.newEncargado){
+            guardarSector();
+          }
+          else{
+            guardarCambioSector();
+          }
+        }
       }
       else
         showActionToast();
     }
-      
+    
+    function guardarSector(){
+      sectoresService.sectoresRest().save(vm.sector, guardarSuccess, guardarError);
+      console.log('guardado');
+    }
+
+    function guardarCambioSector(){
+      sectoresService.sectoresRest().get({sector: vm.sector.numeroSector}).$promise.then(function(response){
+        if (!response[0]){
+          $mdToast.show(
+            $mdToast.simple()
+              .content('No existe ese sector')
+              .position('top right')
+              .parent($document[0].querySelector('#toastBounds'))
+              .hideDelay(3000)
+          );
+          return;
+        }
+        response[0].cofrade = response[0].cofrade.id;
+        response[0].calles.push(vm.sector.calles[vm.indexCalle]);
+        response[0].$save(null, function(){
+                                vm.sector.calles.splice(vm.indexCalle, 1);
+                                vm.sector.numeroSector = vm.originSector;
+                                guardarSector();
+                              }, guardarError);
+        
+      });
+    }
+
     function guardarSuccess(response) {
       $mdToast.show(
         $mdToast.simple()

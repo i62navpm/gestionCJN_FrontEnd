@@ -16,7 +16,7 @@
           <div layout="row" class="md-list-item-text">
             <div flex="70" flex-sm offset="5" offset-sm="0">
               <h4>{{sector.nombre}}</h4>
-              <p class="posicion">N. Orden: <em>{{sector.numeroOrden}}</em></p>
+              <p class="posicion">N. Orden: <em>{{sector.numeroOrden}}</em> - N. Calles: <em>{{sector.calles.length}}</em></p>
             </div>
             
             <div flex="25" hide-sm layout="row" layout-align="space-around center">
@@ -51,9 +51,12 @@
         </md-list-item>
       </md-list>
 
-      <md-list ng-cloak flex id="callesSector{{sector.numeroSector}}" class="ocultar">
-        <md-list-item class="md-2-line" ng-repeat="calle in sector.calles | filter: vm.buscar | orderBy : 'calle'">
-          <p>{{calle}}</p>
+      <md-list ng-cloak flex id="callesSector{{sector.numeroSector}}" class="tablaCalles ocultar md-whiteframe-2dp">
+        <md-list-item class="nuevaCalle" ng-click="">
+          <p><md-icon md-font-library="material-icons">add</md-icon> Añadir calle</p>
+        </md-list-item>
+        <md-list-item ng-repeat="calle in sector.calles | filter: vm.buscar | orderBy : 'calle'" ng-click="vm.modifyCalle(sector.id, calle, $event)">
+          <p class="calle">{{calle}}</p>
         </md-list-item>
       </md-list>
     </div>

@@ -31,7 +31,7 @@
         }
       }).
       state('sectoresCambios', {
-        url: "/sectores/cambios/:sectorId",
+        url: "/sectores/cambios/:sectorId/:calle",
         templateProvider: function($templateCache){  
           return $templateCache.get('sectores/addModify/sectorAddModify.html'); 
         },

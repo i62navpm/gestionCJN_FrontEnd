@@ -5,7 +5,7 @@
     .module('app')
     .controller('RemoveSector', RemoveSector);
 
-  function RemoveSector($state, $mdDialog, sectoresService) {
+  function RemoveSector($state, $mdDialog, $mdToast, sectoresService) {
     var vm = this;
 
     vm.removeSector = removeSector;
@@ -27,18 +27,29 @@
 
     function removeEndSector(id){
       var sector = sectoresService.sectoresRest().get({id: id}, function(){
-        sector.$delete({id: id}).then(function(){
-          if($state.current.name === 'sectores'){
-            $state.transitionTo($state.current, null, {
-              reload: true,
-              inherit: false,
-              notify: true
-            });
-          }
-          else{
-            $state.go('sectores');
-          }
-        });
+        if(sector[0].calles.length !== 0){
+          $mdToast.show(
+            $mdToast.simple()
+              .content('No se puede eliminar un sector con calles asignadas')
+              .position('top right')
+              .hideDelay(3000)
+          );
+        }
+        else{
+          sector[0].$delete({id: id}).then(function(){
+            if($state.current.name === 'sectores'){
+              $state.transitionTo($state.current, null, {
+                reload: true,
+                inherit: false,
+                notify: true
+              });
+            }
+            else{
+              $state.go('sectores');
+            }
+          });
+        }
+        
       });
     }
 

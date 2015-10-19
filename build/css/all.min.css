@@ -241,6 +241,17 @@ body md-content.page-container {
 .sectores .ocultar {
   display: none; }
 
+.sectores .tablaCalles md-list-item {
+  border-left: 5px solid #558ABB;
+  margin-bottom: 2px; }
+  .sectores .tablaCalles md-list-item.nuevaCalle {
+    border-left: 5px solid #44B449; }
+    .sectores .tablaCalles md-list-item.nuevaCalle p {
+      color: #44B449;
+      font-style: italic; }
+      .sectores .tablaCalles md-list-item.nuevaCalle p md-icon {
+        color: #44B449; }
+
 .listaSectores .sector-detalle .md-item-text {
   padding: 8px;
   background: #f0f0f0;
