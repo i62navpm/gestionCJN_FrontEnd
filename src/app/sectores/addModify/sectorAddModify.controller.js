@@ -8,6 +8,7 @@
     var vm = this;
     
     vm.newEncargado = false;
+    vm.newCalle     = false;
     vm.indexCalle   = null;
 
     vm.backState          = backState;
@@ -30,7 +31,13 @@
       vm.sector = data[0];
       vm.cofradeSelected = vm.sector.cofrade;
       vm.originSector = vm.sector.numeroSector;
-      vm.indexCalle = (vm.sector.calles.indexOf($stateParams.calle) > -1) ? vm.sector.calles.indexOf($stateParams.calle) : null;
+      if ($stateParams.calle === 'new'){
+        vm.newCalle = true;
+        vm.indexCalle = vm.sector.calles.length;
+      }
+      else{
+        vm.indexCalle = (vm.sector.calles.indexOf($stateParams.calle) > -1) ? vm.sector.calles.indexOf($stateParams.calle) : null;
+      }
       return true;
     }
 
@@ -80,7 +87,6 @@
     
     function guardarSector(){
       sectoresService.sectoresRest().save(vm.sector, guardarSuccess, guardarError);
-      console.log('guardado');
     }
 
     function guardarCambioSector(){

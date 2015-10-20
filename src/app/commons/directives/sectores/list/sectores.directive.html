@@ -52,7 +52,7 @@
       </md-list>
 
       <md-list ng-cloak flex id="callesSector{{sector.numeroSector}}" class="tablaCalles ocultar md-whiteframe-2dp">
-        <md-list-item class="nuevaCalle" ng-click="">
+        <md-list-item class="nuevaCalle" ng-click="vm.addCalle(sector.id, $event)">
           <p><md-icon md-font-library="material-icons">add</md-icon> Añadir calle</p>
         </md-list-item>
         <md-list-item ng-repeat="calle in sector.calles | filter: vm.buscar | orderBy : 'calle'" ng-click="vm.modifyCalle(sector.id, calle, $event)">

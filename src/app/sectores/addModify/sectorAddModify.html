@@ -20,7 +20,7 @@
 
       <md-content class="md-padding">
         <div layout="row" id="toastBounds"></div>
-        <div ng-show="vm.indexCalle === null">
+        <div ng-show="vm.indexCalle === null && !vm.newCalle">
           <h4><md-icon md-font-library="material-icons">face</md-icon> Responsable de sector</h4>
           <div layout layout-sm="column">
             <md-autocomplete required flex
@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <div layout layout-sm="column" ng-if="vm.indexCalle !== null">
+        <div layout layout-sm="column" ng-if="vm.indexCalle !== null || vm.newCalle">
           <md-input-container class="md-icon-float" flex>
             <label>Calle</label>
             <md-icon md-font-library="material-icons">place</md-icon>

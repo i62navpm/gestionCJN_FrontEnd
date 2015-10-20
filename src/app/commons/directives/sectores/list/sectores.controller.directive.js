@@ -10,6 +10,7 @@
     
     vm.modifySector = modifySector;
     vm.modifyCalle  = modifyCalle;
+    vm.addCalle     = addCalle;
     vm.showCalles   = showCalles;
 
     function showCalles(sector, event){
@@ -25,6 +26,11 @@
     function modifyCalle(id, calle, event){
       event.stopPropagation();
       $state.go('sectoresCambios', {sectorId: id, calle: calle});
+    }
+
+    function addCalle(id, event){
+      event.stopPropagation();
+      $state.go('sectoresCambios', {sectorId: id, calle: 'new'});
     }
 
   }
