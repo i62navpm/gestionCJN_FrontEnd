@@ -217,6 +217,40 @@ div.m-app-loading {
 body md-content.page-container {
   background-color: #f1f1f1; }
 
+.papeletasSitios md-radio-button {
+  margin: 0; }
+
+.papeletasSitios md-input-container {
+  padding-bottom: 16px; }
+
+.papeletasSitios md-content.lista-papeletasSitios .numeroOrden {
+  text-align: right; }
+
+.papeletasSitios md-content.lista-papeletasSitios .md-list-item-text {
+  padding: 0; }
+
+.papeletasSitios p.posicion {
+  color: rgba(0, 0, 0, 0.541176); }
+
+.papeletasSitios .fab-papeletaSitio {
+  position: fixed;
+  bottom: 0;
+  right: 8px;
+  margin: 0 32px 23px 23px; }
+
+.listapapeletasSitios .papaletaSitio-detalle .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.listapapeletasSitios .papaletaSitio-detalle .md-item-text h3, .listapapeletasSitios .papaletaSitio-detalle .md-item-text p {
+  text-align: center;
+  padding: 0;
+  margin: 0; }
+
+.listapapeletasSitios .papaletaSitio-detalle .md-item-text p {
+  padding-top: 8px; }
+
 .sectores md-radio-button {
   margin: 0; }
 
