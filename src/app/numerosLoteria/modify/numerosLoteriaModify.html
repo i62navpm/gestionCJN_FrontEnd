@@ -1,0 +1,104 @@
+<div layout="row" layout-align="center center" class="numerosLoteria">
+  <div flex flex-gt-md="80">
+    <form name="numerosLoteriaForm" novalidate>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h4>
+            <span>
+              Números de Lotería
+            </span>
+          </h4>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Guardar loteria" ng-click="vm.guardar(numerosLoteriaForm.$valid)"  type="submit">
+            <md-icon md-font-library="material-icons">save</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      
+      <md-content class="md-whiteframe-z2">
+        <div class="md-padding">
+          
+          <h3 class="md-title">Décimos de navidad</h3>
+          <h4 class="md-subhead">Número 1</h4>
+          <div layout layout-sm="column" layout-align="space-between center">
+            <md-input-container flex="40">
+              <label>Número</label>
+              <input type="number" step="1" name="numeroNavidad1" ng-model="vm.numerosLoteria.navidad1.numero" required>
+              <div ng-messages="numerosLoteriaForm.numeroNavidad1.$error" ng-if="numerosLoteriaForm.numeroNavidad1.$dirty || numerosLoteriaForm.numeroNavidad1.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El número de navidad obligatorio</div>
+              </div>
+            </md-input-container>
+            
+            <md-input-container flex="40">
+              <label>Precio</label>
+              <input type="number" step="0.01" name="precioNavidad1" ng-model="vm.numerosLoteria.navidad1.precio" required>
+              <div ng-messages="numerosLoteriaForm.precioNavidad1.$error" ng-if="numerosLoteriaForm.precioNavidad1.$dirty || numerosLoteriaForm.precioNavidad1.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El precio es obligatorio</div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <h4 class="md-subhead">Número 2</h4>
+          <div layout layout-sm="column" layout-align="space-between center">
+            <md-input-container flex="40">
+              <label>Número</label>
+              <input type="number" step="1" name="numeroNavidad2" ng-model="vm.numerosLoteria.navidad2.numero" required>
+              <div ng-messages="numerosLoteriaForm.numeroNavidad2.$error" ng-if="numerosLoteriaForm.numeroNavidad2.$dirty || numerosLoteriaForm.numeroNavidad2.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El número de navidad obligatorio</div>
+              </div>
+            </md-input-container>
+            
+            <md-input-container flex="40">
+              <label>Precio</label>
+              <input type="number" step="0.01" name="precioNavidad2" ng-model="vm.numerosLoteria.navidad2.precio" required>
+              <div ng-messages="numerosLoteriaForm.precioNavidad2.$error" ng-if="numerosLoteriaForm.precioNavidad2.$dirty || numerosLoteriaForm.precioNavidad2.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El precio es obligatorio</div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <h3 class="md-title">Décimos del niño</h3>
+          <h4 class="md-subhead">Número 1</h4>
+          <div layout layout-sm="column" layout-align="space-between center">
+            <md-input-container flex="40">
+              <label>Número</label>
+              <input type="number" step="1" name="numeroninio1" ng-model="vm.numerosLoteria.ninio1.numero" required>
+              <div ng-messages="numerosLoteriaForm.numeroninio1.$error" ng-if="numerosLoteriaForm.numeroninio1.$dirty || numerosLoteriaForm.numeroninio1.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El número de ninio obligatorio</div>
+              </div>
+            </md-input-container>
+            
+            <md-input-container flex="40">
+              <label>Precio</label>
+              <input type="number" step="0.01" name="precioninio1" ng-model="vm.numerosLoteria.ninio1.precio" required>
+              <div ng-messages="numerosLoteriaForm.precioninio1.$error" ng-if="numerosLoteriaForm.precioninio1.$dirty || numerosLoteriaForm.precioninio1.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El precio es obligatorio</div>
+              </div>
+            </md-input-container>
+          </div>
+
+          <h4 class="md-subhead">Número 2</h4>
+          <div layout layout-sm="column" layout-align="space-between center">
+            <md-input-container flex="40">
+              <label>Número</label>
+              <input type="number" step="1" name="numeroninio2" ng-model="vm.numerosLoteria.ninio2.numero" required>
+              <div ng-messages="numerosLoteriaForm.numeroninio2.$error" ng-if="numerosLoteriaForm.numeroninio2.$dirty || numerosLoteriaForm.numeroninio2.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El número de ninio obligatorio</div>
+              </div>
+            </md-input-container>
+            
+            <md-input-container flex="40">
+              <label>Precio</label>
+              <input type="number" step="0.01" name="precioninio2" ng-model="vm.numerosLoteria.ninio2.precio" required>
+              <div ng-messages="numerosLoteriaForm.precioninio2.$error" ng-if="numerosLoteriaForm.precioninio2.$dirty || numerosLoteriaForm.precioninio2.$touched || numerosLoteriaForm.$submitted">
+                <div ng-message="required">El precio es obligatorio</div>
+              </div>
+            </md-input-container>
+          </div>
+
+        </div>
+      </md-content>
+
+    </form>
+  </div>
+</div>
