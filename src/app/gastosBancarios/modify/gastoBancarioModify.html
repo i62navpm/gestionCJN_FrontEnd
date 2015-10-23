@@ -1,0 +1,42 @@
+<div layout="row" layout-align="center center" class="gastosBancarios">
+  <div flex flex-gt-md="80">
+    <form name="gastoBancarioForm" novalidate>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h4>
+            <span>
+              Gastos Bancarios
+            </span>
+          </h4>
+          <span flex></span>
+          <md-button class="md-icon-button" aria-label="Detalles Cofrade" ng-click="vm.guardar(gastoBancarioForm.$valid)"  type="submit">
+            <md-icon md-font-library="material-icons">save</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content class="md-whiteframe-z2">
+        <div class="md-padding">
+          <div layout layout-sm="column" layout-align="space-between center">
+            <md-input-container flex="40">
+              <label>Gasto de domiciliación</label>
+              <input type="number" step="0.01" name="gastoDomiciliacion" ng-model="vm.gastoBancario.gastoDomiciliacion" required>
+              <div ng-messages="gastoBancarioForm.gastoDomiciliacion.$error" ng-if="gastoBancarioForm.gastoDomiciliacion.$dirty || gastoBancarioForm.gastoDomiciliacion.$touched || gastoBancarioForm.$submitted">
+                <div ng-message="required">El gasto de domiciliacion es obligatorio</div>
+              </div>
+            </md-input-container>
+            
+            <md-input-container flex="40">
+              <label>Gasto de envío postal</label>
+              <input type="number" step="0.01" name="gastoEnvioPostal" ng-model="vm.gastoBancario.gastoEnvioPostal" required>
+              <div ng-messages="gastoBancarioForm.gastoEnvioPostal.$error" ng-if="gastoBancarioForm.gastoEnvioPostal.$dirty || gastoBancarioForm.gastoEnvioPostal.$touched || gastoBancarioForm.$submitted">
+                <div ng-message="required">El gasto de envío postal es obligatorio</div>
+              </div>
+            </md-input-container>
+
+          </div>
+        </div>
+      </md-content>
+
+    </form>
+  </div>
+</div>

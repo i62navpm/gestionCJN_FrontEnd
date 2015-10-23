@@ -200,6 +200,12 @@
 .listaDirectivos .directivo-detalle .md-item-text p {
   padding-top: 8px; }
 
+.gastosBancarios md-input-container {
+  padding-bottom: 16px; }
+
+.gastosBancarios input[type="number"] {
+  text-align: right; }
+
 div.m-app-loading {
   z-index: 9999999;
   display: none; }
