@@ -8,7 +8,7 @@
   function ListaPapeletasSitios($state, papeletasSitiosService) {
     var vm = this;
     
-    vm.anio      = null;
+    vm.anio = null;
 
     vm.getAnio = getAnio;
 

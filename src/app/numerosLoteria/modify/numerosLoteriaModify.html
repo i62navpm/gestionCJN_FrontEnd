@@ -1,13 +1,14 @@
 <div layout="row" layout-align="center center" class="numerosLoteria">
   <div flex flex-gt-md="80">
     <form name="numerosLoteriaForm" novalidate>
-      <md-toolbar>
+      <md-toolbar class="md-primary md-hue-1">
         <div class="md-toolbar-tools">
-          <h4>
+          <md-icon md-font-library="material-icons">local_atm</md-icon>
+          <h2>
             <span>
               Números de Lotería
             </span>
-          </h4>
+          </h2>
           <span flex></span>
           <md-button class="md-icon-button" aria-label="Guardar loteria" ng-click="vm.guardar(numerosLoteriaForm.$valid)"  type="submit">
             <md-icon md-font-library="material-icons">save</md-icon>

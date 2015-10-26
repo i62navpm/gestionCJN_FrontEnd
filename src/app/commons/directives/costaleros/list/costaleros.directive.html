@@ -1,4 +1,14 @@
 <md-content class="md-whiteframe-z2">
+  <md-toolbar class="md-primary md-hue-1">
+    <div class="md-toolbar-tools">
+      <md-icon md-font-library="material-icons">account_circle</md-icon>
+      <h2>
+        <span>Costaleros</span>
+      </h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+
   <div class="md-padding">
     <md-input-container class="md-icon-float">
       <label>Buscar</label>
@@ -7,7 +17,7 @@
     </md-input-container>
   </div>
 
-  <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary">
+  <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-accent">
     <md-tab label="{{tab}}" ng-repeat="tab in ['DELANTERA', 'TRASERA', 'LATERAL', 'INTERIOR']">
       <md-content class="lista-costaleros" flex>
         <md-list ng-cloak>

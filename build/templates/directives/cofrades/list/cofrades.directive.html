@@ -1,116 +1,105 @@
-<md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-primary md-whiteframe-z2" md-selected="vm.bajas">
-  <md-tab label="Altas">
-    <md-content class="md-padding">
-      <md-input-container class="md-icon-float">
-        <label>Buscar</label>
-        <md-icon md-font-library="material-icons">search</md-icon>
-        <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.search()" type="text" ng-model-options="{ debounce: 200 }">
-      </md-input-container>
-      
-      <md-radio-group ng-model="vm.filtro" ng-change="vm.radioChange()" layout="row" layout-align="space-around start">
-        <md-radio-button value="nombre">Nombre</md-radio-button>
-        <md-radio-button value="numeroOrden">Número de orden</md-radio-button>
-      </md-radio-group>
-    </md-content>
+<div class="md-whiteframe-z2">
+  <md-toolbar class="md-primary md-hue-1">
+    <div class="md-toolbar-tools">
+      <md-icon md-font-library="material-icons">face</md-icon>
+      <h2>
+        <span>Cofrades</span>
+      </h2>
+      <span flex></span>
+    </div>
+  </md-toolbar>
 
-    <md-divider></md-divider>
-
-    <md-content class="lista-cofrades" flex>
-      <md-list ng-cloak>
-        <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="vm.goToCofrade(cofrade.id, $event)">
-          <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
-          <div layout="row" class="md-list-item-text">
-            <div flex="70" flex-sm offset="5" offset-sm="0">
-              <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
-              <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
-            </div>
-            
-            <div flex="25" hide-sm layout="row" layout-align="space-around center">
-              <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
-                <md-icon md-font-library="material-icons">mode_edit</md-icon>
-              </md-button>
-              <remove-Cofrade cofrade="cofrade.id"></remove-Cofrade>
-            </div>
-
-            <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
-              <md-menu>
-                <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                  <md-icon md-font-library="material-icons">menu</md-icon>
+  <md-content class="md-padding">
+    <md-input-container class="md-icon-float">
+      <label>Buscar</label>
+      <md-icon md-font-library="material-icons">search</md-icon>
+      <input ng-model="vm.buscar" ng-change="vm.search()" type="text" ng-model-options="{ debounce: 200 }">
+    </md-input-container>
+  </md-content>
+  <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-accent" md-selected="vm.bajas">
+    <md-tab label="Altas" md-on-select="vm.changeTab()">
+      <md-content class="lista-cofrades" flex>
+        <md-list ng-cloak>
+          <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="vm.goToCofrade(cofrade.id, $event)">
+            <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
+            <div layout="row" class="md-list-item-text">
+              <div flex="70" flex-sm offset="5" offset-sm="0">
+                <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
+                <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
+              </div>
+              
+              <div flex="25" hide-sm layout="row" layout-align="space-around center">
+                <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
+                  <md-icon md-font-library="material-icons">mode_edit</md-icon>
                 </md-button>
-                <md-menu-content width="1">
-                  <md-menu-item>
-                    <div>
-                      <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
-                        <md-icon md-font-library="material-icons">mode_edit</md-icon>
-                      </md-button>
-                    </div>
-                  </md-menu-item>
-                  <md-menu-item>
-                    <remove-Cofrade cofrade="vm.cofrade.id"></remove-Cofrade>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-            </div>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
-  </md-tab>
+                <remove-Cofrade cofrade="cofrade.id"></remove-Cofrade>
+              </div>
 
-  <md-tab label="Bajas">
-    <md-content class="md-padding">
-      <md-input-container class="md-icon-float">
-        <label>Buscar</label>
-        <md-icon md-font-library="material-icons">search</md-icon>
-        <input type={{vm.typeInput}} ng-model="vm.buscar" ng-change="vm.search()" type="text" ng-model-options="{ debounce: 200 }">
-      </md-input-container>
-      
-      <md-radio-group ng-model="vm.filtro" ng-change="vm.radioChange()" layout="row" layout-align="space-around start">
-        <md-radio-button value="nombre">Nombre</md-radio-button>
-        <md-radio-button value="numeroOrden">Número de orden</md-radio-button>
-      </md-radio-group>
-    </md-content>
-
-    <md-divider></md-divider>
-
-    <md-content class="lista-cofrades" flex>
-      <md-list ng-cloak>
-        <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofradesBajas" ng-click="vm.goToCofrade(cofrade.id, $event)">
-          <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
-          <div layout="row" class="md-list-item-text">
-            <div flex="70" flex-sm offset="5" offset-sm="0">
-              <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
-              <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+                <md-menu>
+                  <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-library="material-icons">menu</md-icon>
+                  </md-button>
+                  <md-menu-content width="1">
+                    <md-menu-item>
+                      <div>
+                        <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
+                          <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                        </md-button>
+                      </div>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <remove-Cofrade cofrade="vm.cofrade.id"></remove-Cofrade>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+              </div>
             </div>
-            
-            <div flex="25" hide-sm layout="row" layout-align="space-around center">
-              <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
-                <md-icon md-font-library="material-icons">mode_edit</md-icon>
-              </md-button>
-              <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
-            </div>
-            <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
-              <md-menu>
-                <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                  <md-icon md-font-library="material-icons">menu</md-icon>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="Bajas" md-on-select="vm.changeTab()">
+      <md-content class="lista-cofrades" flex>
+        <md-list ng-cloak>
+          <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofradesBajas" ng-click="vm.goToCofrade(cofrade.id, $event)">
+            <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
+            <div layout="row" class="md-list-item-text">
+              <div flex="70" flex-sm offset="5" offset-sm="0">
+                <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
+                <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
+              </div>
+              
+              <div flex="25" hide-sm layout="row" layout-align="space-around center">
+                <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
+                  <md-icon md-font-library="material-icons">mode_edit</md-icon>
                 </md-button>
-                <md-menu-content width="1">
-                  <md-menu-item>
-                    <div>
-                      <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
-                        <md-icon md-font-library="material-icons">mode_edit</md-icon>
-                      </md-button>
-                    </div>
-                  </md-menu-item>
-                  <md-menu-item>
-                    <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
+                <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
+              </div>
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+                <md-menu>
+                  <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-library="material-icons">menu</md-icon>
+                  </md-button>
+                  <md-menu-content width="1">
+                    <md-menu-item>
+                      <div>
+                        <md-button class="md-icon-button" aria-label="Editar Cofrade" ng-click="vm.modifyCofrade(cofrade.id, $event)">
+                          <md-icon md-font-library="material-icons">mode_edit</md-icon>
+                        </md-button>
+                      </div>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+              </div>
             </div>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
-  </md-tab>
-</md-tabs>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</div>

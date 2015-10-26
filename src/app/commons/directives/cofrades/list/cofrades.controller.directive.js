@@ -9,13 +9,12 @@
     var vm = this;
     
     vm.filtro    = 'nombre';
-    vm.typeInput = 'text';
     vm.buscar    = null;
 
     vm.search         = search;
-    vm.radioChange    = radioChange;
     vm.goToCofrade    = goToCofrade;
     vm.modifyCofrade  = modifyCofrade;
+    vm.changeTab      = changeTab;
 
     var handler = $rootScope.$on('scrollDown', getNextPage);
 
@@ -60,6 +59,7 @@
     }
 
     function search() {
+      vm.filtro = ( isNaN(vm.buscar)) ? 'nombre': 'numeroOrden';
       if (!vm.bajas)
         searchAltas();
       else
@@ -84,12 +84,6 @@
       });
     }
 
-    function radioChange() {
-      vm.buscar = null;
-      vm.typeInput = (vm.filtro === 'nombre') ? 'text': 'number';
-      vm.search();
-    }
-
     function goToCofrade(id, event){
       $state.go('cofradesDetalle', {cofradeId: id});
     }
@@ -97,6 +91,10 @@
     function modifyCofrade(id, event){
       event.stopPropagation();
       $state.go('cofradesCambios', {cofradeId: id});
+    }
+
+    function changeTab(){
+      vm.search();
     }
 
   }

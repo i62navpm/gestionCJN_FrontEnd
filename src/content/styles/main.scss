@@ -1,5 +1,11 @@
 body {
   md-content.page-container {
     background-color: #f1f1f1;
+
+    md-toolbar{
+      md-icon{
+        margin-right: 10px;
+      }
+    }
   }
 }

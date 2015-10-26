@@ -1,13 +1,14 @@
 <div layout="row" layout-align="center center" class="gastosBancarios">
   <div flex flex-gt-md="80">
     <form name="gastoBancarioForm" novalidate>
-      <md-toolbar>
+      <md-toolbar class="md-primary md-hue-1">
         <div class="md-toolbar-tools">
-          <h4>
+          <md-icon md-font-library="material-icons">account_balance</md-icon>
+          <h2>
             <span>
               Gastos Bancarios
             </span>
-          </h4>
+          </h2>
           <span flex></span>
           <md-button class="md-icon-button" aria-label="Guardar gastos" ng-click="vm.guardar(gastoBancarioForm.$valid)"  type="submit">
             <md-icon md-font-library="material-icons">save</md-icon>
