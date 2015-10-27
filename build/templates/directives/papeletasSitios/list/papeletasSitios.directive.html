@@ -24,9 +24,11 @@
         <md-option ng-value="list.anio" ng-repeat="list in vm.anios">{{list.anio}}</md-option>
       </md-select>
     </div>
-
+    <div layout="row" layout-align="space-around" ng-if="!vm.completed && vm.anio">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
     <md-list ng-cloak>
-      <md-list-item class="md-2-line" ng-repeat="papeletaSitio in vm.papeletasSitio.papeletas | filter: vm.buscar | orderBy : 'cofrade.numeroOrden'">
+      <md-list-item class="md-2-line" ng-repeat="papeletaSitio in vm.papeletasSitio.papeletas | filter: vm.buscar | orderBy : 'cofrade.numeroOrden'" load-repeat>
         <h3 flex="10" class="numeroOrden">{{$index+1}}</h3>
         <div layout="row" class="md-list-item-text">
           <div flex="85" offset="5" offset-sm="0">

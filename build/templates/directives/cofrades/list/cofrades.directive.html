@@ -19,9 +19,12 @@
   <md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" class="md-accent" md-selected="vm.bajas">
     <md-tab label="Altas" md-on-select="vm.changeTab()">
       <md-content class="lista-cofrades" flex>
+        <div layout="row" layout-align="space-around" ng-if="!vm.completed">
+          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
         <md-list ng-cloak>
           <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="vm.goToCofrade(cofrade.id, $event)">
-            <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
+            <h3 flex="10" flex-sm="15" class="numeroOrden" load-repeat>{{cofrade.numeroOrden}}</h3>
             <div layout="row" class="md-list-item-text">
               <div flex="70" flex-sm offset="5" offset-sm="0">
                 <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
@@ -62,8 +65,11 @@
 
     <md-tab label="Bajas" md-on-select="vm.changeTab()">
       <md-content class="lista-cofrades" flex>
+        <div layout="row" layout-align="space-around" ng-if="!vm.completed">
+          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
         <md-list ng-cloak>
-          <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofradesBajas" ng-click="vm.goToCofrade(cofrade.id, $event)">
+          <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofradesBajas" ng-click="vm.goToCofrade(cofrade.id, $event)" load-repeat>
             <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
             <div layout="row" class="md-list-item-text">
               <div flex="70" flex-sm offset="5" offset-sm="0">

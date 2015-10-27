@@ -3,7 +3,7 @@
     <div class="md-toolbar-tools">
       <md-icon md-font-library="material-icons">explore</md-icon>
       <h2>
-        <span>Autoridades</span>
+        <span>Sectores</span>
       </h2>
       <span flex></span>
     </div>
@@ -19,7 +19,10 @@
 
   
   <md-content class="lista-sectores" flex>
-    <div layout="column" ng-repeat="sector in vm.sectoresShort | filter: vm.buscar | orderBy : 'numeroSector'">
+    <div layout="row" layout-align="space-around" ng-if="!vm.completed">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="column" ng-repeat="sector in vm.sectoresShort | filter: vm.buscar | orderBy : 'numeroSector'" load-repeat>
       <md-list ng-cloak flex>
         <md-list-item class="md-2-line" ng-click="vm.showCalles(sector.numeroSector, $event)">
           <h3 flex="10" flex-sm="20" class="sitio">{{sector.numeroSector}}</h3>

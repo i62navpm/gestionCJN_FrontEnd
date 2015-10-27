@@ -18,8 +18,11 @@
   </div>
   
   <md-content class="lista-directivos" flex>
+    <div layout="row" layout-align="space-around" ng-if="!vm.completed">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
     <md-list ng-cloak>
-      <md-list-item class="md-2-line" ng-repeat="directivo in vm.directivosShort | filter: vm.buscar | orderBy : 'numeroOrden'" ng-click="vm.goToDirectivo(directivo.id, $event)">
+      <md-list-item class="md-2-line" ng-repeat="directivo in vm.directivosShort | filter: vm.buscar | orderBy : 'numeroOrden'" ng-click="vm.goToDirectivo(directivo.id, $event)" load-repeat>
         <h3 flex="10" flex-sm="20" class="numeroOrden">{{directivo.numeroOrden}}</h3>
         <div layout="row" class="md-list-item-text">
           <div flex="70" flex-sm offset="5" offset-sm="0">

@@ -16,11 +16,14 @@
       <input ng-model="vm.buscar" type="text">
     </md-input-container>
   </div>
-
   
+
   <md-content class="lista-aspirantes" flex>
+    <div layout="row" layout-align="space-around" ng-if="!vm.completed">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
     <md-list ng-cloak>
-      <md-list-item class="md-2-line" ng-repeat="aspirante in vm.aspirantesShort | filter: vm.buscar | orderBy : 'fecha'" ng-click="vm.goToAspirante(aspirante.id, $event)">
+      <md-list-item class="md-2-line" ng-repeat="aspirante in vm.aspirantesShort | filter: vm.buscar | orderBy : 'fecha'" ng-click="vm.goToAspirante(aspirante.id, $event)" load-repeat>
         <h3 flex="10" flex-sm="20" class="sitio">{{$index + 1}}</h3>
         <div layout="row" class="md-list-item-text">
           <div flex="70" flex-sm offset="5" offset-sm="0">
