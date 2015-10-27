@@ -4,7 +4,7 @@
     .module('app')
     .controller('CofradeAddModify', CofradeAddModify);
 
-  function CofradeAddModify($filter, $document, $mdToast, $state, getCofradePrepService, cofradesService, sectoresService) {
+  function CofradeAddModify($filter, $document, $mdToast, $state, getCofradePrepService, cofradesService, numerosLoteriaPrepService, sectoresService) {
     var vm = this;
     
     vm.nuevaCalle = true;
@@ -26,6 +26,10 @@
     activate();
 
     function activate() {
+      numerosLoteriaPrepService.$promise.then(function(data){
+        vm.numerosLoteria = data[0];
+      });
+      
       if (getCofradePrepService){
         getCofradePrepService.$promise.then(initCofrade);
       }

@@ -28,7 +28,8 @@
         controllerAs: 'vm',
         resolve: {
             getCofradePrepService: getCofradePrepService,
-            getMapsPrepService: getMapsPrepService
+            getMapsPrepService: getMapsPrepService,
+            numerosLoteriaPrepService: numerosLoteriaPrepService
         }
       }).
       state('cofradesCambios', {
@@ -39,7 +40,8 @@
         controller: 'CofradeAddModify',
         controllerAs: 'vm',
         resolve: {
-            getCofradePrepService: getCofradePrepService
+            getCofradePrepService: getCofradePrepService,
+            numerosLoteriaPrepService: numerosLoteriaPrepService
         }
       });
   }
@@ -54,6 +56,10 @@
 
   function getCofradePrepService(cofradesService, $stateParams) {
     return ($stateParams.cofradeId) ? cofradesService.cofradesRest().get({id: $stateParams.cofradeId}) : false;
+  }
+
+  function numerosLoteriaPrepService(numerosLoteriaService) {
+    return numerosLoteriaService.numerosLoteriaRest().query();
   }
   
   function getMapsPrepService(uiGmapGoogleMapApi, getCofradePrepService, mapasService) {

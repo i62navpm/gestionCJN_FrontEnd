@@ -4,7 +4,7 @@
     .module('app')
     .controller('CofradeDetalle', CofradeDetalle);
 
-  function CofradeDetalle($state, $filter, getCofradePrepService, getMapsPrepService) {
+  function CofradeDetalle($state, $filter, getCofradePrepService, getMapsPrepService, numerosLoteriaPrepService) {
     var vm = this;
 
     vm.cofrade = null;
@@ -15,6 +15,10 @@
     activate();
 
     function activate() {
+      numerosLoteriaPrepService.$promise.then(function(data){
+        vm.numerosLoteria = data[0];
+      });
+
       return getCofradePrepService.$promise.then(function(data){
         vm.cofrade = data;
         if(vm.cofrade.datosFinancieros)

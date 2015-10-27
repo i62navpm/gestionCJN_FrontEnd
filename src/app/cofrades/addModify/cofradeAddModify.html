@@ -305,7 +305,7 @@
             <h1>Datos Loteria</h1>
             <div layout layout-sm="column">
               <md-input-container class="md-icon-float" flex="50">
-                <label>Número de Navidad 1</label>
+                <label>Número de Navidad {{vm.numerosLoteria.navidad1.numero}}</label>
                 <md-icon md-font-library="material-icons">local_play</md-icon>
                 <input name="navidad1" ng-model="vm.cofrade.datosLoteria.numeroNavidad1" type="number" min="0">
                 <div ng-messages="cofradeForm.navidad1.$error" ng-if="cofradeForm.navidad1.$dirty || cofradeForm.navidad1.$touched || cofradeForm.$submitted">
@@ -313,7 +313,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-icon-float" flex="50">
-                <label>Número de Navidad 2</label>
+                <label>Número de Navidad {{vm.numerosLoteria.navidad2.numero}}</label>
                 <md-icon md-font-library="material-icons"></md-icon>
                  <input name="navidad2" ng-model="vm.cofrade.datosLoteria.numeroNavidad2" type="number" min="0">
                  <div ng-messages="cofradeForm.navidad2.$error" ng-if="cofradeForm.navidad2.$dirty || cofradeForm.navidad2.$touched || cofradeForm.$submitted">
@@ -324,7 +324,7 @@
 
             <div layout layout-sm="column">
               <md-input-container class="md-icon-float" flex="50">
-                <label>Número del Niño 1</label>
+                <label>Número del Niño {{vm.numerosLoteria.ninio1.numero}}</label>
                 <md-icon md-font-library="material-icons">local_play</md-icon>
                 <input name="ninio1" ng-model="vm.cofrade.datosLoteria.numeroNinio1" type="number" min="0">
                 <div ng-messages="cofradeForm.ninio1.$error" ng-if="cofradeForm.ninio1.$dirty || cofradeForm.ninio1.$touched || cofradeForm.$submitted">
@@ -332,7 +332,7 @@
                 </div>
               </md-input-container>
               <md-input-container class="md-icon-float" flex="50">
-                <label>Número del Niño 2</label>
+                <label>Número del Niño {{vm.numerosLoteria.ninio2.numero}}</label>
                 <md-icon md-font-library="material-icons"></md-icon>
                  <input name="ninio2" ng-model="vm.cofrade.datosLoteria.numeroNinio2" type="number" min="0">
                  <div ng-messages="cofradeForm.ninio2.$error" ng-if="cofradeForm.ninio2.$dirty || cofradeForm.ninio2.$touched || cofradeForm.$submitted">
