@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp    = require('gulp');
 var plugins = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
@@ -45,7 +47,7 @@ gulp.task('prepareImages', function(){
 
 gulp.task('prepareLibs', function () {
   gulp.src('./src/app/index.html')
-    .pipe(wiredep())
+    .pipe(wiredep({ignorePath: '../../build/'}))
     .pipe(gulp.dest('./build'));
 });
 
