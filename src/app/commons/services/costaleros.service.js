@@ -5,13 +5,13 @@
     .module('app')
     .factory('costalerosService', costalerosService);
 
-  function costalerosService($resource, $filter) {
+  function costalerosService($resource, $location, $filter) {
     return {
       costalerosRest: costalerosRest
     };
 
     function costalerosRest() {
-      return $resource('http://127.0.0.1:5050/api/costaleros/:id.json:json', null, {
+      return $resource('http://127.0.0.1:'+$location.port()+'/api/costaleros/:id.json:json', null, {
         'query':  {method:'GET', isArray: true},
         'get':    {method:'GET', transformResponse: function(data, headersGetter) {
                                                       return $filter('stringToDateFormat')(angular.fromJson(data));

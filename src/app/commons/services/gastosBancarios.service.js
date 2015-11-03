@@ -5,13 +5,13 @@
     .module('app')
     .factory('gastosBancariosService', gastosBancariosService);
 
-  function gastosBancariosService($resource) {
+  function gastosBancariosService($resource, $location) {
     return {
       gastosBancariosRest: gastosBancariosRest
     };
 
     function gastosBancariosRest() {
-      return $resource('http://127.0.0.1:5050/api/gastosBancarios/:id.json:json');
+      return $resource('http://127.0.0.1:'+$location.port()+'/api/gastosBancarios/:id.json:json');
     }
    
   }

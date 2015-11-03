@@ -37,6 +37,10 @@
       // optional method
      'responseError': function(rejection) {
         // do something on error
+        if (rejection.status === 401){
+          document.location.href = 'login/';
+        }
+        
         loadScreen.css('display', 'none');
         return $q.reject(rejection);
       }

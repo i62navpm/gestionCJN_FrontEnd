@@ -5,7 +5,7 @@
     .module('app')
     .factory('cofradesService', cofradesService);
 
-  function cofradesService($resource, $http, $filter) {
+  function cofradesService($resource, $location, $http, $filter) {
     return {
       cofradesRest: cofradesRest,
       cofradesBajasRest: cofradesBajasRest,
@@ -14,7 +14,7 @@
     };
 
     function cofradesRest() {
-      return $resource('http://127.0.0.1:5050/api/cofrades/:id.json:json', null, {
+      return $resource('http://127.0.0.1:'+$location.port()+'/api/cofrades/:id.json:json', null, {
         'query':  {method:'GET', isArray: false},
         'get':    {method:'GET', transformResponse: function(data, headersGetter) {
                                                       return $filter('stringToDateFormat')(angular.fromJson(data));
@@ -28,18 +28,18 @@
     }
 
     function cofradesBajasRest() {
-      return $resource('http://127.0.0.1:5050/api/cofradesBajas/:id.json:json', null, {'query':  {method:'GET', isArray:false}});
+      return $resource('http://127.0.0.1:'+$location.port()+'/api/cofradesBajas/:id.json:json', null, {'query':  {method:'GET', isArray:false}});
     }
 
     function getCalles(calle) {
-      return $http.get('http://127.0.0.1:5050/api/calles/', {params: {calle: calle}}).
+      return $http.get('http://127.0.0.1:'+$location.port()+'/api/calles/', {params: {calle: calle}}).
               then(function(response){
                 return angular.fromJson(response);
               });
     }
 
     function getRegistros() {
-      return $http.get('http://127.0.0.1:5050/api/registros/').
+      return $http.get('http://127.0.0.1:'+$location.port()+'/api/registros/').
               then(function(response){
                 return angular.fromJson(response);
               });

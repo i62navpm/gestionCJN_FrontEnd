@@ -5,13 +5,13 @@
     .module('app')
     .factory('numerosLoteriaService', numerosLoteriaService);
 
-  function numerosLoteriaService($resource) {
+  function numerosLoteriaService($resource, $location) {
     return {
       numerosLoteriaRest: numerosLoteriaRest
     };
 
     function numerosLoteriaRest() {
-      return $resource('http://127.0.0.1:5050/api/numerosLoteria/:id.json:json');
+      return $resource('http://127.0.0.1:'+$location.port()+'/api/numerosLoteria/:id.json:json');
     }
    
   }
