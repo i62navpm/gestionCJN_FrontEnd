@@ -8,6 +8,7 @@
     var vm = this;
     
     vm.nuevaCalle = true;
+    vm.searchText = 'calle';
     vm.cofrade = {datosFinancieros: {cuenta: {}, 
                                      deuda: []},
                   datosPersonales:  {direccion: {},

@@ -226,6 +226,9 @@ body md-content.page-container {
   body md-content.page-container md-toolbar md-icon {
     margin-right: 10px; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 .numerosLoteria md-input-container {
   padding-bottom: 16px; }
 

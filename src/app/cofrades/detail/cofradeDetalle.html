@@ -69,8 +69,7 @@
         <md-tab-label>
           <md-icon md-font-library="material-icons">person</md-icon>
         </md-tab-label>
-        <md-content class="md-padding">
-          
+        <md-tab-body class="md-padding">
           <div layout layout-sm="column" ng-if="vm.cofrade.baja" class="baja">
             <md-input-container flex="50">
               <label>Fecha de baja</label>
@@ -166,13 +165,13 @@
               <p>{{vm.cofrade.datosPersonales.nota}}</p>
             </div>
           </div>
-        </md-content>
+        </md-tab-body>
       </md-tab>
       <md-tab ng-disabled="!vm.cofrade.datosFinancieros">
         <md-tab-label>
           <md-icon md-font-library="material-icons">account_balance</md-icon>
         </md-tab-label>
-        <md-content class="md-padding">
+        <md-tab-body class="md-padding">
           <h1>Datos bancarios</h1>
           <div layout="column">
             <md-input-container class="md-icon-float" flex="50">
@@ -217,13 +216,13 @@
             </md-checkbox>
           </div>
 
-        </md-content>
+        </md-tab-body>
       </md-tab>
       <md-tab ng-disabled="!vm.cofrade.datosLoteria">
         <md-tab-label>
           <md-icon md-font-library="material-icons">local_play</md-icon>
         </md-tab-label>
-        <md-content class="md-padding">
+        <md-tab-body class="md-padding">
           <h1>Datos Loteria</h1>
           <div layout layout-sm="column">
             <md-input-container class="md-icon-float" flex="50">
@@ -260,7 +259,7 @@
             </md-checkbox>
           </div>
           
-        </md-content>
+        </md-tab-body>
       </md-tab>
     </md-tabs>
 

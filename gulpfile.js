@@ -46,7 +46,7 @@ gulp.task('prepareImages', function(){
 });
 
 gulp.task('prepareLibs', function () {
-  gulp.src('./src/app/index.html')
+  gulp.src('./src/app/index_app.html')
     .pipe(wiredep({ignorePath: '../../build/'}))
     .pipe(gulp.dest('./build'));
 });
@@ -68,7 +68,7 @@ gulp.task('webserver', function() {
       directoryListing: true,
       host: '0.0.0.0',
       port: 5050,
-      open: 'http://127.0.0.1:5050/build/index.html',
+      open: 'http://127.0.0.1:5050/build/index_app.html',
       proxies: [
       {
         'source': '/api',
