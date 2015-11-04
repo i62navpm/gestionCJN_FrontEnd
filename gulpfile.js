@@ -73,6 +73,10 @@ gulp.task('webserver', function() {
       {
         'source': '/api',
         'target': 'http://localhost:8000/api'
+      },
+      {
+        'source': '/login',
+        'target': 'http://localhost:8000/login'
       }
     ]
     }));

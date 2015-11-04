@@ -10,7 +10,7 @@
     $httpProvider.interceptors.push('myHttpInterceptor');
   }
 
-  function myHttpInterceptor($q) {
+  function myHttpInterceptor($q, $injector) {
     var loadScreen = angular.element(document.querySelector('.m-app-loading'));
     return {
       // optional method
@@ -38,7 +38,7 @@
      'responseError': function(rejection) {
         // do something on error
         if (rejection.status === 401){
-          document.location.href = 'login/';
+          $injector.get('$state').go('login');
         }
         
         loadScreen.css('display', 'none');
