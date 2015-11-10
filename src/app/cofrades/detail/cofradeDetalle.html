@@ -144,7 +144,7 @@
 
           <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
           <div layout layout-sm="column">
-            <div offset="5" flex="40">
+            <div flex-offset="5" flex="40">
               <p>{{vm.cofrade.datosPersonales.direccion.calle}}
               <span ng-if="vm.cofrade.datosPersonales.direccion.numero">, {{vm.cofrade.datosPersonales.direccion.numero}}</span>
               <span ng-if="vm.cofrade.datosPersonales.direccion.planta">, {{vm.cofrade.datosPersonales.direccion.planta}}</span>
@@ -152,7 +152,7 @@
               <p>{{vm.cofrade.datosPersonales.direccion.municipio}}, {{vm.cofrade.datosPersonales.direccion.cp}}</p>
               <p>{{vm.cofrade.datosPersonales.direccion.provincia}}</p>
             </div>
-            <div offset="5" flex="50">
+            <div flex-offset="5" flex="50">
               <ui-gmap-google-map center='vm.maps.coord' zoom='vm.maps.zoom'>
                 <ui-gmap-marker coords="vm.maps.marker" idKey="1" ></ui-gmap-marker>
               </ui-gmap-google-map>
@@ -161,7 +161,7 @@
 
           <div ng-if="vm.cofrade.datosPersonales.nota" layout="column">
             <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
-            <div flex offset="5">
+            <div flex flex-offset="5">
               <p>{{vm.cofrade.datosPersonales.nota}}</p>
             </div>
           </div>

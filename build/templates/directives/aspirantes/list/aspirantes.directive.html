@@ -26,7 +26,7 @@
       <md-list-item class="md-2-line" ng-repeat="aspirante in vm.aspirantesShort | filter: vm.buscar | orderBy : 'fecha'" ng-click="vm.goToAspirante(aspirante.id, $event)" load-repeat>
         <h3 flex="10" flex-sm="20" class="sitio">{{$index + 1}}</h3>
         <div layout="row" class="md-list-item-text">
-          <div flex="70" flex-sm offset="5" offset-sm="0">
+          <div flex="70" flex-sm flex-offset="5" flex-offset-sm="0">
             <h4>{{aspirante.nombre}}</h4>
             <p class="fecha">N. Orden: <em>{{aspirante.numeroOrden}}</em> - Fecha: <em>{{aspirante.fecha | formatDates}}</em></p>
           </div>
@@ -38,7 +38,7 @@
             <remove-Aspirante aspirante="aspirante.id" ng-if="aspirante.numeroOrden"></remove-Aspirante>
           </div>
 
-          <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+          <div layout="row" layout-align="center end" hide-gt-sm flex="10" flex-offset="5">
             <md-menu>
               <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                 <md-icon md-font-library="material-icons">menu</md-icon>

@@ -25,7 +25,7 @@
       <md-list-item class="md-2-line" ng-repeat="directivo in vm.directivosShort | filter: vm.buscar | orderBy : 'numeroOrden'" ng-click="vm.goToDirectivo(directivo.id, $event)" load-repeat>
         <h3 flex="10" flex-sm="20" class="numeroOrden">{{directivo.numeroOrden}}</h3>
         <div layout="row" class="md-list-item-text">
-          <div flex="70" flex-sm offset="5" offset-sm="0">
+          <div flex="70" flex-sm flex-offset="5" flex-offset-sm="0">
             <h4>{{directivo.nombre}}</h4>
             <p class="posicion">Posición: <em>{{directivo.posicion}}</em></p>
           </div>
@@ -37,7 +37,7 @@
             <remove-Directivo directivo="directivo.id" ng-if="directivo.numeroOrden"></remove-Directivo>
           </div>
 
-          <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+          <div layout="row" layout-align="center end" hide-gt-sm flex="10" flex-offset="5">
             <md-menu>
               <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                 <md-icon md-font-library="material-icons">menu</md-icon>

@@ -27,7 +27,7 @@
           <md-list-item class="md-2-line" ng-repeat="costalero in vm.costalerosShort | filter: vm.buscar | filter: {sitio: tab[0]+'-'} | orderBy : 'sitio'" ng-click="vm.goToCostalero(costalero.id, $event)" ng-class="{vacio: !costalero.numeroOrden}" load-repeat>
             <h3 flex="10" flex-sm="20" class="sitio">{{costalero.sitio}}</h3>
             <div layout="row" class="md-list-item-text">
-              <div flex="70" flex-sm offset="5" offset-sm="0">
+              <div flex="70" flex-sm flex-offset="5" flex-offset-sm="0">
                 <h4>{{costalero.nombre}}</h4>
                 <p class="numeroOrden" ng-if="costalero.numeroOrden">N. Orden: {{costalero.numeroOrden}}</p>
               </div>
@@ -39,7 +39,7 @@
                 <remove-Costalero costalero="costalero.id" ng-if="costalero.numeroOrden"></remove-Costalero>
               </div>
 
-              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" flex-offset="5">
                 <md-menu>
                   <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-library="material-icons">menu</md-icon>

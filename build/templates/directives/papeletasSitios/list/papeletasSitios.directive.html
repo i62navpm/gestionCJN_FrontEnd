@@ -31,7 +31,7 @@
       <md-list-item class="md-2-line" ng-repeat="papeletaSitio in vm.papeletasSitio.papeletas | filter: vm.buscar | orderBy : 'cofrade.numeroOrden'" load-repeat>
         <h3 flex="10" class="numeroOrden">{{$index+1}}</h3>
         <div layout="row" class="md-list-item-text">
-          <div flex="85" offset="5" offset-sm="0">
+          <div flex="85" flex-offset="5" flex-offset-sm="0">
             <h4>{{papeletaSitio.cofrade.datosPersonales.nombre}}</h4>
             <p class="posicion">Fecha: <em>{{papeletaSitio.fecha | formatDates}}</em> - N. Orden: <em>{{papeletaSitio.cofrade.numeroOrden}}</em></p>
           </div>

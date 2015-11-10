@@ -26,7 +26,7 @@
           <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofrades" ng-click="vm.goToCofrade(cofrade.id, $event)">
             <h3 flex="10" flex-sm="15" class="numeroOrden" load-repeat>{{cofrade.numeroOrden}}</h3>
             <div layout="row" class="md-list-item-text">
-              <div flex="70" flex-sm offset="5" offset-sm="0">
+              <div flex="70" flex-sm flex-offset="5" flex-offset-sm="0">
                 <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
                 <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
               </div>
@@ -38,7 +38,7 @@
                 <remove-Cofrade cofrade="cofrade.id"></remove-Cofrade>
               </div>
 
-              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" flex-offset="5">
                 <md-menu>
                   <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-library="material-icons">menu</md-icon>
@@ -72,7 +72,7 @@
           <md-list-item class="md-2-line" ng-repeat="cofrade in vm.cofradesBajas" ng-click="vm.goToCofrade(cofrade.id, $event)" load-repeat>
             <h3 flex="10" flex-sm="15" class="numeroOrden">{{cofrade.numeroOrden}}</h3>
             <div layout="row" class="md-list-item-text">
-              <div flex="70" flex-sm offset="5" offset-sm="0">
+              <div flex="70" flex-sm flex-offset="5" flex-offset-sm="0">
                 <h4>{{cofrade.datosPersonales.nombre}} {{cofrade.datosPersonales.apellido1}} {{cofrade.datosPersonales.apellido2}}</h4>
                 <p class="direccion">{{cofrade.datosPersonales.direccion.calle}}, {{cofrade.datosPersonales.direccion.municipio}}, {{cofrade.datosPersonales.direccion.provincia}}</p>
               </div>
@@ -83,7 +83,7 @@
                 </md-button>
                 <restore-Cofrade cofrade="cofrade.id"></restore-Cofrade>
               </div>
-              <div layout="row" layout-align="center end" hide-gt-sm flex="10" offset="5">
+              <div layout="row" layout-align="center end" hide-gt-sm flex="10" flex-offset="5">
                 <md-menu>
                   <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-library="material-icons">menu</md-icon>

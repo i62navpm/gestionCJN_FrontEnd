@@ -74,7 +74,7 @@
 
       <h4><md-icon md-font-library="material-icons">place</md-icon>Dirección</h4>
       <div layout layout-sm="column">
-        <div offset="5" flex="40">
+        <div flex-offset="5" flex="40">
           <p>{{vm.autoridad.direccion.calle}}
           <span ng-if="vm.autoridad.direccion.numero">, {{vm.autoridad.direccion.numero}}</span>
           <span ng-if="vm.autoridad.direccion.planta">, {{vm.autoridad.direccion.planta}}</span>
@@ -82,7 +82,7 @@
           <p>{{vm.autoridad.direccion.municipio}}, {{vm.autoridad.direccion.cp}}</p>
           <p>{{vm.autoridad.direccion.provincia}}</p>
         </div>
-        <div offset="5" flex="50">
+        <div flex-offset="5" flex="50">
           <ui-gmap-google-map center='vm.maps.coord' zoom='vm.maps.zoom'>
             <ui-gmap-marker coords="vm.maps.marker" idKey="1" ></ui-gmap-marker>
           </ui-gmap-google-map>
@@ -91,7 +91,7 @@
 
       <div ng-if="vm.autoridad.nota" layout="column">
         <h4><md-icon md-font-library="material-icons">insert_comment</md-icon> Nota</h4>
-        <div flex offset="5">
+        <div flex flex-offset="5">
           <p>{{vm.autoridad.nota}}</p>
         </div>
       </div>
