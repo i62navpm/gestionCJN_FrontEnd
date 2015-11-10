@@ -14,8 +14,14 @@
         url: "/",
         templateProvider: function($templateCache){  
           return $templateCache.get('interfaz/home.html'); 
+        },
+        resolve: {
+            interfazPrepService: interfazPrepService
         }
       });
+  }
+  function interfazPrepService(interfazService) {
+    return interfazService.interfazRest();
   }
 
 })();
