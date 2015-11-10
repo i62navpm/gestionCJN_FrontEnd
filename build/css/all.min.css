@@ -207,6 +207,50 @@
 .gastosBancarios input[type="number"] {
   text-align: right; }
 
+.home md-grid-tile-footer figcaption {
+  width: 100%; }
+
+.home h3 {
+  margin: 0;
+  width: 100%;
+  font-weight: 700;
+  text-align: center; }
+
+.home md-grid-tile {
+  cursor: pointer; }
+  .home md-grid-tile md-grid-tile-footer {
+    height: 36px; }
+
+.home .gray {
+  background: #f5f5f5; }
+
+.home .green {
+  background: #b9f6ca; }
+
+.home .yellow {
+  background: #ffff8d; }
+
+.home .blue {
+  background: #84ffff; }
+
+.home .darkBlue {
+  background: #80d8ff; }
+
+.home .deepBlue {
+  background: #448aff; }
+
+.home .purple {
+  background: #b388ff; }
+
+.home .lightPurple {
+  background: #8c9eff; }
+
+.home .red {
+  background: #ff8a80; }
+
+.home .pink {
+  background: #ff80ab; }
+
 div.m-app-loading {
   z-index: 9999999;
   display: none; }

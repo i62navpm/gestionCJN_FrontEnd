@@ -18,7 +18,7 @@
         <md-button ng-click="app.toggleSidenav('menuIzquierdo')" hide-gt-sm class="md-icon-button">
           <md-icon md-font-library="material-icons">menu</md-icon>
         </md-button>
-        <h1>Gestion CJN</h1>
+        <a href ng-click="app.navigateTo('home', 'menuIzquierdo', $event)"><h1>Gestion CJN</h1></a>
       
         <span flex></span>
         <md-button class="md-icon-button md-warn" href="/logout">
